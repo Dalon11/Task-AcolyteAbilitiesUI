@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d74fb8fa3ab8a4195eb80bd1f32196, type: 3}
+  m_Name: ImperialStormTrooper
+  m_EditorClassIdentifier: 
+  _characterName: Brutus Tarkus
+  _characterSprite: {fileID: 0}
+  _iconSprite: {fileID: 0}
+  _hp: 180
+  _armor: 80
+  _description: A heavily armored frontline soldier built for direct engagements. Capable of absorbing massive damage while suppressing enemies with sustained fire.
+  _abilities:
+  - {fileID: 11400000, guid: e85140e85140e85140e85140e85140e8, type: 2}
+  - {fileID: 11400000, guid: f96251f96251f96251f96251f96251f9, type: 2}
+  - {fileID: 11400000, guid: 0a73620a73620a73620a73620a73620a, type: 2}
+  - {fileID: 11400000, guid: 1b84731b84731b84731b84731b84731b, type: 2}
+  _modifications:
+  - {fileID: 11400000, guid: 2c95842c95842c95842c95842c95842c, type: 2}
+  - {fileID: 11400000, guid: 3da6953da6953da6953da6953da6953d, type: 2}
+  - {fileID: 11400000, guid: 4eb7a64eb7a64eb7a64eb7a64eb7a64e, type: 2}
+  - {fileID: 11400000, guid: b7d2e3f405162738495a6b7c8d9e0f10, type: 2}

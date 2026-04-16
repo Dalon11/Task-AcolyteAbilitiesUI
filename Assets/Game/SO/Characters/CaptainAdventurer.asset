@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d74fb8fa3ab8a4195eb80bd1f32196, type: 3}
+  m_Name: CaptainAdventurer
+  m_EditorClassIdentifier: 
+  _characterName: Valeria Crane
+  _characterSprite: {fileID: 0}
+  _iconSprite: {fileID: 0}
+  _hp: 120
+  _armor: 35
+  _description: An experienced mercenary and squad leader. Prefers a flexible approach, combining firepower with tactical decision-making.
+  _abilities:
+  - {fileID: 11400000, guid: 1bf4641b64824f5ead11223344556677, type: 2}
+  - {fileID: 11400000, guid: 2cf5752c75935a6fbe22334455667788, type: 2}
+  - {fileID: 11400000, guid: 3da6863d86a46b70cf33445566778899, type: 2}
+  - {fileID: 11400000, guid: 4eb7974e97b57c81df445566778899aa, type: 2}
+  - {fileID: 11400000, guid: 5fc8a85fa8c68d92ef5566778899aabb, type: 2}
+  - {fileID: 11400000, guid: 60d9b960b9d79ea3f06778899aabbccd, type: 2}
+  _modifications:
+  - {fileID: 11400000, guid: 71eaca71cae8afb40178899aabbccdde, type: 2}
+  - {fileID: 11400000, guid: 82fbdb82dbf9b0c512899aabbccddeef, type: 2}
+  - {fileID: 11400000, guid: 930cec93ec0ab1d6239aabbccddeeff0, type: 2}
+  - {fileID: 11400000, guid: a41dfda4fd1bc2e734abbccddeeff001, type: 2}
+  - {fileID: 11400000, guid: b52e0eb50e2cd3f845bbccddeeff0011, type: 2}
+  - {fileID: 11400000, guid: a6c1d2e3f405162738495a6b7c8d9e0f, type: 2}

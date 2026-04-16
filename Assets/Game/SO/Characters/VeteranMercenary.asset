@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d74fb8fa3ab8a4195eb80bd1f32196, type: 3}
+  m_Name: VeteranMercenary
+  m_EditorClassIdentifier: 
+  _characterName: Garrett Dorn
+  _characterSprite: {fileID: 0}
+  _iconSprite: {fileID: 0}
+  _hp: 140
+  _armor: 50
+  _description: A battle-hardened veteran who has survived countless campaigns across hostile sectors. Garrett relies not on complex tactics, but on endurance, discipline, and the ability to hold the line under overwhelming pressure. His combat style revolves around survival, battlefield control through presence, and gradual suppression of enemy efficiency rather than direct aggression.
+  _abilities:
+  - {fileID: 11400000, guid: 5a1b2c3d4e5f60718293a4b5c6d7e8f9, type: 2}
+  _modifications:
+  - {fileID: 11400000, guid: 6b2c3d4e5f60718293a4b5c6d7e8f901, type: 2}
+  - {fileID: 11400000, guid: 7c3d4e5f60718293a4b5c6d7e8f90112, type: 2}
+  - {fileID: 11400000, guid: 8d4e5f60718293a4b5c6d7e8f9011223, type: 2}
+  - {fileID: 11400000, guid: 9e5f60718293a4b5c6d7e8f901122334, type: 2}
+  - {fileID: 11400000, guid: af60718293a4b5c6d7e8f90112233445, type: 2}
+  - {fileID: 11400000, guid: b0718293a4b5c6d7e8f9011223344556, type: 2}
+  - {fileID: 11400000, guid: c18293a4b5c6d7e8f901122334455667, type: 2}
+  - {fileID: 11400000, guid: d293a4b5c6d7e8f90112233445566778, type: 2}
+  - {fileID: 11400000, guid: e3a4b5c6d7e8f9011223344556677889, type: 2}
+  - {fileID: 11400000, guid: f4b5c6d7e8f90112233445566778899a, type: 2}
+  - {fileID: 11400000, guid: 05c6d7e8f90112233445566778899aab, type: 2}
+  - {fileID: 11400000, guid: 16d7e8f90112233445566778899aabbc, type: 2}
+  - {fileID: 11400000, guid: 27e8f90112233445566778899aabbccd, type: 2}
+  - {fileID: 11400000, guid: 38f90112233445566778899aabbccdde, type: 2}
+  - {fileID: 11400000, guid: 490112233445566778899aabbccddeef, type: 2}

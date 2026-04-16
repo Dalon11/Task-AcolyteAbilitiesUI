@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d74fb8fa3ab8a4195eb80bd1f32196, type: 3}
+  m_Name: AssassinOperative
+  m_EditorClassIdentifier: 
+  _characterName: Kairos Nox
+  _characterSprite: {fileID: 0}
+  _iconSprite: {fileID: 0}
+  _hp: 100
+  _armor: 25
+  _description: A stealth-oriented killer specializing in swift strikes and single-target control. Relies on mobility and precision rather than brute force.
+  _abilities:
+  - {fileID: 11400000, guid: 6ad7b56ad7b56ad7b56ad7b56ad7b56a, type: 2}
+  - {fileID: 11400000, guid: 7be8c67be8c67be8c67be8c67be8c67b, type: 2}
+  - {fileID: 11400000, guid: 8cf9d78cf9d78cf9d78cf9d78cf9d78c, type: 2}
+  - {fileID: 11400000, guid: 9d0ae89d0ae89d0ae89d0ae89d0ae89d, type: 2}
+  - {fileID: 11400000, guid: ae1bf9ae1bf9ae1bf9ae1bf9ae1bf9ae, type: 2}
+  _modifications:
+  - {fileID: 11400000, guid: bf2c0abf2c0abf2c0abf2c0abf2c0abf, type: 2}
+  - {fileID: 11400000, guid: c03d1bc03d1bc03d1bc03d1bc03d1bc0, type: 2}
+  - {fileID: 11400000, guid: d14e2cd14e2cd14e2cd14e2cd14e2cd1, type: 2}
+  - {fileID: 11400000, guid: e25f3de25f3de25f3de25f3de25f3de2, type: 2}
+  - {fileID: 11400000, guid: f3604ef3604ef3604ef3604ef3604ef3, type: 2}
+  - {fileID: 11400000, guid: 04715f04715f04715f04715f04715f04, type: 2}
+  - {fileID: 11400000, guid: 15826015826015826015826015826015, type: 2}
+  - {fileID: 11400000, guid: 26937126937126937126937126937126, type: 2}
+  - {fileID: 11400000, guid: 37a48237a48237a48237a48237a48237, type: 2}
+  - {fileID: 11400000, guid: d9f405162738495a6b7c8d9e0f101112, type: 2}
