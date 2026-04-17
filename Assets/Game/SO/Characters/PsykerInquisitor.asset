@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: PsykerInquisitor
   m_EditorClassIdentifier: 
   _characterName: Malkor Vane
-  _characterSprite: {fileID: 0}
-  _iconSprite: {fileID: 0}
+  _characterSprite: {fileID: 21300000, guid: aa0c0081feb9b6549a44c51f9508fbdc, type: 3}
+  _iconSprite: {fileID: 21300000, guid: 12f84726e7226274bb3ddf3c13fc4651, type: 3}
   _hp: 90
   _armor: 20
-  _description: A dangerous psyker who channels warp energy. Highly effective against enemies, but unstable and risky if not controlled properly.
+  _description: A dangerous psyker who channels warp energy. Highly effective against
+    enemies, but unstable and risky if not controlled properly.
   _abilities:
   - {fileID: 11400000, guid: 6ad8c86ad8c86ad8c86ad8c86ad8c86a, type: 2}
   - {fileID: 11400000, guid: 7be9d97be9d97be9d97be9d97be9d97b, type: 2}

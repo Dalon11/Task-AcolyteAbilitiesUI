@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NeuralDisrupt
   m_EditorClassIdentifier: 
   _abilityName: Neural Disrupt
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: f62960e5707bdee4db655a0ecf84801d, type: 3}
   _abilityType: 4
   _description: Disorients enemies with signal interference.
   _supportedModificationTypes: 20

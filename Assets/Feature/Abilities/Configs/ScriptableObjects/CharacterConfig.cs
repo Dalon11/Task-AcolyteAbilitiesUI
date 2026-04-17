@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Feature.Abilities.Configs.ScriptableObjects
 {
+    /// <summary>
+    /// Конфиг персонажа с параметрами, способностями и модификаторами.
+    /// </summary>
     [CreateAssetMenu(
         fileName = "CharacterConfig",
         menuName = "Game/Abilities/Configs/Character Config")]

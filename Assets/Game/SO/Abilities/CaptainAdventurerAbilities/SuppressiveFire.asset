@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SuppressiveFire
   m_EditorClassIdentifier: 
   _abilityName: Suppressive Fire
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: b9c07f403b54e3e43b25af49abc95ad0, type: 3}
   _abilityType: 1
   _description: Continuous fire that reduces enemy effectiveness.
   _supportedModificationTypes: 22

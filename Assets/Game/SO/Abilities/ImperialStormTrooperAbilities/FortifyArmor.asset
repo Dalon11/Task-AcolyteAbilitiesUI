@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FortifyArmor
   m_EditorClassIdentifier: 
   _abilityName: Fortify Armor
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: c9c553fbc8cf00b4999ca9cd7c7c277b, type: 3}
   _abilityType: 2
   _description: Reinforces armor plating for a short duration.
   _supportedModificationTypes: 8

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dash
   m_EditorClassIdentifier: 
   _abilityName: Dash
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: ed77deffe5c0a9c40937855deb9b82ef, type: 3}
   _abilityType: 3
   _description: Instantly repositions across the battlefield.
   _supportedModificationTypes: 8

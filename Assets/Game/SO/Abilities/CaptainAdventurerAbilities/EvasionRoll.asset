@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EvasionRoll
   m_EditorClassIdentifier: 
   _abilityName: Evasion Roll
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: b9c07f403b54e3e43b25af49abc95ad0, type: 3}
   _abilityType: 3
   _description: Quickly repositions to avoid incoming damage.
   _supportedModificationTypes: 8

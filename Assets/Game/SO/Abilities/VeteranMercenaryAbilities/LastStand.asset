@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: LastStand
   m_EditorClassIdentifier: 
   _abilityName: Last Stand
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: 94a5f92838d414843819ee618d541aaf, type: 3}
   _abilityType: 2
-  _description: Enters a defensive stance, reducing incoming damage and increasing resistance to control effects.
+  _description: Enters a defensive stance, reducing incoming damage and increasing
+    resistance to control effects.
   _supportedModificationTypes: 24

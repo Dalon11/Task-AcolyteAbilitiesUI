@@ -1,8 +1,11 @@
-using Feature.Abilities.Configs.Enums;
+using Feature.Abilities.Enums;
 using UnityEngine;
 
 namespace Feature.Abilities.Configs.ScriptableObjects
 {
+    /// <summary>
+    /// Конфиг модификатора с типом, иконкой и текстовым описанием.
+    /// </summary>
     [CreateAssetMenu(
         fileName = "ModificationConfig",
         menuName = "Game/Abilities/Configs/Modification Config")]

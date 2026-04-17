@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AutoTurret
   m_EditorClassIdentifier: 
   _abilityName: Auto-Turret
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: f62960e5707bdee4db655a0ecf84801d, type: 3}
   _abilityType: 1
   _description: Deploys an automated turret that fires continuously.
   _supportedModificationTypes: 4

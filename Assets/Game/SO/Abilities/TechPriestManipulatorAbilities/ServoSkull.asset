@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: ServoSkull
   m_EditorClassIdentifier: 
   _abilityName: Servo Skull
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: f62960e5707bdee4db655a0ecf84801d, type: 3}
   _abilityType: 3
-  _description: Deploys a support drone that scans enemies and provides tactical data.
+  _description: Deploys a support drone that scans enemies and provides tactical
+    data.
   _supportedModificationTypes: 12

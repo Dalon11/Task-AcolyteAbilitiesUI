@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: ImperialStormTrooper
   m_EditorClassIdentifier: 
   _characterName: Brutus Tarkus
-  _characterSprite: {fileID: 0}
-  _iconSprite: {fileID: 0}
+  _characterSprite: {fileID: 21300000, guid: 6509f0d97fcd3444aa4904bc6afdf38d, type: 3}
+  _iconSprite: {fileID: 21300000, guid: 4522664ccbb9356478ae7a3f158cbaa6, type: 3}
   _hp: 180
   _armor: 80
-  _description: A heavily armored frontline soldier built for direct engagements. Capable of absorbing massive damage while suppressing enemies with sustained fire.
+  _description: A heavily armored frontline soldier built for direct engagements.
+    Capable of absorbing massive damage while suppressing enemies with sustained
+    fire.
   _abilities:
   - {fileID: 11400000, guid: e85140e85140e85140e85140e85140e8, type: 2}
   - {fileID: 11400000, guid: f96251f96251f96251f96251f96251f9, type: 2}

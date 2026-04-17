@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SystemOverride
   m_EditorClassIdentifier: 
   _abilityName: System Override
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: f62960e5707bdee4db655a0ecf84801d, type: 3}
   _abilityType: 3
   _description: Interferes with enemy systems, reducing their effectiveness.
   _supportedModificationTypes: 20

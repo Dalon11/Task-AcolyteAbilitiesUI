@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: AssassinOperative
   m_EditorClassIdentifier: 
   _characterName: Kairos Nox
-  _characterSprite: {fileID: 0}
-  _iconSprite: {fileID: 0}
+  _characterSprite: {fileID: 21300000, guid: 45948cc4701853b44a4584784502d1c8, type: 3}
+  _iconSprite: {fileID: 21300000, guid: 74daad7e5ff8c084c8daabd9bb8f90b5, type: 3}
   _hp: 100
   _armor: 25
-  _description: A stealth-oriented killer specializing in swift strikes and single-target control. Relies on mobility and precision rather than brute force.
+  _description: A stealth-oriented killer specializing in swift strikes and single-target
+    control. Relies on mobility and precision rather than brute force.
   _abilities:
   - {fileID: 11400000, guid: 6ad7b56ad7b56ad7b56ad7b56ad7b56a, type: 2}
   - {fileID: 11400000, guid: 7be8c67be8c67be8c67be8c67be8c67b, type: 2}

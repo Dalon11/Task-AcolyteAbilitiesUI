@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
-using Feature.Abilities.Configs.Enums;
+using Feature.Abilities.Enums;
 using UnityEngine;
 
 namespace Feature.Abilities.Configs.ScriptableObjects
 {
+    /// <summary>
+    /// Каталог отображаемых параметров типов модификаторов для UI.
+    /// </summary>
     [CreateAssetMenu(
         fileName = "ModificationTypeCatalog",
         menuName = "Game/Abilities/Configs/Modification Type Catalog")]
@@ -14,6 +17,9 @@ namespace Feature.Abilities.Configs.ScriptableObjects
 
         public IReadOnlyList<ModificationTypeEntry> Entries => _entries;
 
+        /// <summary>
+        /// Запись каталога с визуальными данными одного типа модификатора.
+        /// </summary>
         [Serializable]
         public sealed class ModificationTypeEntry
         {

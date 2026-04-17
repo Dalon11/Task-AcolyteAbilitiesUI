@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WarpSurge
   m_EditorClassIdentifier: 
   _abilityName: Warp Surge
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: 192eb6e77dd10d348ac6853504f62fe2, type: 3}
   _abilityType: 1
   _description: Releases unstable psychic power in a violent surge.
   _supportedModificationTypes: 3

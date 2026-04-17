@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StabilizeSystems
   m_EditorClassIdentifier: 
   _abilityName: Stabilize Systems
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: f62960e5707bdee4db655a0ecf84801d, type: 3}
   _abilityType: 5
   _description: Prevents system failures in allied units.
   _supportedModificationTypes: 8

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TargetMark
   m_EditorClassIdentifier: 
   _abilityName: Target Mark
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: b9c07f403b54e3e43b25af49abc95ad0, type: 3}
   _abilityType: 4
   _description: Marks an enemy, making them more vulnerable to follow-up attacks.
   _supportedModificationTypes: 28

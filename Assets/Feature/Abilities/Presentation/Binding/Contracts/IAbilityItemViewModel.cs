@@ -1,0 +1,19 @@
+using System.Collections.Generic;
+using Feature.Abilities.Enums;
+using UnityEngine;
+
+namespace Feature.Abilities.Presentation.Binding.Contracts
+{
+    public interface IAbilityItemViewModel
+    {
+        string Id { get; }
+
+        string Name { get; }
+
+        Sprite Icon { get; }
+
+        AbilityType AbilityType { get; }
+
+        IReadOnlyList<ModificationType> SupportedModificationTypes { get; }
+    }
+}

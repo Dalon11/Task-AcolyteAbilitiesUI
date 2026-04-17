@@ -1,8 +1,11 @@
-using Feature.Abilities.Configs.Enums;
+using Feature.Abilities.Enums;
 using UnityEngine;
 
 namespace Feature.Abilities.Configs.ScriptableObjects
 {
+    /// <summary>
+    /// Конфиг способности с типом, иконкой и поддерживаемыми модификаторами.
+    /// </summary>
     [CreateAssetMenu(
         fileName = "AbilityConfig",
         menuName = "Game/Abilities/Configs/Ability Config")]

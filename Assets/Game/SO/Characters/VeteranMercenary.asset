@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: VeteranMercenary
   m_EditorClassIdentifier: 
   _characterName: Garrett Dorn
-  _characterSprite: {fileID: 0}
-  _iconSprite: {fileID: 0}
+  _characterSprite: {fileID: 21300000, guid: 0b3d75d3966c6334f9d318e80fcc286f, type: 3}
+  _iconSprite: {fileID: 21300000, guid: 4e10b89295132f84a81f3b1392f3dcfe, type: 3}
   _hp: 140
   _armor: 50
-  _description: A battle-hardened veteran who has survived countless campaigns across hostile sectors. Garrett relies not on complex tactics, but on endurance, discipline, and the ability to hold the line under overwhelming pressure. His combat style revolves around survival, battlefield control through presence, and gradual suppression of enemy efficiency rather than direct aggression.
+  _description: A battle-hardened veteran who has survived countless campaigns across
+    hostile sectors. Garrett relies not on complex tactics, but on endurance, discipline,
+    and the ability to hold the line under overwhelming pressure. His combat style
+    revolves around survival, battlefield control through presence, and gradual suppression
+    of enemy efficiency rather than direct aggression.
   _abilities:
   - {fileID: 11400000, guid: 5a1b2c3d4e5f60718293a4b5c6d7e8f9, type: 2}
   _modifications:

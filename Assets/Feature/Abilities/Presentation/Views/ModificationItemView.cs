@@ -1,0 +1,139 @@
+﻿using System;
+using Feature.Abilities.Presentation.Binding.Contracts;
+using Feature.Abilities.Presentation.Views.Input;
+using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+namespace Feature.Abilities.Presentation.Views
+{
+    /// <summary>
+    /// Тонкий bind-слой элемента Modification.
+    /// </summary>
+    public sealed class ModificationItemView : MonoBehaviour
+    {
+        [SerializeField] private Image _iconImage;
+        [SerializeField] private TMP_Text _nameText;
+        [SerializeField] private TMP_Text _typeDisplayNameText;
+        [SerializeField] private Image _typeIconImage;
+        [SerializeField] private Image _typeColorTarget;
+        [SerializeField] private UiPointerInputView _pointerInputView;
+
+        private IModificationItemViewModel _viewModel;
+        private Action<string> _onHoverEnter;
+        private Action<string> _onHoverExit;
+        private Color _initialTypeColor;
+        private bool _hasInitialTypeColor;
+
+        private void Awake()
+        {
+            if (_pointerInputView == null)
+                _pointerInputView = GetComponent<UiPointerInputView>();
+
+            if (_pointerInputView != null)
+            {
+                _pointerInputView.onPointerEnter += OnPointerEnter;
+                _pointerInputView.onPointerExit += OnPointerExit;
+            }
+
+            if (_typeColorTarget != null)
+            {
+                _initialTypeColor = _typeColorTarget.color;
+                _hasInitialTypeColor = true;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (_pointerInputView != null)
+            {
+                _pointerInputView.onPointerEnter -= OnPointerEnter;
+                _pointerInputView.onPointerExit -= OnPointerExit;
+            }
+        }
+
+        public void Bind(IModificationItemViewModel viewModel)
+        {
+            if (viewModel == null)
+                throw new ArgumentNullException(nameof(viewModel));
+
+            _viewModel = viewModel;
+            Refresh();
+        }
+
+        public void SetInputHandlers(Action<string> onHoverEnter, Action<string> onHoverExit)
+        {
+            _onHoverEnter = onHoverEnter;
+            _onHoverExit = onHoverExit;
+        }
+
+        public void HandleHoverEnter()
+        {
+            if (_viewModel == null)
+                return;
+
+            Action<string> handler = _onHoverEnter;
+            if (handler != null)
+                handler.Invoke(_viewModel.Id);
+        }
+
+        public void HandleHoverExit()
+        {
+            if (_viewModel == null)
+                return;
+
+            Action<string> handler = _onHoverExit;
+            if (handler != null)
+                handler.Invoke(_viewModel.Id);
+        }
+
+        public void Unbind()
+        {
+            _viewModel = null;
+            _onHoverEnter = null;
+            _onHoverExit = null;
+        }
+
+        public void Refresh()
+        {
+            if (_viewModel == null)
+                return;
+
+            if (_iconImage != null)
+                _iconImage.sprite = _viewModel.Icon;
+
+            if (_nameText != null)
+                _nameText.text = _viewModel.Name;
+
+            if (_typeDisplayNameText != null)
+                _typeDisplayNameText.text = _viewModel.TypeDisplayName;
+
+            if (_typeIconImage != null)
+                _typeIconImage.sprite = _viewModel.TypeIcon;
+
+            if (_typeColorTarget != null)
+            {
+                Color typeColor = _viewModel.TypeColor;
+                if (_hasInitialTypeColor)
+                    typeColor.a = _initialTypeColor.a;
+                else if (typeColor.a <= 0f)
+                    typeColor.a = 1f;
+
+                _typeColorTarget.color = typeColor;
+            }
+        }
+
+        private void OnPointerEnter(PointerEventData eventData)
+        {
+            _ = eventData;
+            HandleHoverEnter();
+        }
+
+        private void OnPointerExit(PointerEventData eventData)
+        {
+            _ = eventData;
+            HandleHoverExit();
+        }
+    }
+}

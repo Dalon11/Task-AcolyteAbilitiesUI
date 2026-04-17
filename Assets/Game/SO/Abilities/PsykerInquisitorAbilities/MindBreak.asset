@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MindBreak
   m_EditorClassIdentifier: 
   _abilityName: Mind Break
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: 192eb6e77dd10d348ac6853504f62fe2, type: 3}
   _abilityType: 4
-  _description: Shatters the target’s mental resistance.
+  _description: "Shatters the target\u2019s mental resistance."
   _supportedModificationTypes: 25

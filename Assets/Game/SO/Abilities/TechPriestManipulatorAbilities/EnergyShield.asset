@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnergyShield
   m_EditorClassIdentifier: 
   _abilityName: Energy Shield
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: f62960e5707bdee4db655a0ecf84801d, type: 3}
   _abilityType: 2
   _description: Projects a temporary protective barrier.
   _supportedModificationTypes: 8

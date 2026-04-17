@@ -13,11 +13,16 @@ MonoBehaviour:
   m_Name: TechPriestManipulator
   m_EditorClassIdentifier: 
   _characterName: Xeran Omnis
-  _characterSprite: {fileID: 0}
-  _iconSprite: {fileID: 0}
+  _characterSprite: {fileID: 21300000, guid: e9fbb5cf74a30104a913ffa656a04fa2, type: 3}
+  _iconSprite: {fileID: 21300000, guid: f62960e5707bdee4db655a0ecf84801d, type: 3}
   _hp: 110
   _armor: 60
-  _description: A devoted servant of the machine cult, Xeran Omnis specializes in battlefield control through advanced technology and precision systems. Rather than overwhelming enemies with brute force, he manipulates combat flow using drones, targeting systems, and disruption signals. His strength lies in versatility — a wide arsenal of abilities — but he is limited by a small number of active enhancements.
+  _description: "A devoted servant of the machine cult, Xeran Omnis specializes in
+    battlefield control through advanced technology and precision systems. Rather
+    than overwhelming enemies with brute force, he manipulates combat flow using
+    drones, targeting systems, and disruption signals. His strength lies in versatility
+    \u2014 a wide arsenal of abilities \u2014 but he is limited by a small number
+    of active enhancements."
   _abilities:
   - {fileID: 11400000, guid: 61a2b3c4d5e6f708192a3b4c5d6e7f80, type: 2}
   - {fileID: 11400000, guid: 72b3c4d5e6f708192a3b4c5d6e7f8091, type: 2}

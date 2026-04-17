@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Feature.Abilities.Configs.ScriptableObjects
 {
+    /// <summary>
+    /// Каталог конфигов персонажей для загрузки данных экрана выбора.
+    /// </summary>
     [CreateAssetMenu(
         fileName = "CharacterCatalog",
         menuName = "Game/Abilities/Configs/Character Catalog")]

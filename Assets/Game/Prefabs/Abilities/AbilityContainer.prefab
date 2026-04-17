@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1334646442913486247}
+  - component: {fileID: 3140578654825270066}
   m_Layer: 5
   m_Name: AbilityContainer
   m_TagString: Untagged
@@ -39,6 +40,23 @@ RectTransform:
   m_AnchoredPosition: {x: 109.43277, y: -332.89996}
   m_SizeDelta: {x: 261.8656, y: 124}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3140578654825270066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543001244507175298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 965382708e5f4d543826ec570fb008a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _iconImage: {fileID: 980806723524465832}
+  _nameText: {fileID: 4831498706001436146}
+  _abilityTypeText: {fileID: 0}
+  _supportedTypesText: {fileID: 0}
+  _pointerInputView: {fileID: 8789331554802895093}
 --- !u!1 &2178483438275216701
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +342,7 @@ GameObject:
   - component: {fileID: 6610338324564026204}
   - component: {fileID: 3850394551303004809}
   - component: {fileID: 980806723524465832}
+  - component: {fileID: 8789331554802895093}
   m_Layer: 5
   m_Name: AbilityIcon
   m_TagString: Untagged
@@ -388,6 +407,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8789331554802895093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6719658862923138946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceec3e79062fe184e86d13fcdde55db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6917326370321727548
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,7 +679,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 1
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
