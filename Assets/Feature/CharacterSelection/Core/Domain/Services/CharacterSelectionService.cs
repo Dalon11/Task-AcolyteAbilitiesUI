@@ -1,11 +1,12 @@
-using System;
+﻿using System;
 using Feature.CharacterSelection.Core.Domain.Contracts;
 using Feature.CharacterSelection.Core.Domain.Models;
 
 namespace Feature.CharacterSelection.Core.Domain.Services
 {
+
     /// <summary>
-    /// ������ ������ � �������� �������� ��������� ���������.
+    /// Предоставляет сервисную логику Character Selection для сценариев экрана.
     /// </summary>
     public sealed class CharacterSelectionService : ICharacterSelectionService
     {
@@ -52,6 +53,3 @@ namespace Feature.CharacterSelection.Core.Domain.Services
         }
     }
 }
-
-
-

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Feature.Abilities.Presentation.Views;
 using Feature.CharacterPaper.Presentation.Views;
 using Feature.CharacterSelection.Presentation.Binding.Contracts;
@@ -8,12 +8,12 @@ using Feature.Modifications.Presentation.Views;
 using Feature.Party.Presentation.Views;
 using Feature.Tooltip.Presentation.Views;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Feature.CharacterSelection.Presentation.Views
 {
+
     /// <summary>
-    /// ������ bind-���� ������ ������ ���������.
+    /// Отвечает за отображение и обработку UI-блока Character Selection Screen.
     /// </summary>
     public sealed class CharacterSelectionScreenView : MonoBehaviour
     {
@@ -28,14 +28,21 @@ namespace Feature.CharacterSelection.Presentation.Views
 
         private ICharacterSelectionScreenViewModel _viewModel;
         private IComponentPoolService _componentPoolService;
-        private TooltipHoverDelayCoordinator _tooltipHoverDelayCoordinator;
-        private AbilityDropTargetResolver _abilityDropTargetResolver;
+        private CharacterSelectionScreenInputRouter _inputRouter;
+        private CharacterSelectionScreenBindingsCoordinator _bindingsCoordinator;
 
         private void Awake()
         {
-            _tooltipHoverDelayCoordinator =
-                new TooltipHoverDelayCoordinator(_tooltipHoverDelaySeconds, _mouseMovementThreshold);
-            _abilityDropTargetResolver = new AbilityDropTargetResolver();
+            _inputRouter = new CharacterSelectionScreenInputRouter(
+                _tooltipHoverDelaySeconds,
+                _mouseMovementThreshold);
+            _bindingsCoordinator = new CharacterSelectionScreenBindingsCoordinator(
+                _partyListView,
+                _characterPaperView,
+                _abilitiesListView,
+                _modificationsListView,
+                _tooltipView,
+                _draggedModificationSlotView);
         }
 
         public void SetPoolService(IComponentPoolService componentPoolService)
@@ -52,54 +59,27 @@ namespace Feature.CharacterSelection.Presentation.Views
                 throw new ArgumentNullException(nameof(viewModel));
 
             if (_componentPoolService == null)
-                throw new InvalidOperationException("�� �������� ����� ��� ����������� ��� CharacterSelectionScreenView.");
+                throw new InvalidOperationException("Не задан IComponentPoolService для CharacterSelectionScreenView.");
 
             Unbind();
 
             _viewModel = viewModel;
-
-            if (_abilitiesListView != null)
-                _abilitiesListView.SetPoolService(_componentPoolService);
-
-            if (_modificationsListView != null)
-                _modificationsListView.SetPoolService(_componentPoolService);
-
-            if (_partyListView != null)
-                _partyListView.Bind(_viewModel.Party, HandlePartyCharacterClick);
-
-            if (_characterPaperView != null)
-            {
-                _characterPaperView.Bind(_viewModel.CharacterPaper);
-                _characterPaperView.SetInputHandlers(HandleCharacterHoverEnter, HandleCharacterHoverExit);
-            }
-
-            if (_abilitiesListView != null)
-            {
-                _abilitiesListView.Bind(
-                    _viewModel.Abilities,
-                    HandleAbilityHoverEnter,
-                    HandleAbilityHoverExit,
-                    HandleAbilityPointerDown,
-                    HandleAbilityPointerUp);
-            }
-
-            if (_modificationsListView != null)
-            {
-                _modificationsListView.Bind(
-                    _viewModel.Modifications,
-                    HandleModificationHoverEnter,
-                    HandleModificationHoverExit,
-                    HandleModificationPointerDown,
-                    HandleModificationPointerUp);
-            }
-
-            if (_tooltipView != null)
-                _tooltipView.Bind(_viewModel.Tooltip);
-
-            if (_draggedModificationSlotView != null)
-                _draggedModificationSlotView.Bind(_viewModel.DragSlot);
-
-            Refresh();
+            _inputRouter.SetViewModel(viewModel);
+            _bindingsCoordinator.Bind(
+                viewModel,
+                _componentPoolService,
+                _inputRouter.HandlePartyCharacterClick,
+                _inputRouter.HandleCharacterHoverEnter,
+                _inputRouter.HandleCharacterHoverExit,
+                _inputRouter.HandleAbilityHoverEnter,
+                _inputRouter.HandleAbilityHoverExit,
+                _inputRouter.HandleAbilityPointerDown,
+                _inputRouter.HandleAbilityPointerUp,
+                _inputRouter.HandleModificationHoverEnter,
+                _inputRouter.HandleModificationHoverExit,
+                _inputRouter.HandleModificationPointerDown,
+                _inputRouter.HandleModificationPointerUp);
+            _bindingsCoordinator.Refresh();
         }
 
         public void Unbind()
@@ -107,130 +87,9 @@ namespace Feature.CharacterSelection.Presentation.Views
             if (_viewModel == null)
                 return;
 
-            if (_partyListView != null)
-                _partyListView.Unbind();
-
-            if (_characterPaperView != null)
-                _characterPaperView.Unbind();
-
-            if (_abilitiesListView != null)
-                _abilitiesListView.Unbind();
-
-            if (_modificationsListView != null)
-                _modificationsListView.Unbind();
-
-            if (_tooltipView != null)
-                _tooltipView.Unbind();
-
-            if (_draggedModificationSlotView != null)
-                _draggedModificationSlotView.Unbind();
-
-            CancelPendingTooltipHover();
+            _bindingsCoordinator.Unbind();
+            _inputRouter.ClearViewModel();
             _viewModel = null;
-        }
-
-        public void HandlePartyCharacterClick(string characterId)
-        {
-            if (_viewModel == null)
-                return;
-
-            CancelPendingTooltipHover();
-            _viewModel.OnPartyCharacterClick(characterId);
-        }
-
-        public void HandleCharacterHoverEnter()
-        {
-            if (_viewModel == null)
-                return;
-
-            StartPendingTooltipHover(TooltipHoverDelayCoordinator.HoverTargetType.Character, string.Empty);
-        }
-
-        public void HandleCharacterHoverExit()
-        {
-            if (_viewModel == null)
-                return;
-
-            CancelPendingTooltipHover();
-            _viewModel.OnCharacterHoverExit();
-        }
-
-        public void HandleAbilityHoverEnter(string abilityId)
-        {
-            if (_viewModel == null)
-                return;
-
-            StartPendingTooltipHover(TooltipHoverDelayCoordinator.HoverTargetType.Ability, abilityId);
-        }
-
-        public void HandleAbilityHoverExit(string abilityId)
-        {
-            if (_viewModel == null)
-                return;
-
-            CancelPendingTooltipHover();
-            _viewModel.OnAbilityHoverExit(abilityId);
-        }
-
-        public void HandleAbilityPointerDown(string abilityId, PointerEventData eventData)
-        {
-            _ = eventData;
-
-            if (_viewModel == null)
-                return;
-
-            CancelPendingTooltipHover();
-            _viewModel.OnAbilityPointerDown(abilityId);
-        }
-
-        public void HandleAbilityPointerUp(string abilityId, PointerEventData eventData)
-        {
-            _ = abilityId;
-
-            if (_viewModel == null)
-                return;
-
-            string targetAbilityId = ResolveAbilityIdUnderPointer(eventData);
-            _viewModel.OnAbilityPointerUp(targetAbilityId);
-        }
-
-        public void HandleModificationHoverEnter(string modificationId)
-        {
-            if (_viewModel == null)
-                return;
-
-            StartPendingTooltipHover(TooltipHoverDelayCoordinator.HoverTargetType.Modification, modificationId);
-        }
-
-        public void HandleModificationHoverExit(string modificationId)
-        {
-            if (_viewModel == null)
-                return;
-
-            CancelPendingTooltipHover();
-            _viewModel.OnModificationHoverExit(modificationId);
-        }
-
-        public void HandleModificationPointerDown(string modificationId, PointerEventData eventData)
-        {
-            _ = eventData;
-
-            if (_viewModel == null)
-                return;
-
-            CancelPendingTooltipHover();
-            _viewModel.OnModificationPointerDown(modificationId);
-        }
-
-        public void HandleModificationPointerUp(string modificationId, PointerEventData eventData)
-        {
-            _ = modificationId;
-
-            if (_viewModel == null)
-                return;
-
-            string abilityId = ResolveAbilityIdUnderPointer(eventData);
-            _viewModel.OnModificationPointerUp(abilityId);
         }
 
         private void OnDestroy()
@@ -243,91 +102,7 @@ namespace Feature.CharacterSelection.Presentation.Views
             if (_viewModel == null)
                 return;
 
-            ProcessPendingTooltipHover();
-        }
-
-        private void Refresh()
-        {
-            if (_viewModel == null)
-                return;
-
-            if (_partyListView != null)
-                _partyListView.Refresh();
-
-            if (_characterPaperView != null)
-                _characterPaperView.Refresh();
-
-            if (_abilitiesListView != null)
-                _abilitiesListView.Refresh();
-
-            if (_modificationsListView != null)
-                _modificationsListView.Refresh();
-
-            if (_tooltipView != null)
-                _tooltipView.Refresh();
-
-            if (_draggedModificationSlotView != null)
-                _draggedModificationSlotView.Refresh();
-        }
-
-        private string ResolveAbilityIdUnderPointer(PointerEventData eventData)
-        {
-            if (_abilityDropTargetResolver == null)
-                return string.Empty;
-
-            return _abilityDropTargetResolver.ResolveAbilityIdUnderPointer(eventData);
-        }
-
-        private void StartPendingTooltipHover(TooltipHoverDelayCoordinator.HoverTargetType targetType, string targetId)
-        {
-            if (_tooltipHoverDelayCoordinator == null)
-                return;
-
-            _tooltipHoverDelayCoordinator.StartPending(
-                targetType,
-                targetId,
-                UnityEngine.Input.mousePosition,
-                Time.unscaledTime);
-        }
-
-        private void CancelPendingTooltipHover()
-        {
-            if (_tooltipHoverDelayCoordinator == null)
-                return;
-
-            _tooltipHoverDelayCoordinator.Cancel();
-        }
-
-        private void ProcessPendingTooltipHover()
-        {
-            if (_tooltipHoverDelayCoordinator == null)
-                return;
-
-            _tooltipHoverDelayCoordinator.Process(
-                UnityEngine.Input.mousePosition,
-                Time.unscaledTime,
-                ShowPendingTooltip);
-        }
-
-        private void ShowPendingTooltip(TooltipHoverDelayCoordinator.HoverTargetType targetType, string targetId)
-        {
-            switch (targetType)
-            {
-                case TooltipHoverDelayCoordinator.HoverTargetType.Character:
-                    _viewModel.OnCharacterHoverEnter();
-                    break;
-                case TooltipHoverDelayCoordinator.HoverTargetType.Ability:
-                    _viewModel.OnAbilityHoverEnter(targetId);
-                    break;
-                case TooltipHoverDelayCoordinator.HoverTargetType.Modification:
-                    _viewModel.OnModificationHoverEnter(targetId);
-                    break;
-                default:
-                    break;
-            }
+            _inputRouter.ProcessPendingHover();
         }
     }
 }
-
-
-

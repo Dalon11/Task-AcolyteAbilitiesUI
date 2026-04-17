@@ -1,53 +1,34 @@
-using System;
-using Feature.Abilities.Presentation.ViewModels;
-using Feature.CharacterPaper.Presentation.ViewModels;
+﻿using System;
 using Feature.CharacterSelection.Core.Configs.ScriptableObjects;
-using Feature.CharacterSelection.Core.Domain.Contracts;
-using Feature.CharacterSelection.Core.Domain.Services;
-using Feature.CharacterSelection.Core.Infrastructure.Factories;
-using Feature.CharacterSelection.Core.Infrastructure.Repositories;
-using Feature.CharacterSelection.Presentation.ViewModels;
 using Feature.CharacterSelection.Presentation.Views;
-using Feature.Common.Presentation.Pooling.Contracts;
-using Feature.Common.Presentation.Pooling.Services;
-using Feature.Loadout.Presentation.ViewModels;
-using Feature.Modifications.Presentation.ViewModels;
-using Feature.Party.Presentation.ViewModels;
-using Feature.Tooltip.Presentation.ViewModels;
 using UnityEngine;
 
 namespace Feature.CharacterSelection.Composition
 {
-    /// <summary>
-    /// ���������� ������ ������ ���������: �������� ����������� � ��������� View � ViewModel.
-    /// </summary>
+
     [DisallowMultipleComponent]
+    /// <summary>
+    /// Инициализирует сценарий Character Selection Screen в контексте сцены.
+    /// </summary>
     public sealed class CharacterSelectionScreenBootstrap : MonoBehaviour
     {
         [SerializeField] private CharacterSelectionScreenView _screenView;
         [SerializeField] private CharacterCatalog _characterCatalog;
         [SerializeField] private ModificationTypeCatalog _modificationTypeCatalog;
 
-        private CharacterSelectionScreenViewModel _screenViewModel;
-        private IComponentPoolService _componentPoolService;
+        private CharacterSelectionScreenComposition _composition;
 
         private void Awake()
         {
             CharacterSelectionScreenView screenView = ResolveScreenView();
+            CharacterSelectionScreenComposer composer = new CharacterSelectionScreenComposer(
+                _characterCatalog,
+                _modificationTypeCatalog);
 
-            ICharacterRepository characterRepository = BuildCharacterRepository();
-            ICharacterSelectionService characterSelectionService = new CharacterSelectionService(characterRepository);
-            CharacterSelectionScreenDependencies screenDependencies = BuildScreenDependencies();
-
-            _screenViewModel = new CharacterSelectionScreenViewModel(
-                characterRepository,
-                characterSelectionService,
-                screenDependencies);
-
-            _componentPoolService = new ComponentPoolService();
-            screenView.SetPoolService(_componentPoolService);
-            screenView.Bind(_screenViewModel);
-            _screenViewModel.Initialize();
+            _composition = composer.Compose();
+            screenView.SetPoolService(_composition.ComponentPoolService);
+            screenView.Bind(_composition.ScreenViewModel);
+            _composition.ScreenViewModel.Initialize();
         }
 
         private void OnDestroy()
@@ -55,16 +36,10 @@ namespace Feature.CharacterSelection.Composition
             if (_screenView != null)
                 _screenView.Unbind();
 
-            if (_screenViewModel != null)
+            if (_composition != null)
             {
-                _screenViewModel.Dispose();
-                _screenViewModel = null;
-            }
-
-            if (_componentPoolService != null)
-            {
-                _componentPoolService.Dispose();
-                _componentPoolService = null;
+                _composition.Dispose();
+                _composition = null;
             }
         }
 
@@ -74,67 +49,9 @@ namespace Feature.CharacterSelection.Composition
                 _screenView = GetComponent<CharacterSelectionScreenView>();
 
             if (_screenView == null)
-                throw new InvalidOperationException("�� ������ CharacterSelectionScreenView ��� �������� ������ ������ ���������.");
+                throw new InvalidOperationException("Не найден CharacterSelectionScreenView рядом с CharacterSelectionScreenBootstrap.");
 
             return _screenView;
         }
-
-        private ICharacterRepository BuildCharacterRepository()
-        {
-            if (_characterCatalog == null)
-                throw new InvalidOperationException("�� ����� CharacterCatalog � CharacterSelectionScreenBootstrap.");
-
-            if (_modificationTypeCatalog == null)
-                throw new InvalidOperationException("�� ����� ModificationTypeCatalog � CharacterSelectionScreenBootstrap.");
-
-            IModificationTypePresentationRepository modificationTypePresentationRepository =
-                new ModificationTypePresentationRepository(_modificationTypeCatalog);
-
-            ICharacterFactory characterFactory = new CharacterFactory(modificationTypePresentationRepository);
-            ICharacterRepository characterRepository = new CharacterRepository(_characterCatalog, characterFactory);
-
-            return characterRepository;
-        }
-
-        private CharacterSelectionScreenDependencies BuildScreenDependencies()
-        {
-            PartyViewModel partyViewModel = new PartyViewModel();
-            CharacterPaperViewModel characterPaperViewModel = new CharacterPaperViewModel();
-            AbilitiesListViewModel abilitiesListViewModel = new AbilitiesListViewModel();
-            ModificationsListViewModel modificationsListViewModel = new ModificationsListViewModel();
-            TooltipViewModel tooltipViewModel = new TooltipViewModel();
-            ModificationDragSlotViewModel dragSlotViewModel = new ModificationDragSlotViewModel();
-            CharacterLoadoutStateService characterLoadoutStateService = new CharacterLoadoutStateService();
-
-            CharacterSelectionScreenStateCoordinator screenStateCoordinator = new CharacterSelectionScreenStateCoordinator(
-                partyViewModel,
-                characterPaperViewModel,
-                abilitiesListViewModel,
-                modificationsListViewModel);
-            CharacterSelectionTooltipCoordinator tooltipCoordinator = new CharacterSelectionTooltipCoordinator(
-                characterPaperViewModel,
-                abilitiesListViewModel,
-                modificationsListViewModel,
-                tooltipViewModel);
-            ModificationDragAndDropCoordinator modificationDragAndDropCoordinator = new ModificationDragAndDropCoordinator(
-                abilitiesListViewModel,
-                modificationsListViewModel,
-                dragSlotViewModel);
-
-            return new CharacterSelectionScreenDependencies(
-                partyViewModel,
-                characterPaperViewModel,
-                abilitiesListViewModel,
-                modificationsListViewModel,
-                tooltipViewModel,
-                dragSlotViewModel,
-                screenStateCoordinator,
-                tooltipCoordinator,
-                modificationDragAndDropCoordinator,
-                characterLoadoutStateService);
-        }
     }
 }
-
-
-

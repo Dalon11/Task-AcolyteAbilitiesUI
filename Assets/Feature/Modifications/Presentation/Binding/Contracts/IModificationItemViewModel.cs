@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Feature.Modifications.Presentation.Binding.Contracts
 {
@@ -21,6 +21,3 @@ namespace Feature.Modifications.Presentation.Binding.Contracts
         bool IsDimmed { get; }
     }
 }
-
-
-

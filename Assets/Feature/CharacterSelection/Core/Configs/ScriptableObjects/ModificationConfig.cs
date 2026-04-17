@@ -1,14 +1,15 @@
-using Feature.CharacterSelection.Core.Enums;
+﻿using Feature.CharacterSelection.Core.Enums;
 using UnityEngine;
 
 namespace Feature.CharacterSelection.Core.Configs.ScriptableObjects
 {
-    /// <summary>
-    /// Конфиг модификатора с типом, иконкой и текстовым описанием.
-    /// </summary>
+
     [CreateAssetMenu(
         fileName = "ModificationConfig",
         menuName = "Game/Abilities/Configs/Modification Config")]
+    /// <summary>
+    /// Описывает конфигурацию Modification.
+    /// </summary>
     public sealed class ModificationConfig : ScriptableObject
     {
         [SerializeField] private string _modificationName;
@@ -25,6 +26,3 @@ namespace Feature.CharacterSelection.Core.Configs.ScriptableObjects
         public string Description => _description;
     }
 }
-
-
-

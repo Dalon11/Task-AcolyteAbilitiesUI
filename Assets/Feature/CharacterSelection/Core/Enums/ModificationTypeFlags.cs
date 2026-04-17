@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Feature.CharacterSelection.Core.Enums
 {
@@ -14,6 +14,3 @@ namespace Feature.CharacterSelection.Core.Enums
         All = Psyker | Dot | Attack | Buff | Debuff
     }
 }
-
-
-

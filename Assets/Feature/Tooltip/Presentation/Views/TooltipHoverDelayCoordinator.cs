@@ -1,10 +1,11 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace Feature.Tooltip.Presentation.Views
 {
+
     /// <summary>
-    /// Координирует задержку показа tooltip при hover без зависимости от MonoBehaviour.
+    /// Координирует взаимодействие компонентов в сценарии Tooltip Hover Delay.
     /// </summary>
     public sealed class TooltipHoverDelayCoordinator
     {
@@ -82,6 +83,3 @@ namespace Feature.Tooltip.Presentation.Views
         }
     }
 }
-
-
-

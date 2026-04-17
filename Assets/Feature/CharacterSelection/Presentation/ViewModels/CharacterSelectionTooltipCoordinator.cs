@@ -1,16 +1,18 @@
-using System;
+﻿using System;
 using Feature.Abilities.Presentation.ViewModels;
 using Feature.CharacterPaper.Presentation.ViewModels;
 using Feature.CharacterSelection.Core.Domain.Models;
+using Feature.CharacterSelection.Presentation.Contracts;
 using Feature.Modifications.Presentation.ViewModels;
 using Feature.Tooltip.Presentation.ViewModels;
 
 namespace Feature.CharacterSelection.Presentation.ViewModels
 {
+
     /// <summary>
-    /// Координирует hover-flow и видимость единого tooltip экрана.
+    /// Координирует взаимодействие компонентов в сценарии Character Selection Tooltip.
     /// </summary>
-    public sealed class CharacterSelectionTooltipCoordinator
+    public sealed class CharacterSelectionTooltipCoordinator : ICharacterSelectionTooltipCoordinator
     {
         private readonly CharacterPaperViewModel _characterPaper;
         private readonly AbilitiesListViewModel _abilities;
@@ -103,6 +105,3 @@ namespace Feature.CharacterSelection.Presentation.ViewModels
         }
     }
 }
-
-
-

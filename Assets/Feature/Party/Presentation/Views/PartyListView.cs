@@ -1,12 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Feature.Party.Presentation.Binding.Contracts;
 using UnityEngine;
 
 namespace Feature.Party.Presentation.Views
 {
+
     /// <summary>
-    /// Bind-���� ������ ���������� Party � �������������� ������� �� ����������.
+    /// Отвечает за отображение и обработку UI-блока Party List.
     /// </summary>
     public sealed class PartyListView : MonoBehaviour
     {
@@ -93,6 +94,3 @@ namespace Feature.Party.Presentation.Views
         }
     }
 }
-
-
-

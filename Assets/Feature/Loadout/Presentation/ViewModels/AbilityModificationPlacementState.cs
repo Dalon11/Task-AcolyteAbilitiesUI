@@ -1,5 +1,8 @@
-namespace Feature.Loadout.Presentation.ViewModels
+﻿namespace Feature.Loadout.Presentation.ViewModels
 {
+    /// <summary>
+    /// Хранит состояние Ability Modification Placement.
+    /// </summary>
     public sealed class AbilityModificationPlacementState
     {
         public AbilityModificationPlacementState(string abilityId, string modificationId)
@@ -13,6 +16,3 @@ namespace Feature.Loadout.Presentation.ViewModels
         public string ModificationId { get; }
     }
 }
-
-
-

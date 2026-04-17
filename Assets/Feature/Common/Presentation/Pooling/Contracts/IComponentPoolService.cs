@@ -1,11 +1,9 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace Feature.Common.Presentation.Pooling.Contracts
 {
-    /// <summary>
-    /// �������� ������ ���� Component ��� ����������������� UI-��������� ����� ������.
-    /// </summary>
+
     public interface IComponentPoolService : IDisposable
     {
         TComponent Acquire<TComponent>(TComponent prefab, Transform parent)
@@ -14,5 +12,3 @@ namespace Feature.Common.Presentation.Pooling.Contracts
         void Release(Component instance);
     }
 }
-
-

@@ -1,13 +1,14 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Feature.CharacterSelection.Core.Configs.ScriptableObjects
 {
-    /// <summary>
-    /// Конфиг персонажа с параметрами, способностями и модификаторами.
-    /// </summary>
+
     [CreateAssetMenu(
         fileName = "CharacterConfig",
         menuName = "Game/Abilities/Configs/Character Config")]
+    /// <summary>
+    /// Описывает конфигурацию Character.
+    /// </summary>
     public sealed class CharacterConfig : ScriptableObject
     {
         [SerializeField] private string _characterName;
@@ -36,6 +37,3 @@ namespace Feature.CharacterSelection.Core.Configs.ScriptableObjects
         public ModificationConfig[] Modifications => _modifications;
     }
 }
-
-
-

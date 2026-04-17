@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Feature.Modifications.Presentation.Binding.Contracts
@@ -10,6 +10,3 @@ namespace Feature.Modifications.Presentation.Binding.Contracts
         IReadOnlyList<IModificationItemViewModel> Items { get; }
     }
 }
-
-
-

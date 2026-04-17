@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Feature.CharacterSelection.Core.Domain.Models;
 using Feature.CharacterSelection.Core.Enums;
 using Feature.Modifications.Presentation.Binding.Contracts;
@@ -6,8 +6,9 @@ using UnityEngine;
 
 namespace Feature.Modifications.Presentation.ViewModels
 {
+
     /// <summary>
-    /// ViewModel �������� ������ �������������.
+    /// Хранит и обновляет состояние представления Modification Item для UI.
     /// </summary>
     public sealed class ModificationItemViewModel : IModificationItemViewModel
     {
@@ -69,6 +70,3 @@ namespace Feature.Modifications.Presentation.ViewModels
         }
     }
 }
-
-
-

@@ -1,12 +1,13 @@
-using System;
+﻿using System;
 using Feature.Tooltip.Presentation.Binding.Contracts;
 using TMPro;
 using UnityEngine;
 
 namespace Feature.Tooltip.Presentation.Views
 {
+
     /// <summary>
-    /// ������ bind-���� ������� tooltip.
+    /// Отвечает за отображение и обработку UI-блока Tooltip.
     /// </summary>
     public sealed class TooltipView : MonoBehaviour
     {
@@ -107,6 +108,3 @@ namespace Feature.Tooltip.Presentation.Views
         }
     }
 }
-
-
-

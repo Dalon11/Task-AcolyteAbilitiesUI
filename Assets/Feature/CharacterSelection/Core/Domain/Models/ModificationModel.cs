@@ -1,11 +1,12 @@
-using System;
+﻿using System;
 using Feature.CharacterSelection.Core.Enums;
 using UnityEngine;
 
 namespace Feature.CharacterSelection.Core.Domain.Models
 {
+
     /// <summary>
-    /// �������� ������ ������������, ������������ �� �����������.
+    /// Описывает доменную модель Modification.
     /// </summary>
     public sealed class ModificationModel
     {
@@ -50,6 +51,3 @@ namespace Feature.CharacterSelection.Core.Domain.Models
         public ModificationTypePresentationModel TypePresentation { get; }
     }
 }
-
-
-

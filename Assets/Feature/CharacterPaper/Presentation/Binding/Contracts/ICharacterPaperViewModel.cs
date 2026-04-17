@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace Feature.CharacterPaper.Presentation.Binding.Contracts
@@ -20,6 +20,3 @@ namespace Feature.CharacterPaper.Presentation.Binding.Contracts
         Sprite CharacterSprite { get; }
     }
 }
-
-
-

@@ -1,8 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Feature.Abilities.Presentation.ViewModels;
 using Feature.CharacterPaper.Presentation.ViewModels;
 using Feature.CharacterSelection.Core.Domain.Models;
+using Feature.CharacterSelection.Presentation.Contracts;
 using Feature.Loadout.Presentation.ViewModels;
 using Feature.Modifications.Presentation.ViewModels;
 using Feature.Party.Presentation.ViewModels;
@@ -10,10 +11,11 @@ using UnityEngine;
 
 namespace Feature.CharacterSelection.Presentation.ViewModels
 {
+
     /// <summary>
-    /// ������������ ���������� ������ ������ ��� ����� ��������� ���������.
+    /// Координирует взаимодействие компонентов в сценарии Character Selection Screen State.
     /// </summary>
-    public sealed class CharacterSelectionScreenStateCoordinator
+    public sealed class CharacterSelectionScreenStateCoordinator : ICharacterSelectionScreenStateCoordinator
     {
         private readonly PartyViewModel _party;
         private readonly CharacterPaperViewModel _characterPaper;
@@ -121,6 +123,3 @@ namespace Feature.CharacterSelection.Presentation.ViewModels
         }
     }
 }
-
-
-

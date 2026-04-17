@@ -1,14 +1,15 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Feature.CharacterSelection.Core.Configs.ScriptableObjects
 {
-    /// <summary>
-    /// Каталог конфигов персонажей для загрузки данных экрана выбора.
-    /// </summary>
+
     [CreateAssetMenu(
         fileName = "CharacterCatalog",
         menuName = "Game/Abilities/Configs/Character Catalog")]
+    /// <summary>
+    /// Хранит каталог данных Character.
+    /// </summary>
     public sealed class CharacterCatalog : ScriptableObject
     {
         [SerializeField] private CharacterConfig[] _characters = new CharacterConfig[0];
@@ -16,6 +17,3 @@ namespace Feature.CharacterSelection.Core.Configs.ScriptableObjects
         public IReadOnlyList<CharacterConfig> Characters => _characters;
     }
 }
-
-
-

@@ -1,12 +1,13 @@
-using System;
+﻿using System;
 using Feature.Loadout.Presentation.Binding.Contracts;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Feature.Loadout.Presentation.Views
 {
+
     /// <summary>
-    /// Bind-слой визуального слота, который следует за курсором во время drag модификатора.
+    /// Отвечает за отображение и обработку UI-блока Dragged Modification Slot.
     /// </summary>
     public sealed class DraggedModificationSlotView : MonoBehaviour
     {
@@ -126,6 +127,3 @@ namespace Feature.Loadout.Presentation.Views
         }
     }
 }
-
-
-

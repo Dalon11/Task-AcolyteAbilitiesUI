@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Feature.CharacterPaper.Presentation.Binding.Contracts;
 using Feature.Common.Presentation.Input;
 using TMPro;
@@ -8,8 +8,9 @@ using UnityEngine.UI;
 
 namespace Feature.CharacterPaper.Presentation.Views
 {
+
     /// <summary>
-    /// ������ bind-���� �������� ���������, ������� ��������� UI � �������������� hover-�������.
+    /// Отвечает за отображение и обработку UI-блока Character Paper.
     /// </summary>
     public sealed class CharacterPaperView : MonoBehaviour
     {
@@ -122,6 +123,3 @@ namespace Feature.CharacterPaper.Presentation.Views
         }
     }
 }
-
-
-

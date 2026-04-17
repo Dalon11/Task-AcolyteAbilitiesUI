@@ -1,12 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Feature.CharacterSelection.Core.Enums;
 using UnityEngine;
 
 namespace Feature.CharacterSelection.Core.Domain.Models
 {
+
     /// <summary>
-    /// �������� ������ ����������� ���������.
+    /// Описывает доменную модель Ability.
     /// </summary>
     public sealed class AbilityModel
     {
@@ -53,6 +54,3 @@ namespace Feature.CharacterSelection.Core.Domain.Models
         public IReadOnlyList<ModificationType> SupportedModificationTypes => _supportedModificationTypes;
     }
 }
-
-
-

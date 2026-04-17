@@ -1,11 +1,12 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Feature.Common.Presentation.Input
 {
+
     /// <summary>
-    /// ���������������� ���������, ������� ������������ pointer-������� UI-�������� � ��������.
+    /// Отвечает за отображение и обработку UI-блока Ui Pointer Input.
     /// </summary>
     public sealed class UiPointerInputView : MonoBehaviour,
         IPointerClickHandler,
@@ -74,6 +75,3 @@ namespace Feature.Common.Presentation.Input
         }
     }
 }
-
-
-

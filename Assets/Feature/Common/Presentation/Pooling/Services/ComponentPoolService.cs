@@ -1,12 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Feature.Common.Presentation.Pooling.Contracts;
 using UnityEngine;
 
 namespace Feature.Common.Presentation.Pooling.Services
 {
+
     /// <summary>
-    /// ����� ��� UI-�����������, ���������������� ����������� ���������������.
+    /// Предоставляет сервисную логику Component Pool для сценариев экрана.
     /// </summary>
     public sealed class ComponentPoolService : IComponentPoolService
     {
@@ -125,5 +126,3 @@ namespace Feature.Common.Presentation.Pooling.Services
         }
     }
 }
-
-

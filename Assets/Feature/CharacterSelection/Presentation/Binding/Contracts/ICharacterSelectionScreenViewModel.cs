@@ -1,4 +1,4 @@
-using Feature.Abilities.Presentation.Binding.Contracts;
+﻿using Feature.Abilities.Presentation.Binding.Contracts;
 using Feature.CharacterPaper.Presentation.Binding.Contracts;
 using Feature.Loadout.Presentation.Binding.Contracts;
 using Feature.Modifications.Presentation.Binding.Contracts;
@@ -7,9 +7,7 @@ using Feature.Tooltip.Presentation.Binding.Contracts;
 
 namespace Feature.CharacterSelection.Presentation.Binding.Contracts
 {
-    /// <summary>
-    /// �������� �������� ViewModel ������ ������ ��������� ��� thin binding layer.
-    /// </summary>
+
     public interface ICharacterSelectionScreenViewModel
     {
         IPartyViewModel Party { get; }
@@ -49,6 +47,3 @@ namespace Feature.CharacterSelection.Presentation.Binding.Contracts
         void OnModificationPointerUp(string abilityId);
     }
 }
-
-
-

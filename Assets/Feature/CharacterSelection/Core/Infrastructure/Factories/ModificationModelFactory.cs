@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Feature.CharacterSelection.Core.Configs.ScriptableObjects;
 using Feature.CharacterSelection.Core.Enums;
 using Feature.CharacterSelection.Core.Domain.Contracts;
@@ -7,8 +7,9 @@ using UnityEngine;
 
 namespace Feature.CharacterSelection.Core.Infrastructure.Factories
 {
+
     /// <summary>
-    /// ������� ���������� �������� ������ ������������.
+    /// Создает экземпляры Modification Model по входным данным.
     /// </summary>
     public sealed class ModificationModelFactory : IModificationModelFactory
     {
@@ -50,7 +51,7 @@ namespace Feature.CharacterSelection.Core.Infrastructure.Factories
                 throw new ArgumentNullException(nameof(modificationConfig));
         }
 
-        private string BuildModificationId(ModificationConfig modificationConfig, int index) => 
+        private string BuildModificationId(ModificationConfig modificationConfig, int index) =>
             GetRequiredId(modificationConfig.name, ModificationIdFallbackPrefix + index);
 
         private string BuildModificationName(ModificationConfig modificationConfig, string modificationId)
@@ -89,7 +90,3 @@ namespace Feature.CharacterSelection.Core.Infrastructure.Factories
         }
     }
 }
-
-
-
-

@@ -1,11 +1,12 @@
-using System;
+﻿using System;
 using Feature.CharacterSelection.Core.Domain.Models;
 using Feature.Tooltip.Presentation.Binding.Contracts;
 
 namespace Feature.Tooltip.Presentation.ViewModels
 {
+
     /// <summary>
-    /// ViewModel ������� tooltip ������.
+    /// Хранит и обновляет состояние представления Tooltip для UI.
     /// </summary>
     public sealed class TooltipViewModel : ITooltipViewModel
     {
@@ -53,6 +54,3 @@ namespace Feature.Tooltip.Presentation.ViewModels
         }
     }
 }
-
-
-

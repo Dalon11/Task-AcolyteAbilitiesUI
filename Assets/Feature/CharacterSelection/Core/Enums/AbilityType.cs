@@ -1,4 +1,4 @@
-namespace Feature.CharacterSelection.Core.Enums
+﻿namespace Feature.CharacterSelection.Core.Enums
 {
     public enum AbilityType
     {
@@ -10,6 +10,3 @@ namespace Feature.CharacterSelection.Core.Enums
         Support = 5
     }
 }
-
-
-

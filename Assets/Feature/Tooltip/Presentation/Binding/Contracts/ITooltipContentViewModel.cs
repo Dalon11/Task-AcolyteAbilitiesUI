@@ -1,4 +1,4 @@
-namespace Feature.Tooltip.Presentation.Binding.Contracts
+﻿namespace Feature.Tooltip.Presentation.Binding.Contracts
 {
     public interface ITooltipContentViewModel
     {
@@ -7,6 +7,3 @@ namespace Feature.Tooltip.Presentation.Binding.Contracts
         string Description { get; }
     }
 }
-
-
-

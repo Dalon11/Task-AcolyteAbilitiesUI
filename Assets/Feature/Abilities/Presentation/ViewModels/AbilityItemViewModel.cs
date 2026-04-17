@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Feature.CharacterSelection.Core.Domain.Models;
 using Feature.CharacterSelection.Core.Enums;
@@ -7,8 +7,9 @@ using UnityEngine;
 
 namespace Feature.Abilities.Presentation.ViewModels
 {
+
     /// <summary>
-    /// ViewModel �������� ������ ������������.
+    /// Хранит и обновляет состояние представления Ability Item для UI.
     /// </summary>
     public sealed class AbilityItemViewModel : IAbilityItemViewModel
     {
@@ -133,5 +134,3 @@ namespace Feature.Abilities.Presentation.ViewModels
         }
     }
 }
-
-

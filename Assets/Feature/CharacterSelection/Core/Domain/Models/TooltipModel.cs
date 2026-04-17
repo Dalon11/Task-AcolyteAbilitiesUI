@@ -1,9 +1,10 @@
-using System;
+﻿using System;
 
 namespace Feature.CharacterSelection.Core.Domain.Models
 {
+
     /// <summary>
-    /// �������� ������ ����������� tooltip � ���������� � ���������.
+    /// Описывает доменную модель Tooltip.
     /// </summary>
     public sealed class TooltipModel
     {
@@ -26,6 +27,3 @@ namespace Feature.CharacterSelection.Core.Domain.Models
         public string Description { get; }
     }
 }
-
-
-

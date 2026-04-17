@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Feature.Abilities.Presentation.Binding.Contracts;
 using Feature.Common.Presentation.Pooling.Contracts;
@@ -7,8 +7,9 @@ using UnityEngine.EventSystems;
 
 namespace Feature.Abilities.Presentation.Views
 {
+
     /// <summary>
-    /// Bind-���� ������ ������������.
+    /// Отвечает за отображение и обработку UI-блока Abilities List.
     /// </summary>
     public sealed class AbilitiesListView : MonoBehaviour
     {
@@ -97,8 +98,6 @@ namespace Feature.Abilities.Presentation.Views
                 itemView.Bind(itemViewModel);
                 itemView.SetInputHandlers(_onHoverEnter, _onHoverExit, _onPointerDown, _onPointerUp);
 
-                // ��������� ���������� ������� � ��������, ����� ��� ����������������� �� ����
-                // ����������� �� �������� ������� ��� ������������ ����������.
                 itemView.transform.SetSiblingIndex(i);
             }
         }
@@ -140,5 +139,3 @@ namespace Feature.Abilities.Presentation.Views
         }
     }
 }
-
-

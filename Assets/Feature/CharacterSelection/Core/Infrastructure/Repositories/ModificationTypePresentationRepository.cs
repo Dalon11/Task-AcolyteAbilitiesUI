@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Feature.CharacterSelection.Core.Configs.ScriptableObjects;
 using Feature.CharacterSelection.Core.Enums;
@@ -8,8 +8,9 @@ using UnityEngine;
 
 namespace Feature.CharacterSelection.Core.Infrastructure.Repositories
 {
+
     /// <summary>
-    /// ����������� ������ ����������� ���� ������������ �� ModificationTypeCatalog.
+    /// Предоставляет доступ к данным Modification Type Presentation.
     /// </summary>
     public sealed class ModificationTypePresentationRepository : IModificationTypePresentationRepository
     {
@@ -64,6 +65,3 @@ namespace Feature.CharacterSelection.Core.Infrastructure.Repositories
         }
     }
 }
-
-
-

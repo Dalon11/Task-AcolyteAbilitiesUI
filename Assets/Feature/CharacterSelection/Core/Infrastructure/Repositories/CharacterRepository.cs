@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Feature.CharacterSelection.Core.Configs.ScriptableObjects;
 using Feature.CharacterSelection.Core.Domain.Contracts;
@@ -6,8 +6,9 @@ using Feature.CharacterSelection.Core.Domain.Models;
 
 namespace Feature.CharacterSelection.Core.Infrastructure.Repositories
 {
+
     /// <summary>
-    /// ����������� ����������, ����������� ������ �� CharacterCatalog ���� ���.
+    /// Предоставляет доступ к данным Character.
     /// </summary>
     public sealed class CharacterRepository : ICharacterRepository
     {
@@ -61,6 +62,3 @@ namespace Feature.CharacterSelection.Core.Infrastructure.Repositories
         }
     }
 }
-
-
-

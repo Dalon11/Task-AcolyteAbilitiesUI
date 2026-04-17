@@ -1,12 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Feature.CharacterSelection.Core.Domain.Models;
 using Feature.Party.Presentation.Binding.Contracts;
 
 namespace Feature.Party.Presentation.ViewModels
 {
+
     /// <summary>
-    /// ViewModel ������ Party, ������� ������ ��������, ������ ����� � ����������� ����� ���������.
+    /// Хранит и обновляет состояние представления Party для UI.
     /// </summary>
     public sealed class PartyViewModel : IPartyViewModel
     {
@@ -91,6 +92,3 @@ namespace Feature.Party.Presentation.ViewModels
         }
     }
 }
-
-
-

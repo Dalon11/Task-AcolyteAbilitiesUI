@@ -1,11 +1,12 @@
-using System;
+﻿using System;
 using Feature.Party.Presentation.Binding.Contracts;
 using UnityEngine;
 
 namespace Feature.Party.Presentation.ViewModels
 {
+
     /// <summary>
-    /// ViewModel �������� ��������� � ����� Party.
+    /// Хранит и обновляет состояние представления Party Character Item для UI.
     /// </summary>
     public sealed class PartyCharacterItemViewModel : IPartyCharacterItemViewModel
     {
@@ -36,6 +37,3 @@ namespace Feature.Party.Presentation.ViewModels
         }
     }
 }
-
-
-

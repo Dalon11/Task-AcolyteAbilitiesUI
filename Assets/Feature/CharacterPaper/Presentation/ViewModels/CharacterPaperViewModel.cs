@@ -1,12 +1,13 @@
-using System;
+﻿using System;
 using Feature.CharacterSelection.Core.Domain.Models;
 using Feature.CharacterPaper.Presentation.Binding.Contracts;
 using UnityEngine;
 
 namespace Feature.CharacterPaper.Presentation.ViewModels
 {
+
     /// <summary>
-    /// ViewModel �������� ���������, �������� ������������ �������������� � ������ tooltip.
+    /// Хранит и обновляет состояние представления Character Paper для UI.
     /// </summary>
     public sealed class CharacterPaperViewModel : ICharacterPaperViewModel
     {
@@ -81,6 +82,3 @@ namespace Feature.CharacterPaper.Presentation.ViewModels
         }
     }
 }
-
-
-

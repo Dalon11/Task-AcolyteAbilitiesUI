@@ -1,4 +1,4 @@
-using Feature.CharacterSelection.Core.Enums;
+﻿using Feature.CharacterSelection.Core.Enums;
 using UnityEngine;
 
 namespace Feature.Loadout.Presentation.ViewModels
@@ -32,6 +32,3 @@ namespace Feature.Loadout.Presentation.ViewModels
             && ModificationType != ModificationType.Unknown;
     }
 }
-
-
-

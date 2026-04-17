@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Feature.Party.Presentation.Binding.Contracts;
 using Feature.Common.Presentation.Input;
 using TMPro;
@@ -8,8 +8,9 @@ using UnityEngine.UI;
 
 namespace Feature.Party.Presentation.Views
 {
+
     /// <summary>
-    /// ������ bind-���� �������� Party.
+    /// Отвечает за отображение и обработку UI-блока Party Character Item.
     /// </summary>
     public sealed class PartyCharacterItemView : MonoBehaviour
     {
@@ -84,6 +85,3 @@ namespace Feature.Party.Presentation.Views
         }
     }
 }
-
-
-

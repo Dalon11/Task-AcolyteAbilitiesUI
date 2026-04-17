@@ -1,15 +1,17 @@
-using System;
+﻿using System;
 using Feature.CharacterSelection.Core.Enums;
 using Feature.Abilities.Presentation.ViewModels;
+using Feature.Loadout.Presentation.Contracts;
 using Feature.Modifications.Presentation.ViewModels;
 using UnityEngine;
 
 namespace Feature.Loadout.Presentation.ViewModels
 {
+
     /// <summary>
-    /// ������������ drag-and-drop ������������ �� �����������.
+    /// Координирует взаимодействие компонентов в сценарии Modification Drag And Drop.
     /// </summary>
-    public sealed class ModificationDragAndDropCoordinator
+    public sealed class ModificationDragAndDropCoordinator : IModificationDragAndDropCoordinator
     {
         private readonly AbilitiesListViewModel _abilitiesListViewModel;
         private readonly ModificationsListViewModel _modificationsListViewModel;
@@ -159,6 +161,3 @@ namespace Feature.Loadout.Presentation.ViewModels
         }
     }
 }
-
-
-

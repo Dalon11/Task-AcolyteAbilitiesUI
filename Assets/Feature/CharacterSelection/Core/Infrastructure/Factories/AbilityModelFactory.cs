@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Feature.CharacterSelection.Core.Configs.ScriptableObjects;
 using Feature.CharacterSelection.Core.Enums;
@@ -7,8 +7,9 @@ using UnityEngine;
 
 namespace Feature.CharacterSelection.Core.Infrastructure.Factories
 {
+
     /// <summary>
-    /// ������� ���������� �������� ������ �����������.
+    /// Создает экземпляры Ability Model по входным данным.
     /// </summary>
     public sealed class AbilityModelFactory : IAbilityModelFactory
     {
@@ -123,6 +124,3 @@ namespace Feature.CharacterSelection.Core.Infrastructure.Factories
         }
     }
 }
-
-
-

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Feature.Modifications.Presentation.Binding.Contracts;
 using Feature.Common.Presentation.Pooling.Contracts;
@@ -7,8 +7,9 @@ using UnityEngine.EventSystems;
 
 namespace Feature.Modifications.Presentation.Views
 {
+
     /// <summary>
-    /// Bind-���� ������ �������������.
+    /// Отвечает за отображение и обработку UI-блока Modifications List.
     /// </summary>
     public sealed class ModificationsListView : MonoBehaviour
     {
@@ -137,6 +138,3 @@ namespace Feature.Modifications.Presentation.Views
         }
     }
 }
-
-
-

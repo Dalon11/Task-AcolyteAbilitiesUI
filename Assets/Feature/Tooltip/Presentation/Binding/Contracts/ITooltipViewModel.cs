@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Feature.Tooltip.Presentation.Binding.Contracts
 {
@@ -13,6 +13,3 @@ namespace Feature.Tooltip.Presentation.Binding.Contracts
         void Hide();
     }
 }
-
-
-

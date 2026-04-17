@@ -1,36 +1,33 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Feature.Abilities.Presentation.Binding.Contracts;
-using Feature.Abilities.Presentation.ViewModels;
 using Feature.CharacterPaper.Presentation.Binding.Contracts;
-using Feature.CharacterPaper.Presentation.ViewModels;
 using Feature.CharacterSelection.Core.Domain.Contracts;
 using Feature.CharacterSelection.Core.Domain.Models;
 using Feature.CharacterSelection.Presentation.Binding.Contracts;
+using Feature.CharacterSelection.Presentation.Contracts;
 using Feature.Loadout.Presentation.Binding.Contracts;
+using Feature.Loadout.Presentation.Contracts;
 using Feature.Loadout.Presentation.ViewModels;
 using Feature.Modifications.Presentation.Binding.Contracts;
-using Feature.Modifications.Presentation.ViewModels;
 using Feature.Party.Presentation.Binding.Contracts;
-using Feature.Party.Presentation.ViewModels;
 using Feature.Tooltip.Presentation.Binding.Contracts;
-using Feature.Tooltip.Presentation.ViewModels;
 
 namespace Feature.CharacterSelection.Presentation.ViewModels
 {
+
     /// <summary>
-    /// �������� ViewModel ������ ������ ���������.
+    /// Хранит и обновляет состояние представления Character Selection Screen для UI.
     /// </summary>
     public sealed class CharacterSelectionScreenViewModel : ICharacterSelectionScreenViewModel, IDisposable
     {
         private readonly ICharacterRepository _characterRepository;
         private readonly ICharacterSelectionService _characterSelectionService;
-        private readonly CharacterSelectionScreenStateCoordinator _screenStateCoordinator;
-        private readonly CharacterSelectionTooltipCoordinator _tooltipCoordinator;
-        private readonly ModificationDragAndDropCoordinator _modificationDragAndDropCoordinator;
-        private readonly CharacterLoadoutStateService _characterLoadoutStateService;
-        private readonly AbilitiesListViewModel _abilitiesListViewModel;
-        private readonly PartyViewModel _partyViewModel;
+        private readonly ICharacterSelectionScreenStateCoordinator _screenStateCoordinator;
+        private readonly ICharacterSelectionTooltipCoordinator _tooltipCoordinator;
+        private readonly IModificationDragAndDropCoordinator _modificationDragAndDropCoordinator;
+        private readonly ICharacterLoadoutStateService _characterLoadoutStateService;
+        private readonly IAbilitiesListViewModel _abilitiesListViewModel;
 
         private string _currentCharacterId;
 
@@ -53,7 +50,6 @@ namespace Feature.CharacterSelection.Presentation.ViewModels
             _characterLoadoutStateService = dependencies.CharacterLoadoutStateService;
             _currentCharacterId = string.Empty;
 
-            _partyViewModel = dependencies.PartyViewModel;
             _abilitiesListViewModel = dependencies.AbilitiesListViewModel;
             _screenStateCoordinator = dependencies.ScreenStateCoordinator;
             _tooltipCoordinator = dependencies.TooltipCoordinator;
@@ -66,7 +62,6 @@ namespace Feature.CharacterSelection.Presentation.ViewModels
             Tooltip = dependencies.TooltipViewModel;
             DragSlot = dependencies.DragSlotViewModel;
 
-            _partyViewModel.onCharacterSelectionRequested += OnPartyCharacterSelectionRequested;
             _characterSelectionService.onCharacterChanged += OnCharacterChanged;
         }
 
@@ -109,7 +104,12 @@ namespace Feature.CharacterSelection.Presentation.ViewModels
 
         public bool OnPartyCharacterClick(string characterId)
         {
-            return Party.RequestCharacterSelection(characterId);
+            bool isAccepted = Party.RequestCharacterSelection(characterId);
+            if (!isAccepted)
+                return false;
+
+            _characterSelectionService.SelectCharacter(characterId);
+            return true;
         }
 
         public void OnCharacterHoverEnter()
@@ -171,13 +171,7 @@ namespace Feature.CharacterSelection.Presentation.ViewModels
 
         public void Dispose()
         {
-            _partyViewModel.onCharacterSelectionRequested -= OnPartyCharacterSelectionRequested;
             _characterSelectionService.onCharacterChanged -= OnCharacterChanged;
-        }
-
-        private void OnPartyCharacterSelectionRequested(string characterId)
-        {
-            _characterSelectionService.SelectCharacter(characterId);
         }
 
         private void OnCharacterChanged(CharacterModel character)
@@ -234,6 +228,3 @@ namespace Feature.CharacterSelection.Presentation.ViewModels
         }
     }
 }
-
-
-

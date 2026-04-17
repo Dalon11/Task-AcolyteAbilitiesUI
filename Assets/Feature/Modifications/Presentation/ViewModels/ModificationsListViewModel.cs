@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Feature.CharacterSelection.Core.Domain.Models;
 using Feature.CharacterSelection.Core.Enums;
@@ -6,8 +6,9 @@ using Feature.Modifications.Presentation.Binding.Contracts;
 
 namespace Feature.Modifications.Presentation.ViewModels
 {
+
     /// <summary>
-    /// ViewModel ������ �������������.
+    /// Хранит и обновляет состояние представления Modifications List для UI.
     /// </summary>
     public sealed class ModificationsListViewModel : IModificationsListViewModel
     {
@@ -158,6 +159,3 @@ namespace Feature.Modifications.Presentation.ViewModels
         }
     }
 }
-
-
-

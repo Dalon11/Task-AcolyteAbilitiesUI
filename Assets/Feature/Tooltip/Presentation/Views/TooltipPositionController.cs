@@ -1,9 +1,10 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Feature.Tooltip.Presentation.Views
 {
+
     /// <summary>
-    /// ��������� ����������������� tooltip ������������ ������� � ������ ������.
+    /// Управляет поведением Tooltip Position.
     /// </summary>
     public sealed class TooltipPositionController
     {
@@ -73,6 +74,3 @@ namespace Feature.Tooltip.Presentation.Views
         }
     }
 }
-
-
-

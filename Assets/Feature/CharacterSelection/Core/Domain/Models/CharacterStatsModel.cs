@@ -1,9 +1,10 @@
-using System;
+﻿using System;
 
 namespace Feature.CharacterSelection.Core.Domain.Models
 {
+
     /// <summary>
-    /// ������� ������ �������������� ���������.
+    /// Описывает доменную модель Character Stats.
     /// </summary>
     public sealed class CharacterStatsModel
     {
@@ -24,6 +25,3 @@ namespace Feature.CharacterSelection.Core.Domain.Models
         public int Armor { get; }
     }
 }
-
-
-

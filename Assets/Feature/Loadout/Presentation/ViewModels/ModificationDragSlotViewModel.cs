@@ -1,11 +1,12 @@
-using System;
+﻿using System;
 using Feature.Loadout.Presentation.Binding.Contracts;
 using UnityEngine;
 
 namespace Feature.Loadout.Presentation.ViewModels
 {
+
     /// <summary>
-    /// ViewModel визуального слота модификатора, который следует за курсором при перетаскивании.
+    /// Хранит и обновляет состояние представления Modification Drag Slot для UI.
     /// </summary>
     public sealed class ModificationDragSlotViewModel : IModificationDragSlotViewModel
     {
@@ -43,6 +44,3 @@ namespace Feature.Loadout.Presentation.ViewModels
         }
     }
 }
-
-
-

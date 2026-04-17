@@ -1,29 +1,32 @@
-using System;
-using Feature.Abilities.Presentation.ViewModels;
-using Feature.CharacterPaper.Presentation.ViewModels;
-using Feature.Loadout.Presentation.ViewModels;
-using Feature.Modifications.Presentation.ViewModels;
-using Feature.Party.Presentation.ViewModels;
-using Feature.Tooltip.Presentation.ViewModels;
+﻿using System;
+using Feature.Abilities.Presentation.Binding.Contracts;
+using Feature.CharacterPaper.Presentation.Binding.Contracts;
+using Feature.CharacterSelection.Presentation.Contracts;
+using Feature.Loadout.Presentation.Binding.Contracts;
+using Feature.Loadout.Presentation.Contracts;
+using Feature.Modifications.Presentation.Binding.Contracts;
+using Feature.Party.Presentation.Binding.Contracts;
+using Feature.Tooltip.Presentation.Binding.Contracts;
 
 namespace Feature.CharacterSelection.Presentation.ViewModels
 {
+
     /// <summary>
-    /// Набор зависимостей корневой ViewModel экрана выбора персонажа.
+    /// Хранит набор зависимостей, необходимых root ViewModel экрана выбора персонажа.
     /// </summary>
     public sealed class CharacterSelectionScreenDependencies
     {
         public CharacterSelectionScreenDependencies(
-            PartyViewModel partyViewModel,
-            CharacterPaperViewModel characterPaperViewModel,
-            AbilitiesListViewModel abilitiesListViewModel,
-            ModificationsListViewModel modificationsListViewModel,
-            TooltipViewModel tooltipViewModel,
-            ModificationDragSlotViewModel dragSlotViewModel,
-            CharacterSelectionScreenStateCoordinator screenStateCoordinator,
-            CharacterSelectionTooltipCoordinator tooltipCoordinator,
-            ModificationDragAndDropCoordinator modificationDragAndDropCoordinator,
-            CharacterLoadoutStateService characterLoadoutStateService)
+            IPartyViewModel partyViewModel,
+            ICharacterPaperViewModel characterPaperViewModel,
+            IAbilitiesListViewModel abilitiesListViewModel,
+            IModificationsListViewModel modificationsListViewModel,
+            ITooltipViewModel tooltipViewModel,
+            IModificationDragSlotViewModel dragSlotViewModel,
+            ICharacterSelectionScreenStateCoordinator screenStateCoordinator,
+            ICharacterSelectionTooltipCoordinator tooltipCoordinator,
+            IModificationDragAndDropCoordinator modificationDragAndDropCoordinator,
+            ICharacterLoadoutStateService characterLoadoutStateService)
         {
             if (partyViewModel == null)
                 throw new ArgumentNullException(nameof(partyViewModel));
@@ -67,27 +70,24 @@ namespace Feature.CharacterSelection.Presentation.ViewModels
             CharacterLoadoutStateService = characterLoadoutStateService;
         }
 
-        public PartyViewModel PartyViewModel { get; }
+        public IPartyViewModel PartyViewModel { get; }
 
-        public CharacterPaperViewModel CharacterPaperViewModel { get; }
+        public ICharacterPaperViewModel CharacterPaperViewModel { get; }
 
-        public AbilitiesListViewModel AbilitiesListViewModel { get; }
+        public IAbilitiesListViewModel AbilitiesListViewModel { get; }
 
-        public ModificationsListViewModel ModificationsListViewModel { get; }
+        public IModificationsListViewModel ModificationsListViewModel { get; }
 
-        public TooltipViewModel TooltipViewModel { get; }
+        public ITooltipViewModel TooltipViewModel { get; }
 
-        public ModificationDragSlotViewModel DragSlotViewModel { get; }
+        public IModificationDragSlotViewModel DragSlotViewModel { get; }
 
-        public CharacterSelectionScreenStateCoordinator ScreenStateCoordinator { get; }
+        public ICharacterSelectionScreenStateCoordinator ScreenStateCoordinator { get; }
 
-        public CharacterSelectionTooltipCoordinator TooltipCoordinator { get; }
+        public ICharacterSelectionTooltipCoordinator TooltipCoordinator { get; }
 
-        public ModificationDragAndDropCoordinator ModificationDragAndDropCoordinator { get; }
+        public IModificationDragAndDropCoordinator ModificationDragAndDropCoordinator { get; }
 
-        public CharacterLoadoutStateService CharacterLoadoutStateService { get; }
+        public ICharacterLoadoutStateService CharacterLoadoutStateService { get; }
     }
 }
-
-
-

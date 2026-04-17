@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Feature.Modifications.Presentation.Binding.Contracts;
 using Feature.Common.Presentation.Input;
 using TMPro;
@@ -8,8 +8,9 @@ using UnityEngine.UI;
 
 namespace Feature.Modifications.Presentation.Views
 {
+
     /// <summary>
-    /// ������ bind-���� �������� Modification.
+    /// Отвечает за отображение и обработку UI-блока Modification Item.
     /// </summary>
     public sealed class ModificationItemView : MonoBehaviour
     {
@@ -194,6 +195,3 @@ namespace Feature.Modifications.Presentation.Views
         }
     }
 }
-
-
-

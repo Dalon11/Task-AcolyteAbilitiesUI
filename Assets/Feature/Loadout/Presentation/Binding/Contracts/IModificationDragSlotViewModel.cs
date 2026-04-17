@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace Feature.Loadout.Presentation.Binding.Contracts
@@ -14,6 +14,3 @@ namespace Feature.Loadout.Presentation.Binding.Contracts
         Color Color { get; }
     }
 }
-
-
-

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Feature.Party.Presentation.Binding.Contracts
@@ -12,6 +12,3 @@ namespace Feature.Party.Presentation.Binding.Contracts
         bool RequestCharacterSelection(string characterId);
     }
 }
-
-
-

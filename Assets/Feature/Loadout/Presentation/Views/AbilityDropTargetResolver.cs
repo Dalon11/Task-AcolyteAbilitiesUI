@@ -1,12 +1,13 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Feature.Abilities.Presentation.Views;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Feature.Loadout.Presentation.Views
 {
+
     /// <summary>
-    /// Резолвит id способности под курсором для завершения drag-and-drop.
+    /// Определяет целевой элемент для сценария Ability Drop Target.
     /// </summary>
     public sealed class AbilityDropTargetResolver
     {
@@ -50,6 +51,3 @@ namespace Feature.Loadout.Presentation.Views
         }
     }
 }
-
-
-

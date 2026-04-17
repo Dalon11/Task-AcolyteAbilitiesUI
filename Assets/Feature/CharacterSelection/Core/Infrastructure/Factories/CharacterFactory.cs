@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Feature.CharacterSelection.Core.Configs.ScriptableObjects;
 using Feature.CharacterSelection.Core.Domain.Contracts;
@@ -6,8 +6,9 @@ using Feature.CharacterSelection.Core.Domain.Models;
 
 namespace Feature.CharacterSelection.Core.Infrastructure.Factories
 {
+
     /// <summary>
-    /// Тонкая оркестрация построения CharacterModel из специализированных фабрик.
+    /// Создает экземпляры Character по входным данным.
     /// </summary>
     public sealed class CharacterFactory : ICharacterFactory
     {
@@ -127,6 +128,3 @@ namespace Feature.CharacterSelection.Core.Infrastructure.Factories
         }
     }
 }
-
-
-

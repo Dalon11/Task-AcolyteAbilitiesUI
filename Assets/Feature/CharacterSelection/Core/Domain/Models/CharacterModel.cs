@@ -1,11 +1,12 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Feature.CharacterSelection.Core.Domain.Models
 {
+
     /// <summary>
-    /// �������� ������ ��������� � ��� ����������������, ������������� � ��������������.
+    /// Описывает доменную модель Character.
     /// </summary>
     public sealed class CharacterModel
     {
@@ -67,6 +68,3 @@ namespace Feature.CharacterSelection.Core.Domain.Models
         public IReadOnlyList<ModificationModel> Modifications => _modifications;
     }
 }
-
-
-

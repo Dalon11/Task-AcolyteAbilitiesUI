@@ -1,14 +1,15 @@
-using Feature.CharacterSelection.Core.Enums;
+﻿using Feature.CharacterSelection.Core.Enums;
 using UnityEngine;
 
 namespace Feature.CharacterSelection.Core.Configs.ScriptableObjects
 {
-    /// <summary>
-    /// Конфиг способности с типом, иконкой и поддерживаемыми модификаторами.
-    /// </summary>
+
     [CreateAssetMenu(
         fileName = "AbilityConfig",
         menuName = "Game/Abilities/Configs/Ability Config")]
+    /// <summary>
+    /// Описывает конфигурацию Ability.
+    /// </summary>
     public sealed class AbilityConfig : ScriptableObject
     {
         [SerializeField] private string _abilityName;
@@ -28,6 +29,3 @@ namespace Feature.CharacterSelection.Core.Configs.ScriptableObjects
         public ModificationTypeFlags SupportedModificationTypes => _supportedModificationTypes;
     }
 }
-
-
-

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Feature.CharacterSelection.Core.Configs.ScriptableObjects;
 using Feature.CharacterSelection.Core.Domain.Models;
@@ -6,8 +6,9 @@ using UnityEngine;
 
 namespace Feature.CharacterSelection.Core.Infrastructure.Factories
 {
+
     /// <summary>
-    /// ������� ���������� �������� ������ ���������.
+    /// Создает экземпляры Character Model по входным данным.
     /// </summary>
     public sealed class CharacterModelFactory : ICharacterModelFactory
     {
@@ -81,6 +82,3 @@ namespace Feature.CharacterSelection.Core.Infrastructure.Factories
         }
     }
 }
-
-
-

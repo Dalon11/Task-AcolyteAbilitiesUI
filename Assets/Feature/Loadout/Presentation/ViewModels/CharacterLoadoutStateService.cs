@@ -1,9 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Feature.Loadout.Presentation.Contracts;
 
 namespace Feature.Loadout.Presentation.ViewModels
 {
-    public sealed class CharacterLoadoutStateService
+    /// <summary>
+    /// Предоставляет сервисную логику Character Loadout State для сценариев экрана.
+    /// </summary>
+    public sealed class CharacterLoadoutStateService : ICharacterLoadoutStateService
     {
         private readonly Dictionary<string, IReadOnlyList<AbilityModificationPlacementState>> _placementsByCharacterId;
 
@@ -39,6 +43,3 @@ namespace Feature.Loadout.Presentation.ViewModels
         }
     }
 }
-
-
-
