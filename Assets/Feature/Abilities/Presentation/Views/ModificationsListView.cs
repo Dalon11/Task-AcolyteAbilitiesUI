@@ -96,6 +96,7 @@ namespace Feature.Abilities.Presentation.Views
                 IModificationItemViewModel itemViewModel = items[i];
                 itemView.Bind(itemViewModel);
                 itemView.SetInputHandlers(_onHoverEnter, _onHoverExit, _onPointerDown, _onPointerUp);
+                itemView.transform.SetSiblingIndex(i);
             }
         }
 

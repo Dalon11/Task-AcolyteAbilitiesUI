@@ -11,27 +11,20 @@ namespace Feature.Abilities.Presentation.Views
     public sealed class TooltipView : MonoBehaviour
     {
         [SerializeField] private RectTransform _panelRect;
+        [SerializeField] private Canvas _rootCanvas;
         [SerializeField] private TMP_Text _headerText;
         [SerializeField] private TMP_Text _descriptionText;
         [SerializeField] private Vector2 _cursorOffset = Vector2.zero;
         [SerializeField] private float _screenPadding = 10f;
 
         private ITooltipViewModel _viewModel;
-        private TooltipLayoutController _layoutController;
         private TooltipPositionController _positionController;
-        private TooltipRaycastConfigurator _raycastConfigurator;
 
         private void Awake()
         {
-            Canvas rootCanvas = GetComponentInParent<Canvas>();
             float resolvedScreenPadding = Mathf.Max(0f, _screenPadding);
 
-            _layoutController = new TooltipLayoutController(_panelRect, _headerText, _descriptionText);
-            _positionController = new TooltipPositionController(_panelRect, rootCanvas, _cursorOffset, resolvedScreenPadding);
-            _raycastConfigurator = new TooltipRaycastConfigurator(_panelRect);
-
-            _layoutController.EnsureLayoutComponents();
-            _raycastConfigurator.EnsureIgnoresRaycasts();
+            _positionController = new TooltipPositionController(_panelRect, _rootCanvas, _cursorOffset, resolvedScreenPadding);
         }
 
         private void Update()
@@ -85,10 +78,7 @@ namespace Feature.Abilities.Presentation.Views
                 _descriptionText.text = content.Description;
 
             if (_panelRect != null && _viewModel.IsVisible)
-            {
-                ApplyLayoutDrivenTooltipSize(content);
                 UpdateTooltipPosition();
-            }
         }
 
         private void OnDestroy()
@@ -107,14 +97,6 @@ namespace Feature.Abilities.Presentation.Views
                 return;
 
             _positionController.UpdatePosition();
-        }
-
-        private void ApplyLayoutDrivenTooltipSize(ITooltipContentViewModel content)
-        {
-            if (_layoutController == null)
-                return;
-
-            _layoutController.ApplyLayoutDrivenTooltipSize(content);
         }
 
         private bool IsAnyMouseButtonDown()

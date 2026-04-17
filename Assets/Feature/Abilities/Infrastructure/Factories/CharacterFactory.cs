@@ -93,6 +93,8 @@ namespace Feature.Abilities.Infrastructure.Factories
                 modifications.Add(modificationModel);
             }
 
+            modifications.Sort(CompareModifications);
+
             return modifications;
         }
 
@@ -101,5 +103,27 @@ namespace Feature.Abilities.Infrastructure.Factories
 
         private ModificationModel CreateModificationModel(ModificationConfig modificationConfig, int index) =>
             _modificationModelFactory.Create(modificationConfig, index);
+
+        private int CompareModifications(ModificationModel left, ModificationModel right)
+        {
+            if (ReferenceEquals(left, right))
+                return 0;
+
+            if (left == null)
+                return 1;
+
+            if (right == null)
+                return -1;
+
+            int typeComparison = left.ModificationType.CompareTo(right.ModificationType);
+            if (typeComparison != 0)
+                return typeComparison;
+
+            int nameComparison = string.Compare(left.Name, right.Name, StringComparison.Ordinal);
+            if (nameComparison != 0)
+                return nameComparison;
+
+            return string.Compare(left.Id, right.Id, StringComparison.Ordinal);
+        }
     }
 }

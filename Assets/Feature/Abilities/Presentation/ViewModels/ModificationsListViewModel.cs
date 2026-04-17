@@ -38,6 +38,8 @@ namespace Feature.Abilities.Presentation.ViewModels
                 }
             }
 
+            _items.Sort(CompareByTypeThenName);
+
             OnStateChanged();
         }
 
@@ -131,6 +133,28 @@ namespace Feature.Abilities.Presentation.ViewModels
             Action handler = onStateChanged;
             if (handler != null)
                 handler.Invoke();
+        }
+
+        private int CompareByTypeThenName(ModificationItemViewModel left, ModificationItemViewModel right)
+        {
+            if (ReferenceEquals(left, right))
+                return 0;
+
+            if (left == null)
+                return 1;
+
+            if (right == null)
+                return -1;
+
+            int typeComparison = left.ModificationType.CompareTo(right.ModificationType);
+            if (typeComparison != 0)
+                return typeComparison;
+
+            int nameComparison = string.Compare(left.Name, right.Name, StringComparison.OrdinalIgnoreCase);
+            if (nameComparison != 0)
+                return nameComparison;
+
+            return string.Compare(left.Id, right.Id, StringComparison.Ordinal);
         }
     }
 }
