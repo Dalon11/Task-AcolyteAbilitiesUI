@@ -54,9 +54,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _iconImage: {fileID: 980806723524465832}
   _nameText: {fileID: 4831498706001436146}
-  _abilityTypeText: {fileID: 0}
-  _supportedTypesText: {fileID: 0}
-  _pointerInputView: {fileID: 8789331554802895093}
+  _frameColorTarget: {fileID: 4309193751633233630}
+  _dropFieldColorTargets:
+  - {fileID: 4309193751633233630}
+  - {fileID: 7713959114985608349}
+  - {fileID: 6279077063905378055}
+  _dropFieldEnabledColor: {r: 0.654902, g: 0.654902, b: 0.654902, a: 1}
+  _slotIconImage: {fileID: 1576202443203239619}
+  _slotColorTarget: {fileID: 3922920331937650398}
+  _hoverPointerInputView: {fileID: 8789331554802895093}
+  _slotPointerInputView: {fileID: 2590474831155932840}
 --- !u!1 &2178483438275216701
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,6 +123,7 @@ GameObject:
   - component: {fileID: 7511425200504480427}
   - component: {fileID: 8987537756427137684}
   - component: {fileID: 3922920331937650398}
+  - component: {fileID: 2590474831155932840}
   m_Layer: 5
   m_Name: SlotBackground
   m_TagString: Untagged
@@ -181,6 +189,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2590474831155932840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5552994721142251332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceec3e79062fe184e86d13fcdde55db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5689588576938960242
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20000002, g: 0.25490198, b: 0.20784315, a: 1}
+  m_Color: {r: 0.24855587, g: 0.25490198, b: 0.2, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

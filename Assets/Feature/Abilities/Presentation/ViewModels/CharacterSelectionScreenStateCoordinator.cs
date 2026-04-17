@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Feature.Abilities.Domain.Models;
+using UnityEngine;
 
 namespace Feature.Abilities.Presentation.ViewModels
 {
@@ -43,7 +44,7 @@ namespace Feature.Abilities.Presentation.ViewModels
             _party.Build(characters, selectedCharacterId);
         }
 
-        public void ApplyCharacter(CharacterModel character)
+        public void ApplyCharacter(CharacterModel character, IReadOnlyList<AbilityModificationPlacementState> placements)
         {
             if (character == null)
             {
@@ -55,6 +56,8 @@ namespace Feature.Abilities.Presentation.ViewModels
             _characterPaper.Update(character);
             _abilities.Rebuild(character.Abilities);
             _modifications.Rebuild(character.Modifications);
+            _modifications.ApplyAvailabilityByAbilities(character.Abilities);
+            ApplySavedPlacements(placements);
         }
 
         public void ClearScreen()
@@ -63,6 +66,53 @@ namespace Feature.Abilities.Presentation.ViewModels
             _characterPaper.Clear();
             _abilities.Rebuild(null);
             _modifications.Rebuild(null);
+        }
+
+        private void ApplySavedPlacements(IReadOnlyList<AbilityModificationPlacementState> placements)
+        {
+            if (placements == null)
+                return;
+
+            for (int i = 0; i < placements.Count; i++)
+            {
+                AbilityModificationPlacementState placement = placements[i];
+                if (placement == null)
+                    continue;
+
+                if (string.IsNullOrWhiteSpace(placement.AbilityId)
+                    || string.IsNullOrWhiteSpace(placement.ModificationId))
+                    continue;
+
+                ModificationItemViewModel modificationItem;
+                if (!_modifications.TryGetItemById(placement.ModificationId, out modificationItem))
+                    continue;
+
+                if (!modificationItem.IsInteractable)
+                    continue;
+
+                bool isApplied = _abilities.TryApplyModificationToAbilityFromState(
+                    placement.AbilityId,
+                    modificationItem.Id,
+                    modificationItem.ModificationType,
+                    ResolveIcon(modificationItem),
+                    modificationItem.TypeColor);
+                if (!isApplied)
+                    continue;
+
+                ModificationItemViewModel lockedItem;
+                _modifications.TryLockById(modificationItem.Id, out lockedItem);
+            }
+        }
+
+        private Sprite ResolveIcon(ModificationItemViewModel modificationItem)
+        {
+            if (modificationItem == null)
+                return null;
+
+            if (modificationItem.Icon != null)
+                return modificationItem.Icon;
+
+            return modificationItem.TypeIcon;
         }
     }
 }

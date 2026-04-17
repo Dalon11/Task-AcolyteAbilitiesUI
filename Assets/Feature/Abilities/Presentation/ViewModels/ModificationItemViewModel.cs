@@ -24,6 +24,8 @@ namespace Feature.Abilities.Presentation.ViewModels
             TypeDisplayName = modification.TypePresentation.DisplayName;
             TypeIcon = modification.TypePresentation.Icon;
             TypeColor = modification.TypePresentation.Color;
+            IsInteractable = true;
+            IsDimmed = false;
         }
 
         public string Id { get; }
@@ -41,6 +43,16 @@ namespace Feature.Abilities.Presentation.ViewModels
         public Sprite TypeIcon { get; }
 
         public Color TypeColor { get; }
+
+        public bool IsInteractable { get; private set; }
+
+        public bool IsDimmed { get; private set; }
+
+        public void SetInteractableState(bool isInteractable, bool isDimmed)
+        {
+            IsInteractable = isInteractable;
+            IsDimmed = isDimmed;
+        }
 
         public bool TryGetTooltipContent(out string header, out string description)
         {

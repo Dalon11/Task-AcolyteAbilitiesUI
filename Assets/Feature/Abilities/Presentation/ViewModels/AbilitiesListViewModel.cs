@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Feature.Abilities.Domain.Models;
+using Feature.Abilities.Enums;
 using Feature.Abilities.Presentation.Binding.Contracts;
+using UnityEngine;
 
 namespace Feature.Abilities.Presentation.ViewModels
 {
@@ -37,6 +39,137 @@ namespace Feature.Abilities.Presentation.ViewModels
                 }
             }
 
+            OnStateChanged();
+        }
+
+        public IReadOnlyList<AbilityModificationPlacementState> GetCurrentPlacements()
+        {
+            List<AbilityModificationPlacementState> placements = new List<AbilityModificationPlacementState>();
+
+            for (int i = 0; i < _items.Count; i++)
+            {
+                AbilityItemViewModel item = _items[i];
+                if (!item.HasAppliedModification)
+                    continue;
+
+                if (string.IsNullOrWhiteSpace(item.AppliedModificationId))
+                    continue;
+
+                placements.Add(new AbilityModificationPlacementState(item.Id, item.AppliedModificationId));
+            }
+
+            return placements.AsReadOnly();
+        }
+
+        public void ClearDragPreview()
+        {
+            for (int i = 0; i < _items.Count; i++)
+                _items[i].SetDropTargetState(false, Color.clear);
+
+            OnStateChanged();
+        }
+
+        public void SetDragPreview(ModificationType modificationType, Color color)
+        {
+            for (int i = 0; i < _items.Count; i++)
+            {
+                AbilityItemViewModel item = _items[i];
+                bool isCompatible = item.SupportsModificationType(modificationType)
+                    && !item.HasAppliedModification;
+                item.SetDropTargetState(isCompatible, color);
+            }
+
+            OnStateChanged();
+        }
+
+        public bool TryApplyModificationToAbility(
+            string abilityId,
+            string modificationId,
+            ModificationType modificationType,
+            Sprite modificationIcon,
+            Color modificationColor)
+        {
+            AbilityItemViewModel item;
+            if (!TryGetItemById(abilityId, out item))
+                return false;
+
+            if (!item.IsCompatibleDropTarget)
+                return false;
+
+            if (item.HasAppliedModification)
+                return false;
+
+            item.ApplyModification(modificationId, modificationType, modificationIcon, modificationColor);
+            OnStateChanged();
+            return true;
+        }
+
+        public bool TryApplyModificationToAbilityFromState(
+            string abilityId,
+            string modificationId,
+            ModificationType modificationType,
+            Sprite modificationIcon,
+            Color modificationColor)
+        {
+            AbilityItemViewModel item;
+            if (!TryGetItemById(abilityId, out item))
+                return false;
+
+            if (item.HasAppliedModification)
+                return false;
+
+            if (!item.SupportsModificationType(modificationType))
+                return false;
+
+            item.ApplyModification(modificationId, modificationType, modificationIcon, modificationColor);
+            OnStateChanged();
+            return true;
+        }
+
+        public bool TryTakeAppliedModificationFromAbility(string abilityId, out DraggedAbilityModificationData draggedData)
+        {
+            AbilityItemViewModel item;
+            if (!TryGetItemById(abilityId, out item))
+            {
+                draggedData = DraggedAbilityModificationData.Empty;
+                return false;
+            }
+
+            string modificationId;
+            ModificationType modificationType;
+            Sprite icon;
+            Color color;
+            bool isTaken = item.TryTakeAppliedModification(out modificationId, out modificationType, out icon, out color);
+            if (!isTaken)
+            {
+                draggedData = DraggedAbilityModificationData.Empty;
+                return false;
+            }
+
+            draggedData = new DraggedAbilityModificationData(
+                abilityId,
+                modificationId,
+                modificationType,
+                icon,
+                color);
+            OnStateChanged();
+            return true;
+        }
+
+        public void RestoreAppliedModificationToAbility(DraggedAbilityModificationData draggedData)
+        {
+            if (!draggedData.IsValid)
+                return;
+
+            AbilityItemViewModel item;
+            if (!TryGetItemById(draggedData.SourceAbilityId, out item))
+                return;
+
+            item.ApplyModification(
+                draggedData.ModificationId,
+                draggedData.ModificationType,
+                draggedData.Icon,
+                draggedData.Color);
             OnStateChanged();
         }
 

@@ -7,6 +7,8 @@ namespace Feature.Abilities.Presentation.Views
     /// </summary>
     public sealed class TooltipPositionController
     {
+        private static readonly Vector2 CursorAnchorPivot = new Vector2(0f, 1f);
+
         private readonly RectTransform _panelRect;
         private readonly Canvas _rootCanvas;
         private readonly Vector2 _cursorOffset;
@@ -22,6 +24,9 @@ namespace Feature.Abilities.Presentation.Views
             _rootCanvas = rootCanvas;
             _cursorOffset = cursorOffset;
             _screenPadding = screenPadding;
+
+            if (_panelRect != null)
+                _panelRect.pivot = CursorAnchorPivot;
         }
 
         public void UpdatePosition()

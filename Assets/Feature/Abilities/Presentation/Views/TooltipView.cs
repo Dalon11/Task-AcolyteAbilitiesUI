@@ -13,9 +13,8 @@ namespace Feature.Abilities.Presentation.Views
         [SerializeField] private RectTransform _panelRect;
         [SerializeField] private TMP_Text _headerText;
         [SerializeField] private TMP_Text _descriptionText;
-
-        private static readonly Vector2 CursorOffset = new Vector2(18f, -18f);
-        private const float ScreenPadding = 10f;
+        [SerializeField] private Vector2 _cursorOffset = Vector2.zero;
+        [SerializeField] private float _screenPadding = 10f;
 
         private ITooltipViewModel _viewModel;
         private TooltipLayoutController _layoutController;
@@ -25,16 +24,17 @@ namespace Feature.Abilities.Presentation.Views
         private void Awake()
         {
             Canvas rootCanvas = GetComponentInParent<Canvas>();
+            float resolvedScreenPadding = Mathf.Max(0f, _screenPadding);
 
             _layoutController = new TooltipLayoutController(_panelRect, _headerText, _descriptionText);
-            _positionController = new TooltipPositionController(_panelRect, rootCanvas, CursorOffset, ScreenPadding);
+            _positionController = new TooltipPositionController(_panelRect, rootCanvas, _cursorOffset, resolvedScreenPadding);
             _raycastConfigurator = new TooltipRaycastConfigurator(_panelRect);
 
             _layoutController.EnsureLayoutComponents();
             _raycastConfigurator.EnsureIgnoresRaycasts();
         }
 
-        private void LateUpdate()
+        private void Update()
         {
             if (_viewModel == null)
                 return;
@@ -42,7 +42,8 @@ namespace Feature.Abilities.Presentation.Views
             if (!_viewModel.IsVisible)
                 return;
 
-            UpdateTooltipPosition();
+            if (IsAnyMouseButtonDown())
+                _viewModel.Hide();
         }
 
         public void Bind(ITooltipViewModel viewModel)
@@ -114,6 +115,13 @@ namespace Feature.Abilities.Presentation.Views
                 return;
 
             _layoutController.ApplyLayoutDrivenTooltipSize(content);
+        }
+
+        private bool IsAnyMouseButtonDown()
+        {
+            return UnityEngine.Input.GetMouseButtonDown(0) ||
+                   UnityEngine.Input.GetMouseButtonDown(1) ||
+                   UnityEngine.Input.GetMouseButtonDown(2);
         }
     }
 }

@@ -15,5 +15,9 @@ namespace Feature.Abilities.Presentation.Binding.Contracts
         Sprite TypeIcon { get; }
 
         Color TypeColor { get; }
+
+        bool IsInteractable { get; }
+
+        bool IsDimmed { get; }
     }
 }

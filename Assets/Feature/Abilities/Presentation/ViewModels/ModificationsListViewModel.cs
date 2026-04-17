@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Feature.Abilities.Domain.Models;
+using Feature.Abilities.Enums;
 using Feature.Abilities.Presentation.Binding.Contracts;
 
 namespace Feature.Abilities.Presentation.ViewModels
@@ -37,6 +38,56 @@ namespace Feature.Abilities.Presentation.ViewModels
                 }
             }
 
+            OnStateChanged();
+        }
+
+        public void ApplyAvailabilityByAbilities(IReadOnlyList<AbilityModel> abilities)
+        {
+            HashSet<ModificationType> supportedTypes = new HashSet<ModificationType>();
+
+            if (abilities != null)
+            {
+                for (int i = 0; i < abilities.Count; i++)
+                {
+                    AbilityModel ability = abilities[i];
+                    if (ability == null || ability.SupportedModificationTypes == null)
+                        continue;
+
+                    for (int typeIndex = 0; typeIndex < ability.SupportedModificationTypes.Count; typeIndex++)
+                        supportedTypes.Add(ability.SupportedModificationTypes[typeIndex]);
+                }
+            }
+
+            for (int i = 0; i < _items.Count; i++)
+            {
+                ModificationItemViewModel item = _items[i];
+                bool isAvailable = supportedTypes.Contains(item.ModificationType);
+                item.SetInteractableState(isAvailable, !isAvailable);
+            }
+
+            OnStateChanged();
+        }
+
+        public bool TryLockById(string modificationId, out ModificationItemViewModel item)
+        {
+            if (!TryGetItemById(modificationId, out item))
+                return false;
+
+            if (!item.IsInteractable)
+                return false;
+
+            item.SetInteractableState(false, true);
+            OnStateChanged();
+            return true;
+        }
+
+        public void UnlockById(string modificationId)
+        {
+            ModificationItemViewModel item;
+            if (!TryGetItemById(modificationId, out item))
+                return;
+
+            item.SetInteractableState(true, false);
             OnStateChanged();
         }
 

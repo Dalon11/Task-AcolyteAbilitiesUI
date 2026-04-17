@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Feature.Abilities.Presentation.Binding.Contracts
 {
@@ -9,5 +9,7 @@ namespace Feature.Abilities.Presentation.Binding.Contracts
         bool IsVisible { get; }
 
         ITooltipContentViewModel Content { get; }
+
+        void Hide();
     }
 }

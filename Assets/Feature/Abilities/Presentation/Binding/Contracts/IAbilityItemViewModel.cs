@@ -15,5 +15,15 @@ namespace Feature.Abilities.Presentation.Binding.Contracts
         AbilityType AbilityType { get; }
 
         IReadOnlyList<ModificationType> SupportedModificationTypes { get; }
+
+        bool IsCompatibleDropTarget { get; }
+
+        Color DropTargetColor { get; }
+
+        bool HasAppliedModification { get; }
+
+        Sprite AppliedModificationIcon { get; }
+
+        Color AppliedModificationColor { get; }
     }
 }

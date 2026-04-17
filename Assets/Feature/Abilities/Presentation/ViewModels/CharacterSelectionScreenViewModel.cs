@@ -15,7 +15,12 @@ namespace Feature.Abilities.Presentation.ViewModels
         private readonly ICharacterSelectionService _characterSelectionService;
         private readonly CharacterSelectionScreenStateCoordinator _screenStateCoordinator;
         private readonly CharacterSelectionTooltipCoordinator _tooltipCoordinator;
+        private readonly ModificationDragAndDropCoordinator _modificationDragAndDropCoordinator;
+        private readonly CharacterLoadoutStateService _characterLoadoutStateService;
+        private readonly AbilitiesListViewModel _abilitiesListViewModel;
         private readonly PartyViewModel _partyViewModel;
+
+        private string _currentCharacterId;
 
         public CharacterSelectionScreenViewModel(
             ICharacterRepository characterRepository,
@@ -29,29 +34,37 @@ namespace Feature.Abilities.Presentation.ViewModels
 
             _characterRepository = characterRepository;
             _characterSelectionService = characterSelectionService;
+            _characterLoadoutStateService = new CharacterLoadoutStateService();
+            _currentCharacterId = string.Empty;
 
             _partyViewModel = new PartyViewModel();
             CharacterPaperViewModel characterPaperViewModel = new CharacterPaperViewModel();
-            AbilitiesListViewModel abilitiesListViewModel = new AbilitiesListViewModel();
+            _abilitiesListViewModel = new AbilitiesListViewModel();
             ModificationsListViewModel modificationsListViewModel = new ModificationsListViewModel();
             TooltipViewModel tooltipViewModel = new TooltipViewModel();
+            ModificationDragSlotViewModel dragSlotViewModel = new ModificationDragSlotViewModel();
 
             Party = _partyViewModel;
             CharacterPaper = characterPaperViewModel;
-            Abilities = abilitiesListViewModel;
+            Abilities = _abilitiesListViewModel;
             Modifications = modificationsListViewModel;
             Tooltip = tooltipViewModel;
+            DragSlot = dragSlotViewModel;
 
             _screenStateCoordinator = new CharacterSelectionScreenStateCoordinator(
                 _partyViewModel,
                 characterPaperViewModel,
-                abilitiesListViewModel,
+                _abilitiesListViewModel,
                 modificationsListViewModel);
             _tooltipCoordinator = new CharacterSelectionTooltipCoordinator(
                 characterPaperViewModel,
-                abilitiesListViewModel,
+                _abilitiesListViewModel,
                 modificationsListViewModel,
                 tooltipViewModel);
+            _modificationDragAndDropCoordinator = new ModificationDragAndDropCoordinator(
+                _abilitiesListViewModel,
+                modificationsListViewModel,
+                dragSlotViewModel);
 
             _partyViewModel.onCharacterSelectionRequested += OnPartyCharacterSelectionRequested;
             _characterSelectionService.onCharacterChanged += OnCharacterChanged;
@@ -66,6 +79,8 @@ namespace Feature.Abilities.Presentation.ViewModels
         public IModificationsListViewModel Modifications { get; }
 
         public ITooltipViewModel Tooltip { get; }
+
+        public IModificationDragSlotViewModel DragSlot { get; }
 
         public void Initialize()
         {
@@ -123,10 +138,30 @@ namespace Feature.Abilities.Presentation.ViewModels
             OnHoverExit();
         }
 
+        public bool OnAbilityPointerDown(string abilityId)
+        {
+            return _modificationDragAndDropCoordinator.TryStartDragFromAbility(abilityId);
+        }
+
+        public void OnAbilityPointerUp(string abilityId)
+        {
+            _modificationDragAndDropCoordinator.EndDrag(abilityId);
+        }
+
         public void OnModificationHoverExit(string modificationId)
         {
             _ = modificationId;
             OnHoverExit();
+        }
+
+        public bool OnModificationPointerDown(string modificationId)
+        {
+            return _modificationDragAndDropCoordinator.TryStartDragFromModification(modificationId);
+        }
+
+        public void OnModificationPointerUp(string abilityId)
+        {
+            _modificationDragAndDropCoordinator.EndDrag(abilityId);
         }
 
         public void OnHoverExit()
@@ -147,6 +182,8 @@ namespace Feature.Abilities.Presentation.ViewModels
 
         private void OnCharacterChanged(CharacterModel character)
         {
+            _modificationDragAndDropCoordinator.CancelDrag();
+            SaveCurrentCharacterLoadout();
             ApplyCharacter(character);
         }
 
@@ -158,14 +195,30 @@ namespace Feature.Abilities.Presentation.ViewModels
                 return;
             }
 
-            _screenStateCoordinator.ApplyCharacter(character);
+            IReadOnlyList<AbilityModificationPlacementState> savedPlacements;
+            if (!_characterLoadoutStateService.TryGet(character.Id, out savedPlacements))
+                savedPlacements = null;
+
+            _screenStateCoordinator.ApplyCharacter(character, savedPlacements);
             _tooltipCoordinator.HideTooltip();
+            _currentCharacterId = character.Id;
         }
 
         private void ClearScreen()
         {
+            _modificationDragAndDropCoordinator.CancelDrag();
             _screenStateCoordinator.ClearScreen();
             _tooltipCoordinator.HideTooltip();
+            _currentCharacterId = string.Empty;
+        }
+
+        private void SaveCurrentCharacterLoadout()
+        {
+            if (string.IsNullOrWhiteSpace(_currentCharacterId))
+                return;
+
+            IReadOnlyList<AbilityModificationPlacementState> placements = _abilitiesListViewModel.GetCurrentPlacements();
+            _characterLoadoutStateService.Save(_currentCharacterId, placements);
         }
 
         private string ResolveInitialCharacterId(IReadOnlyList<CharacterModel> characters)

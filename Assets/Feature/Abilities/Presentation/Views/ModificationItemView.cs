@@ -18,11 +18,14 @@ namespace Feature.Abilities.Presentation.Views
         [SerializeField] private TMP_Text _typeDisplayNameText;
         [SerializeField] private Image _typeIconImage;
         [SerializeField] private Image _typeColorTarget;
+        [SerializeField] private GameObject _dimOverlay;
         [SerializeField] private UiPointerInputView _pointerInputView;
 
         private IModificationItemViewModel _viewModel;
         private Action<string> _onHoverEnter;
         private Action<string> _onHoverExit;
+        private Action<string, PointerEventData> _onPointerDown;
+        private Action<string, PointerEventData> _onPointerUp;
         private Color _initialTypeColor;
         private bool _hasInitialTypeColor;
 
@@ -35,6 +38,8 @@ namespace Feature.Abilities.Presentation.Views
             {
                 _pointerInputView.onPointerEnter += OnPointerEnter;
                 _pointerInputView.onPointerExit += OnPointerExit;
+                _pointerInputView.onPointerDown += OnPointerDown;
+                _pointerInputView.onPointerUp += OnPointerUp;
             }
 
             if (_typeColorTarget != null)
@@ -50,6 +55,8 @@ namespace Feature.Abilities.Presentation.Views
             {
                 _pointerInputView.onPointerEnter -= OnPointerEnter;
                 _pointerInputView.onPointerExit -= OnPointerExit;
+                _pointerInputView.onPointerDown -= OnPointerDown;
+                _pointerInputView.onPointerUp -= OnPointerUp;
             }
         }
 
@@ -62,15 +69,24 @@ namespace Feature.Abilities.Presentation.Views
             Refresh();
         }
 
-        public void SetInputHandlers(Action<string> onHoverEnter, Action<string> onHoverExit)
+        public void SetInputHandlers(
+            Action<string> onHoverEnter,
+            Action<string> onHoverExit,
+            Action<string, PointerEventData> onPointerDown,
+            Action<string, PointerEventData> onPointerUp)
         {
             _onHoverEnter = onHoverEnter;
             _onHoverExit = onHoverExit;
+            _onPointerDown = onPointerDown;
+            _onPointerUp = onPointerUp;
         }
 
         public void HandleHoverEnter()
         {
             if (_viewModel == null)
+                return;
+
+            if (!_viewModel.IsInteractable)
                 return;
 
             Action<string> handler = _onHoverEnter;
@@ -83,9 +99,35 @@ namespace Feature.Abilities.Presentation.Views
             if (_viewModel == null)
                 return;
 
+            if (!_viewModel.IsInteractable)
+                return;
+
             Action<string> handler = _onHoverExit;
             if (handler != null)
                 handler.Invoke(_viewModel.Id);
+        }
+
+        public void HandlePointerDown(PointerEventData eventData)
+        {
+            if (_viewModel == null)
+                return;
+
+            if (!_viewModel.IsInteractable)
+                return;
+
+            Action<string, PointerEventData> handler = _onPointerDown;
+            if (handler != null)
+                handler.Invoke(_viewModel.Id, eventData);
+        }
+
+        public void HandlePointerUp(PointerEventData eventData)
+        {
+            if (_viewModel == null)
+                return;
+
+            Action<string, PointerEventData> handler = _onPointerUp;
+            if (handler != null)
+                handler.Invoke(_viewModel.Id, eventData);
         }
 
         public void Unbind()
@@ -93,6 +135,8 @@ namespace Feature.Abilities.Presentation.Views
             _viewModel = null;
             _onHoverEnter = null;
             _onHoverExit = null;
+            _onPointerDown = null;
+            _onPointerUp = null;
         }
 
         public void Refresh()
@@ -122,6 +166,9 @@ namespace Feature.Abilities.Presentation.Views
 
                 _typeColorTarget.color = typeColor;
             }
+
+            if (_dimOverlay != null)
+                _dimOverlay.SetActive(_viewModel.IsDimmed);
         }
 
         private void OnPointerEnter(PointerEventData eventData)
@@ -134,6 +181,16 @@ namespace Feature.Abilities.Presentation.Views
         {
             _ = eventData;
             HandleHoverExit();
+        }
+
+        private void OnPointerDown(PointerEventData eventData)
+        {
+            HandlePointerDown(eventData);
+        }
+
+        private void OnPointerUp(PointerEventData eventData)
+        {
+            HandlePointerUp(eventData);
         }
     }
 }

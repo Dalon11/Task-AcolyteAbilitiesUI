@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Feature.Abilities.Presentation.Binding.Contracts;
+using Feature.Common.Presentation.Pooling.Contracts;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Feature.Abilities.Presentation.Views
 {
@@ -13,16 +15,29 @@ namespace Feature.Abilities.Presentation.Views
         [SerializeField] private Transform _contentRoot;
         [SerializeField] private AbilityItemView _itemPrefab;
 
-        private readonly List<AbilityItemView> _itemViews = new List<AbilityItemView>();
+        private readonly List<AbilityItemView> _activeItemViews = new List<AbilityItemView>();
 
         private IAbilitiesListViewModel _viewModel;
+        private IComponentPoolService _componentPoolService;
         private Action<string> _onHoverEnter;
         private Action<string> _onHoverExit;
+        private Action<string, PointerEventData> _onPointerDown;
+        private Action<string, PointerEventData> _onPointerUp;
+
+        public void SetPoolService(IComponentPoolService componentPoolService)
+        {
+            if (componentPoolService == null)
+                throw new ArgumentNullException(nameof(componentPoolService));
+
+            _componentPoolService = componentPoolService;
+        }
 
         public void Bind(
             IAbilitiesListViewModel viewModel,
             Action<string> onHoverEnter,
-            Action<string> onHoverExit)
+            Action<string> onHoverExit,
+            Action<string, PointerEventData> onPointerDown,
+            Action<string, PointerEventData> onPointerUp)
         {
             if (viewModel == null)
                 throw new ArgumentNullException(nameof(viewModel));
@@ -33,11 +48,16 @@ namespace Feature.Abilities.Presentation.Views
             if (_itemPrefab == null)
                 throw new InvalidOperationException("Не назначен ItemPrefab для AbilitiesListView.");
 
+            if (_componentPoolService == null)
+                throw new InvalidOperationException("Не назначен общий пул компонентов для AbilitiesListView.");
+
             Unbind();
 
             _viewModel = viewModel;
             _onHoverEnter = onHoverEnter;
             _onHoverExit = onHoverExit;
+            _onPointerDown = onPointerDown;
+            _onPointerUp = onPointerUp;
             _viewModel.onStateChanged += OnViewModelStateChanged;
 
             Refresh();
@@ -51,18 +71,15 @@ namespace Feature.Abilities.Presentation.Views
             _viewModel = null;
             _onHoverEnter = null;
             _onHoverExit = null;
+            _onPointerDown = null;
+            _onPointerUp = null;
 
-            for (int i = 0; i < _itemViews.Count; i++)
+            while (_activeItemViews.Count > 0)
             {
-                AbilityItemView itemView = _itemViews[i];
-                if (itemView == null)
-                    continue;
-
-                itemView.Unbind();
-                Destroy(itemView.gameObject);
+                int lastIndex = _activeItemViews.Count - 1;
+                AbilityItemView itemView = _activeItemViews[lastIndex];
+                ReleaseItemView(itemView);
             }
-
-            _itemViews.Clear();
         }
 
         public void Refresh()
@@ -75,10 +92,10 @@ namespace Feature.Abilities.Presentation.Views
 
             for (int i = 0; i < items.Count; i++)
             {
-                AbilityItemView itemView = _itemViews[i];
+                AbilityItemView itemView = _activeItemViews[i];
                 IAbilityItemViewModel itemViewModel = items[i];
                 itemView.Bind(itemViewModel);
-                itemView.SetInputHandlers(_onHoverEnter, _onHoverExit);
+                itemView.SetInputHandlers(_onHoverEnter, _onHoverExit, _onPointerDown, _onPointerUp);
             }
         }
 
@@ -94,24 +111,28 @@ namespace Feature.Abilities.Presentation.Views
 
         private void EnsureItemViewCount(int targetCount)
         {
-            while (_itemViews.Count < targetCount)
+            while (_activeItemViews.Count < targetCount)
             {
-                AbilityItemView itemView = Instantiate(_itemPrefab, _contentRoot);
-                _itemViews.Add(itemView);
+                AbilityItemView itemView = _componentPoolService.Acquire(_itemPrefab, _contentRoot);
+                _activeItemViews.Add(itemView);
             }
 
-            while (_itemViews.Count > targetCount)
+            while (_activeItemViews.Count > targetCount)
             {
-                int lastIndex = _itemViews.Count - 1;
-                AbilityItemView itemView = _itemViews[lastIndex];
-                _itemViews.RemoveAt(lastIndex);
-
-                if (itemView == null)
-                    continue;
-
-                itemView.Unbind();
-                Destroy(itemView.gameObject);
+                int lastIndex = _activeItemViews.Count - 1;
+                AbilityItemView itemView = _activeItemViews[lastIndex];
+                ReleaseItemView(itemView);
             }
+        }
+
+        private void ReleaseItemView(AbilityItemView itemView)
+        {
+            if (itemView == null)
+                return;
+
+            _activeItemViews.Remove(itemView);
+            itemView.Unbind();
+            _componentPoolService.Release(itemView);
         }
     }
 }

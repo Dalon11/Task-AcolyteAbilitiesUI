@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1f6581895ea2646bf95b84c6728436, type: 3}
+  m_Name: EnergyShield
+  m_EditorClassIdentifier: 
+  _abilityName: Energy Shield
+  _iconSprite: {fileID: 21300000, guid: 9b8f5bf768e012e49ba76d0d33fbdafe, type: 3}
+  _abilityType: 2
+  _description: Projects a temporary protective barrier.
+  _supportedModificationTypes: 8
