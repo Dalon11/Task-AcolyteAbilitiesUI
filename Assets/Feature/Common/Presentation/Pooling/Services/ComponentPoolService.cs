@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Feature.Common.Presentation.Pooling.Contracts;
 using UnityEngine;
@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Feature.Common.Presentation.Pooling.Services
 {
     /// <summary>
-    /// Общий пул UI-компонентов, переиспользуемый несколькими представлениями.
+    /// ����� ��� UI-�����������, ���������������� ����������� ���������������.
     /// </summary>
     public sealed class ComponentPoolService : IComponentPoolService
     {
@@ -65,7 +65,7 @@ namespace Feature.Common.Presentation.Pooling.Services
 
             int prefabId;
             if (!_prefabIdByInstanceId.TryGetValue(instanceId, out prefabId))
-                throw new InvalidOperationException("Экземпляр не принадлежит зарегистрированному пулу компонентов.");
+                throw new InvalidOperationException("��������� �� ����������� ������������������� ���� �����������.");
 
             _activeInstanceIds.Remove(instanceId);
             instance.gameObject.SetActive(false);
@@ -125,3 +125,5 @@ namespace Feature.Common.Presentation.Pooling.Services
         }
     }
 }
+
+

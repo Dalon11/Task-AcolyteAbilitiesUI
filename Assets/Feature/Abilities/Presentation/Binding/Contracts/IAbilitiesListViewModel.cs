@@ -10,3 +10,5 @@ namespace Feature.Abilities.Presentation.Binding.Contracts
         IReadOnlyList<IAbilityItemViewModel> Items { get; }
     }
 }
+
+

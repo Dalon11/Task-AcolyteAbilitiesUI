@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 using Feature.Abilities.Presentation.Binding.Contracts;
-using Feature.Abilities.Presentation.Views.Input;
+using Feature.Common.Presentation.Input;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,7 +9,7 @@ using UnityEngine.UI;
 namespace Feature.Abilities.Presentation.Views
 {
     /// <summary>
-    /// Тонкий bind-слой элемента Ability, который связывает данные и пробрасывает hover-события.
+    /// ������ bind-���� �������� Ability, ������� ��������� ������ � ������������ hover-�������.
     /// </summary>
     public sealed class AbilityItemView : MonoBehaviour
     {
@@ -327,3 +327,5 @@ namespace Feature.Abilities.Presentation.Views
         }
     }
 }
+
+

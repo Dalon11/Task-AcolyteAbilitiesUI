@@ -1,14 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using Feature.Abilities.Domain.Models;
-using Feature.Abilities.Enums;
+using Feature.CharacterSelection.Core.Domain.Models;
+using Feature.CharacterSelection.Core.Enums;
 using Feature.Abilities.Presentation.Binding.Contracts;
 using UnityEngine;
 
 namespace Feature.Abilities.Presentation.ViewModels
 {
     /// <summary>
-    /// ViewModel элемента списка способностей.
+    /// ViewModel �������� ������ ������������.
     /// </summary>
     public sealed class AbilityItemViewModel : IAbilityItemViewModel
     {
@@ -133,3 +133,5 @@ namespace Feature.Abilities.Presentation.ViewModels
         }
     }
 }
+
+

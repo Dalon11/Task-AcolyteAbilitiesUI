@@ -1,14 +1,15 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using Feature.Abilities.Domain.Models;
-using Feature.Abilities.Enums;
+using Feature.CharacterSelection.Core.Domain.Models;
+using Feature.CharacterSelection.Core.Enums;
 using Feature.Abilities.Presentation.Binding.Contracts;
+using Feature.Loadout.Presentation.ViewModels;
 using UnityEngine;
 
 namespace Feature.Abilities.Presentation.ViewModels
 {
     /// <summary>
-    /// ViewModel списка способностей.
+    /// ViewModel ������ ������������.
     /// </summary>
     public sealed class AbilitiesListViewModel : IAbilitiesListViewModel
     {
@@ -147,30 +148,12 @@ namespace Feature.Abilities.Presentation.ViewModels
             }
 
             draggedData = new DraggedAbilityModificationData(
-                abilityId,
                 modificationId,
                 modificationType,
                 icon,
                 color);
             OnStateChanged();
             return true;
-        }
-
-        public void RestoreAppliedModificationToAbility(DraggedAbilityModificationData draggedData)
-        {
-            if (!draggedData.IsValid)
-                return;
-
-            AbilityItemViewModel item;
-            if (!TryGetItemById(draggedData.SourceAbilityId, out item))
-                return;
-
-            item.ApplyModification(
-                draggedData.ModificationId,
-                draggedData.ModificationType,
-                draggedData.Icon,
-                draggedData.Color);
-            OnStateChanged();
         }
 
         public bool TryGetItemById(string abilityId, out AbilityItemViewModel item)
@@ -216,3 +199,5 @@ namespace Feature.Abilities.Presentation.ViewModels
         }
     }
 }
+
+

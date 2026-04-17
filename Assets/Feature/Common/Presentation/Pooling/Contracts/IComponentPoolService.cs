@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace Feature.Common.Presentation.Pooling.Contracts
 {
     /// <summary>
-    /// Контракт общего пула Component для переиспользования UI-элементов между фичами.
+    /// �������� ������ ���� Component ��� ����������������� UI-��������� ����� ������.
     /// </summary>
     public interface IComponentPoolService : IDisposable
     {
@@ -14,3 +14,5 @@ namespace Feature.Common.Presentation.Pooling.Contracts
         void Release(Component instance);
     }
 }
+
+

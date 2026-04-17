@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Feature.Abilities.Presentation.Binding.Contracts;
 using Feature.Common.Presentation.Pooling.Contracts;
@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 namespace Feature.Abilities.Presentation.Views
 {
     /// <summary>
-    /// Bind-слой списка способностей.
+    /// Bind-���� ������ ������������.
     /// </summary>
     public sealed class AbilitiesListView : MonoBehaviour
     {
@@ -43,13 +43,13 @@ namespace Feature.Abilities.Presentation.Views
                 throw new ArgumentNullException(nameof(viewModel));
 
             if (_contentRoot == null)
-                throw new InvalidOperationException("Не назначен ContentRoot для AbilitiesListView.");
+                throw new InvalidOperationException("�� �������� ContentRoot ��� AbilitiesListView.");
 
             if (_itemPrefab == null)
-                throw new InvalidOperationException("Не назначен ItemPrefab для AbilitiesListView.");
+                throw new InvalidOperationException("�� �������� ItemPrefab ��� AbilitiesListView.");
 
             if (_componentPoolService == null)
-                throw new InvalidOperationException("Не назначен общий пул компонентов для AbilitiesListView.");
+                throw new InvalidOperationException("�� �������� ����� ��� ����������� ��� AbilitiesListView.");
 
             Unbind();
 
@@ -96,6 +96,10 @@ namespace Feature.Abilities.Presentation.Views
                 IAbilityItemViewModel itemViewModel = items[i];
                 itemView.Bind(itemViewModel);
                 itemView.SetInputHandlers(_onHoverEnter, _onHoverExit, _onPointerDown, _onPointerUp);
+
+                // ��������� ���������� ������� � ��������, ����� ��� ����������������� �� ����
+                // ����������� �� �������� ������� ��� ������������ ����������.
+                itemView.transform.SetSiblingIndex(i);
             }
         }
 
@@ -136,3 +140,5 @@ namespace Feature.Abilities.Presentation.Views
         }
     }
 }
+
+

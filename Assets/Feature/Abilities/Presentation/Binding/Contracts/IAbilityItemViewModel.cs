@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Feature.Abilities.Enums;
+using Feature.CharacterSelection.Core.Enums;
 using UnityEngine;
 
 namespace Feature.Abilities.Presentation.Binding.Contracts
@@ -27,3 +27,5 @@ namespace Feature.Abilities.Presentation.Binding.Contracts
         Color AppliedModificationColor { get; }
     }
 }
+
+
