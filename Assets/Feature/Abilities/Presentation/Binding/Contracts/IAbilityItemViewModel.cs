@@ -6,24 +6,24 @@ namespace Feature.Abilities.Presentation.Binding.Contracts
 {
     public interface IAbilityItemViewModel
     {
-        string Id { get; }
+        public string Id { get; }
 
-        string Name { get; }
+        public string Name { get; }
 
-        Sprite Icon { get; }
+        public Sprite Icon { get; }
 
-        AbilityType AbilityType { get; }
+        public AbilityType AbilityType { get; }
 
-        IReadOnlyList<ModificationType> SupportedModificationTypes { get; }
+        public IReadOnlyList<ModificationType> SupportedModificationTypes { get; }
 
-        bool IsCompatibleDropTarget { get; }
+        public bool IsCompatibleDropTarget { get; }
 
-        Color DropTargetColor { get; }
+        public Color DropTargetColor { get; }
 
-        bool HasAppliedModification { get; }
+        public bool HasAppliedModification { get; }
 
-        Sprite AppliedModificationIcon { get; }
+        public Sprite AppliedModificationIcon { get; }
 
-        Color AppliedModificationColor { get; }
+        public Color AppliedModificationColor { get; }
     }
 }

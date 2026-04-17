@@ -44,13 +44,13 @@ namespace Feature.Abilities.Presentation.Views
                 throw new ArgumentNullException(nameof(viewModel));
 
             if (_contentRoot == null)
-                throw new InvalidOperationException("�� �������� ContentRoot ��� AbilitiesListView.");
+                throw new InvalidOperationException("Не задан ContentRoot для AbilitiesListView.");
 
             if (_itemPrefab == null)
-                throw new InvalidOperationException("�� �������� ItemPrefab ��� AbilitiesListView.");
+                throw new InvalidOperationException("Не задан ItemPrefab для AbilitiesListView.");
 
             if (_componentPoolService == null)
-                throw new InvalidOperationException("�� �������� ����� ��� ����������� ��� AbilitiesListView.");
+                throw new InvalidOperationException("Не задан пул компонентов для AbilitiesListView.");
 
             Unbind();
 

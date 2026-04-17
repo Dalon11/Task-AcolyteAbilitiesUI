@@ -6,10 +6,10 @@ namespace Feature.CharacterSelection.Presentation.Contracts
 {
     public interface ICharacterSelectionScreenStateCoordinator
     {
-        void BuildParty(IReadOnlyList<CharacterModel> characters, string selectedCharacterId);
+        public void BuildParty(IReadOnlyList<CharacterModel> characters, string selectedCharacterId);
 
-        void ApplyCharacter(CharacterModel character, IReadOnlyList<AbilityModificationPlacementState> placements);
+        public void ApplyCharacter(CharacterModel character, IReadOnlyList<AbilityModificationPlacementState> placements);
 
-        void ClearScreen();
+        public void ClearScreen();
     }
 }

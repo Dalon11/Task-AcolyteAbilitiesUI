@@ -7,10 +7,10 @@ namespace Feature.CharacterSelection.Core.Domain.Contracts
     public interface ICharacterSelectionService
     {
 
-        event Action<CharacterModel> onCharacterChanged;
+        public event Action<CharacterModel> onCharacterChanged;
 
-        bool TryGetCurrentCharacter(out CharacterModel character);
+        public bool TryGetCurrentCharacter(out CharacterModel character);
 
-        bool SelectCharacter(string characterId);
+        public bool SelectCharacter(string characterId);
     }
 }

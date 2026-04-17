@@ -7,6 +7,6 @@ namespace Feature.CharacterSelection.Core.Infrastructure.Factories
     public interface IAbilityModelFactory
     {
 
-        AbilityModel Create(AbilityConfig abilityConfig, int index);
+        public AbilityModel Create(AbilityConfig abilityConfig, int index);
     }
 }

@@ -110,8 +110,8 @@ namespace Feature.CharacterSelection.Core.Infrastructure.Factories
                     return ModificationType.Debuff;
                 default:
                     throw new InvalidOperationException(
-                        $"����������� ���� {nameof(ModificationTypeFlags)}: {flag}. " +
-                        $"�������� {nameof(MapFlagToType)} � {nameof(AbilityModelFactory)}.");
+                        $"Неизвестный флаг {nameof(ModificationTypeFlags)}: {flag}. " +
+                        $"Обновите {nameof(MapFlagToType)} в {nameof(AbilityModelFactory)}.");
             }
         }
 

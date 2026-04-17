@@ -10,40 +10,40 @@ namespace Feature.CharacterSelection.Presentation.Binding.Contracts
 
     public interface ICharacterSelectionScreenViewModel
     {
-        IPartyViewModel Party { get; }
+        public IPartyViewModel Party { get; }
 
-        ICharacterPaperViewModel CharacterPaper { get; }
+        public ICharacterPaperViewModel CharacterPaper { get; }
 
-        IAbilitiesListViewModel Abilities { get; }
+        public IAbilitiesListViewModel Abilities { get; }
 
-        IModificationsListViewModel Modifications { get; }
+        public IModificationsListViewModel Modifications { get; }
 
-        ITooltipViewModel Tooltip { get; }
+        public ITooltipViewModel Tooltip { get; }
 
-        IModificationDragSlotViewModel DragSlot { get; }
+        public IModificationDragSlotViewModel DragSlot { get; }
 
-        void Initialize();
+        public void Initialize();
 
-        bool OnPartyCharacterClick(string characterId);
+        public bool OnPartyCharacterClick(string characterId);
 
-        void OnCharacterHoverEnter();
+        public void OnCharacterHoverEnter();
 
-        void OnCharacterHoverExit();
+        public void OnCharacterHoverExit();
 
-        void OnAbilityHoverEnter(string abilityId);
+        public void OnAbilityHoverEnter(string abilityId);
 
-        void OnAbilityHoverExit(string abilityId);
+        public void OnAbilityHoverExit(string abilityId);
 
-        bool OnAbilityPointerDown(string abilityId);
+        public bool OnAbilityPointerDown(string abilityId);
 
-        void OnAbilityPointerUp(string abilityId);
+        public void OnAbilityPointerUp(string abilityId);
 
-        void OnModificationHoverEnter(string modificationId);
+        public void OnModificationHoverEnter(string modificationId);
 
-        void OnModificationHoverExit(string modificationId);
+        public void OnModificationHoverExit(string modificationId);
 
-        bool OnModificationPointerDown(string modificationId);
+        public bool OnModificationPointerDown(string modificationId);
 
-        void OnModificationPointerUp(string abilityId);
+        public void OnModificationPointerUp(string abilityId);
     }
 }

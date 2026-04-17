@@ -8,8 +8,8 @@ namespace Feature.CharacterSelection.Core.Domain.Contracts
     public interface IModificationTypePresentationRepository
     {
 
-        IReadOnlyList<ModificationTypePresentationModel> GetAll();
+        public IReadOnlyList<ModificationTypePresentationModel> GetAll();
 
-        bool TryGetByType(ModificationType type, out ModificationTypePresentationModel presentation);
+        public bool TryGetByType(ModificationType type, out ModificationTypePresentationModel presentation);
     }
 }

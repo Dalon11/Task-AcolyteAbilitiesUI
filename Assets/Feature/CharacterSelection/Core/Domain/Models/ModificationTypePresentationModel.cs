@@ -17,7 +17,7 @@ namespace Feature.CharacterSelection.Core.Domain.Models
             Color color)
         {
             if (string.IsNullOrWhiteSpace(displayName))
-                throw new ArgumentException("DisplayName �� ������ ���� ������.", nameof(displayName));
+                throw new ArgumentException("DisplayName не может быть пустым.", nameof(displayName));
 
             Type = type;
             DisplayName = displayName;

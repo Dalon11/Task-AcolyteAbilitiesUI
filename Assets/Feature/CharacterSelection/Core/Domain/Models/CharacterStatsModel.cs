@@ -11,10 +11,10 @@ namespace Feature.CharacterSelection.Core.Domain.Models
         public CharacterStatsModel(int hp, int armor)
         {
             if (hp < 0)
-                throw new ArgumentOutOfRangeException(nameof(hp), "HP �� ����� ���� �������������.");
+                throw new ArgumentOutOfRangeException(nameof(hp), "HP не может быть отрицательным.");
 
             if (armor < 0)
-                throw new ArgumentOutOfRangeException(nameof(armor), "����� �� ����� ���� �������������.");
+                throw new ArgumentOutOfRangeException(nameof(armor), "Броня не может быть отрицательной.");
 
             Hp = hp;
             Armor = armor;

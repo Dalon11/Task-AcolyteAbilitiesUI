@@ -7,6 +7,6 @@ namespace Feature.CharacterSelection.Core.Infrastructure.Factories
     public interface IModificationModelFactory
     {
 
-        ModificationModel Create(ModificationConfig modificationConfig, int index);
+        public ModificationModel Create(ModificationConfig modificationConfig, int index);
     }
 }

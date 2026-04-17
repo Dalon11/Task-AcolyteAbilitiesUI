@@ -44,13 +44,13 @@ namespace Feature.Modifications.Presentation.Views
                 throw new ArgumentNullException(nameof(viewModel));
 
             if (_contentRoot == null)
-                throw new InvalidOperationException("�� �������� ContentRoot ��� ModificationsListView.");
+                throw new InvalidOperationException("Не задан ContentRoot для ModificationsListView.");
 
             if (_itemPrefab == null)
-                throw new InvalidOperationException("�� �������� ItemPrefab ��� ModificationsListView.");
+                throw new InvalidOperationException("Не задан ItemPrefab для ModificationsListView.");
 
             if (_componentPoolService == null)
-                throw new InvalidOperationException("�� �������� ����� ��� ����������� ��� ModificationsListView.");
+                throw new InvalidOperationException("Не задан пул компонентов для ModificationsListView.");
 
             Unbind();
 

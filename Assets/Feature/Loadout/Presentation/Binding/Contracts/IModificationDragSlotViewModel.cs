@@ -5,12 +5,12 @@ namespace Feature.Loadout.Presentation.Binding.Contracts
 {
     public interface IModificationDragSlotViewModel
     {
-        event Action onStateChanged;
+        public event Action onStateChanged;
 
-        bool IsActive { get; }
+        public bool IsActive { get; }
 
-        Sprite Icon { get; }
+        public Sprite Icon { get; }
 
-        Color Color { get; }
+        public Color Color { get; }
     }
 }

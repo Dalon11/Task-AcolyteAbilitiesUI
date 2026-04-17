@@ -22,7 +22,7 @@ namespace Feature.Party.Presentation.Views
                 throw new ArgumentNullException(nameof(viewModel));
 
             if (_itemViews == null)
-                throw new InvalidOperationException("�� ����� ������ ������ PartyCharacterItemView ��� PartyListView.");
+                throw new InvalidOperationException("Не задан массив элементов PartyCharacterItemView для PartyListView.");
 
             Unbind();
 

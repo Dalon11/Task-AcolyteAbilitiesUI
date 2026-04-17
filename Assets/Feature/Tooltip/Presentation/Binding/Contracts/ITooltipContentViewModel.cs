@@ -2,8 +2,8 @@
 {
     public interface ITooltipContentViewModel
     {
-        string Header { get; }
+        public string Header { get; }
 
-        string Description { get; }
+        public string Description { get; }
     }
 }

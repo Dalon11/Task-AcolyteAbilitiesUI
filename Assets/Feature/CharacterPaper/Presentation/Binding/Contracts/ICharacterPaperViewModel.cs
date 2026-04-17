@@ -5,18 +5,18 @@ namespace Feature.CharacterPaper.Presentation.Binding.Contracts
 {
     public interface ICharacterPaperViewModel
     {
-        event Action onStateChanged;
+        public event Action onStateChanged;
 
-        string CharacterId { get; }
+        public string CharacterId { get; }
 
-        string Name { get; }
+        public string Name { get; }
 
-        int Hp { get; }
+        public int Hp { get; }
 
-        int MaxHp { get; }
+        public int MaxHp { get; }
 
-        int Armor { get; }
+        public int Armor { get; }
 
-        Sprite CharacterSprite { get; }
+        public Sprite CharacterSprite { get; }
     }
 }

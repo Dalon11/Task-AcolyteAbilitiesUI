@@ -13,10 +13,10 @@ namespace Feature.Party.Presentation.ViewModels
         public PartyCharacterItemViewModel(string id, string displayName, Sprite icon)
         {
             if (string.IsNullOrWhiteSpace(id))
-                throw new ArgumentException("Id ��������� �� ������ ���� ������.", nameof(id));
+                throw new ArgumentException("Id персонажа не может быть пустым.", nameof(id));
 
             if (string.IsNullOrWhiteSpace(displayName))
-                throw new ArgumentException("DisplayName ��������� �� ������ ���� ������.", nameof(displayName));
+                throw new ArgumentException("DisplayName персонажа не может быть пустым.", nameof(displayName));
 
             Id = id;
             DisplayName = displayName;

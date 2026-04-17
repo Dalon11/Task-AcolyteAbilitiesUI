@@ -7,8 +7,8 @@ namespace Feature.CharacterSelection.Core.Domain.Contracts
     public interface ICharacterRepository
     {
 
-        IReadOnlyList<CharacterModel> GetAllCharacters();
+        public IReadOnlyList<CharacterModel> GetAllCharacters();
 
-        bool TryGetCharacterById(string characterId, out CharacterModel character);
+        public bool TryGetCharacterById(string characterId, out CharacterModel character);
     }
 }

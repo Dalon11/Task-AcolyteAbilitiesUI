@@ -2,12 +2,12 @@
 {
     public interface IModificationDragAndDropCoordinator
     {
-        bool TryStartDragFromModification(string modificationId);
+        public bool TryStartDragFromModification(string modificationId);
 
-        bool TryStartDragFromAbility(string abilityId);
+        public bool TryStartDragFromAbility(string abilityId);
 
-        void EndDrag(string abilityId);
+        public void EndDrag(string abilityId);
 
-        void CancelDrag();
+        public void CancelDrag();
     }
 }

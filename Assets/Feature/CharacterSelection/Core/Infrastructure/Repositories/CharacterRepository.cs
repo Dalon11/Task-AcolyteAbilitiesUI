@@ -35,7 +35,7 @@ namespace Feature.CharacterSelection.Core.Infrastructure.Repositories
 
                 CharacterModel model = characterFactory.CreateCharacter(config);
                 if (charactersById.ContainsKey(model.Id))
-                    throw new InvalidOperationException("��������� ������������� ������������� ��������� � CharacterCatalog.");
+                    throw new InvalidOperationException("Обнаружены дубликаты идентификаторов персонажей в CharacterCatalog.");
 
                 characters.Add(model);
                 charactersById.Add(model.Id, model);

@@ -5,10 +5,10 @@ namespace Feature.Party.Presentation.Binding.Contracts
 {
     public interface IPartyViewModel
     {
-        event Action onStateChanged;
+        public event Action onStateChanged;
 
-        IReadOnlyList<IPartyCharacterItemViewModel> Items { get; }
+        public IReadOnlyList<IPartyCharacterItemViewModel> Items { get; }
 
-        bool RequestCharacterSelection(string characterId);
+        public bool RequestCharacterSelection(string characterId);
     }
 }

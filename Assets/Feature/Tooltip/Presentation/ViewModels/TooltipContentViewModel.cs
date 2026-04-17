@@ -16,7 +16,7 @@ namespace Feature.Tooltip.Presentation.ViewModels
         public void Update(string header, string description)
         {
             if (string.IsNullOrWhiteSpace(header))
-                throw new ArgumentException("��������� tooltip �� ������ ���� ������.", nameof(header));
+                throw new ArgumentException("Заголовок tooltip не может быть пустым.", nameof(header));
 
             if (description == null)
                 throw new ArgumentNullException(nameof(description));

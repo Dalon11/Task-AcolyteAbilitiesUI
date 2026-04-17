@@ -13,7 +13,7 @@ namespace Feature.CharacterSelection.Core.Domain.Models
             string description)
         {
             if (string.IsNullOrWhiteSpace(header))
-                throw new ArgumentException("Header �� ������ ���� ������.", nameof(header));
+                throw new ArgumentException("Header не может быть пустым.", nameof(header));
 
             if (description == null)
                 throw new ArgumentNullException(nameof(description));

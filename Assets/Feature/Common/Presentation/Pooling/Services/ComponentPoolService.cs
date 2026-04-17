@@ -66,7 +66,7 @@ namespace Feature.Common.Presentation.Pooling.Services
 
             int prefabId;
             if (!_prefabIdByInstanceId.TryGetValue(instanceId, out prefabId))
-                throw new InvalidOperationException("��������� �� ����������� ������������������� ���� �����������.");
+                throw new InvalidOperationException("Экземпляр не принадлежит зарегистрированному пулу компонентов.");
 
             _activeInstanceIds.Remove(instanceId);
             instance.gameObject.SetActive(false);

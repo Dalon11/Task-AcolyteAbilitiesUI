@@ -8,7 +8,7 @@ namespace Feature.CharacterSelection.Core.Infrastructure.Factories
     public interface ICharacterModelFactory
     {
 
-        CharacterModel Create(
+        public CharacterModel Create(
             CharacterConfig characterConfig,
             IReadOnlyList<AbilityModel> abilities,
             IReadOnlyList<ModificationModel> modifications);

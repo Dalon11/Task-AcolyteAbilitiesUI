@@ -22,10 +22,10 @@ namespace Feature.CharacterSelection.Core.Domain.Models
             IReadOnlyList<ModificationType> supportedModificationTypes)
         {
             if (string.IsNullOrWhiteSpace(id))
-                throw new ArgumentException("Id ����������� �� ������ ���� ������.", nameof(id));
+                throw new ArgumentException("Id способности не может быть пустым.", nameof(id));
 
             if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("��� ����������� �� ������ ���� ������.", nameof(name));
+                throw new ArgumentException("Имя способности не может быть пустым.", nameof(name));
 
             if (description == null)
                 throw new ArgumentNullException(nameof(description));

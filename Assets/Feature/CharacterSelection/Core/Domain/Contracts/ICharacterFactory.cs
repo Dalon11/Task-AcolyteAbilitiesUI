@@ -7,6 +7,6 @@ namespace Feature.CharacterSelection.Core.Domain.Contracts
     public interface ICharacterFactory
     {
 
-        CharacterModel CreateCharacter(CharacterConfig characterConfig);
+        public CharacterModel CreateCharacter(CharacterConfig characterConfig);
     }
 }

@@ -4,12 +4,12 @@ namespace Feature.Party.Presentation.Binding.Contracts
 {
     public interface IPartyCharacterItemViewModel
     {
-        string Id { get; }
+        public string Id { get; }
 
-        string DisplayName { get; }
+        public string DisplayName { get; }
 
-        Sprite Icon { get; }
+        public Sprite Icon { get; }
 
-        bool IsSelected { get; }
+        public bool IsSelected { get; }
     }
 }

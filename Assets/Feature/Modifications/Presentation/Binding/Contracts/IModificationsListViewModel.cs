@@ -5,8 +5,8 @@ namespace Feature.Modifications.Presentation.Binding.Contracts
 {
     public interface IModificationsListViewModel
     {
-        event Action onStateChanged;
+        public event Action onStateChanged;
 
-        IReadOnlyList<IModificationItemViewModel> Items { get; }
+        public IReadOnlyList<IModificationItemViewModel> Items { get; }
     }
 }

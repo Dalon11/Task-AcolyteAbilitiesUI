@@ -6,10 +6,10 @@ namespace Feature.Abilities.Presentation.Binding.Contracts
 {
     public interface IAbilitiesListViewModel
     {
-        event Action onStateChanged;
+        public event Action onStateChanged;
 
-        IReadOnlyList<IAbilityItemViewModel> Items { get; }
+        public IReadOnlyList<IAbilityItemViewModel> Items { get; }
 
-        IReadOnlyList<AbilityModificationPlacementState> GetCurrentPlacements();
+        public IReadOnlyList<AbilityModificationPlacementState> GetCurrentPlacements();
     }
 }

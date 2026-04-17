@@ -19,10 +19,10 @@ namespace Feature.CharacterSelection.Core.Domain.Models
             ModificationTypePresentationModel typePresentation)
         {
             if (string.IsNullOrWhiteSpace(id))
-                throw new ArgumentException("Id ������������ �� ������ ���� ������.", nameof(id));
+                throw new ArgumentException("Id модификатора не может быть пустым.", nameof(id));
 
             if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("��� ������������ �� ������ ���� ������.", nameof(name));
+                throw new ArgumentException("Имя модификатора не может быть пустым.", nameof(name));
 
             if (description == null)
                 throw new ArgumentNullException(nameof(description));

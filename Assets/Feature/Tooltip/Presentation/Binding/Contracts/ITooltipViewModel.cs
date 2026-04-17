@@ -4,12 +4,12 @@ namespace Feature.Tooltip.Presentation.Binding.Contracts
 {
     public interface ITooltipViewModel
     {
-        event Action onStateChanged;
+        public event Action onStateChanged;
 
-        bool IsVisible { get; }
+        public bool IsVisible { get; }
 
-        ITooltipContentViewModel Content { get; }
+        public ITooltipContentViewModel Content { get; }
 
-        void Hide();
+        public void Hide();
     }
 }

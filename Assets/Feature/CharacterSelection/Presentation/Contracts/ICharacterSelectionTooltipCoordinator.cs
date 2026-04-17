@@ -2,14 +2,14 @@
 {
     public interface ICharacterSelectionTooltipCoordinator
     {
-        void OnCharacterHoverEnter();
+        public void OnCharacterHoverEnter();
 
-        void OnAbilityHoverEnter(string abilityId);
+        public void OnAbilityHoverEnter(string abilityId);
 
-        void OnModificationHoverEnter(string modificationId);
+        public void OnModificationHoverEnter(string modificationId);
 
-        void OnHoverExit();
+        public void OnHoverExit();
 
-        void HideTooltip();
+        public void HideTooltip();
     }
 }

@@ -4,20 +4,20 @@ namespace Feature.Modifications.Presentation.Binding.Contracts
 {
     public interface IModificationItemViewModel
     {
-        string Id { get; }
+        public string Id { get; }
 
-        string Name { get; }
+        public string Name { get; }
 
-        Sprite Icon { get; }
+        public Sprite Icon { get; }
 
-        string TypeDisplayName { get; }
+        public string TypeDisplayName { get; }
 
-        Sprite TypeIcon { get; }
+        public Sprite TypeIcon { get; }
 
-        Color TypeColor { get; }
+        public Color TypeColor { get; }
 
-        bool IsInteractable { get; }
+        public bool IsInteractable { get; }
 
-        bool IsDimmed { get; }
+        public bool IsDimmed { get; }
     }
 }
