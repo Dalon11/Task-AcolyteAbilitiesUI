@@ -1,5 +1,5 @@
 ﻿using System;
-using Feature.Common.Presentation.Input;
+using Feature.Common.Presentation.Views;
 using UnityEngine.EventSystems;
 
 namespace Feature.Abilities.Presentation.Views

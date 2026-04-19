@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Feature.Common.Presentation.Input
+namespace Feature.Common.Presentation.Views
 {
 
     /// <summary>

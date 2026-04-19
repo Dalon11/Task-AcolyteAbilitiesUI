@@ -1,6 +1,6 @@
 ﻿using System;
 using Feature.Party.Presentation.Binding.Contracts;
-using Feature.Common.Presentation.Input;
+using Feature.Common.Presentation.Views;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
