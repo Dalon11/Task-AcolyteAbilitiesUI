@@ -1,8 +1,11 @@
-﻿using Feature.CharacterSelection.Core.Enums;
+using Feature.CharacterSelection.Core.Enums;
 using UnityEngine;
 
-namespace Feature.Loadout.Presentation.ViewModels
+namespace Feature.Loadout.Presentation.Contracts.Models
 {
+    /// <summary>
+    /// Передаёт данные модификации, которую пользователь перетаскивает между списком модификаторов и ячейкой способности.
+    /// </summary>
     public readonly struct DraggedAbilityModificationData
     {
         public static readonly DraggedAbilityModificationData Empty =

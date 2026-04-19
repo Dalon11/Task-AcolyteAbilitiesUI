@@ -4,6 +4,7 @@ using Feature.Abilities.Presentation.ViewModels;
 using Feature.CharacterPaper.Presentation.ViewModels;
 using Feature.CharacterSelection.Core.Domain.Models;
 using Feature.CharacterSelection.Presentation.Contracts;
+using Feature.Loadout.Presentation.Contracts.Models;
 using Feature.Loadout.Presentation.ViewModels;
 using Feature.Modifications.Presentation.ViewModels;
 using Feature.Party.Presentation.ViewModels;

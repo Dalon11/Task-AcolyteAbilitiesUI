@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Feature.CharacterSelection.Core.Domain.Models;
-using Feature.Loadout.Presentation.ViewModels;
+using Feature.Loadout.Presentation.Contracts.Models;
 
 namespace Feature.CharacterSelection.Presentation.Contracts
 {

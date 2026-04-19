@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Feature.Loadout.Presentation.ViewModels;
+using Feature.Loadout.Presentation.Contracts.Models;
 
 namespace Feature.Loadout.Presentation.Contracts
 {

@@ -1,4 +1,4 @@
-﻿namespace Feature.Loadout.Presentation.ViewModels
+namespace Feature.Loadout.Presentation.Contracts.Models
 {
     /// <summary>
     /// Хранит состояние Ability Modification Placement.

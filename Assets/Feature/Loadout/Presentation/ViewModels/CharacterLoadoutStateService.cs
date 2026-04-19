@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Feature.Loadout.Presentation.Contracts;
+using Feature.Loadout.Presentation.Contracts.Models;
 
 namespace Feature.Loadout.Presentation.ViewModels
 {

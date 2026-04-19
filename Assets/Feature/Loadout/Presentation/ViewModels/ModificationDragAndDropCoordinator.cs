@@ -2,6 +2,7 @@
 using Feature.CharacterSelection.Core.Enums;
 using Feature.Abilities.Presentation.ViewModels;
 using Feature.Loadout.Presentation.Contracts;
+using Feature.Loadout.Presentation.Contracts.Models;
 using Feature.Modifications.Presentation.ViewModels;
 using UnityEngine;
 

@@ -4,7 +4,7 @@ using Feature.CharacterSelection.Core.Domain.Models;
 using Feature.CharacterSelection.Core.Enums;
 using Feature.Abilities.Presentation.Binding.Contracts;
 using Feature.Common.Presentation.State;
-using Feature.Loadout.Presentation.ViewModels;
+using Feature.Loadout.Presentation.Contracts.Models;
 using UnityEngine;
 
 namespace Feature.Abilities.Presentation.ViewModels

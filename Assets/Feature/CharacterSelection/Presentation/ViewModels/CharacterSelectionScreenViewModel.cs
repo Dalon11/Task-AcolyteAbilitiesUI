@@ -8,7 +8,7 @@ using Feature.CharacterSelection.Presentation.Binding.Contracts;
 using Feature.CharacterSelection.Presentation.Contracts;
 using Feature.Loadout.Presentation.Binding.Contracts;
 using Feature.Loadout.Presentation.Contracts;
-using Feature.Loadout.Presentation.ViewModels;
+using Feature.Loadout.Presentation.Contracts.Models;
 using Feature.Modifications.Presentation.Binding.Contracts;
 using Feature.Party.Presentation.Binding.Contracts;
 using Feature.Tooltip.Presentation.Binding.Contracts;
