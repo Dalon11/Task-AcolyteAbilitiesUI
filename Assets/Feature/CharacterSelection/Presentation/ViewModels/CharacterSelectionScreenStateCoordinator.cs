@@ -61,10 +61,21 @@ namespace Feature.CharacterSelection.Presentation.ViewModels
 
             _party.SetSelectedCharacter(character.Id);
             _characterPaper.Update(character);
-            _abilities.Rebuild(character.Abilities);
-            _modifications.Rebuild(character.Modifications);
-            _modifications.ApplyAvailabilityByAbilities(character.Abilities);
-            ApplySavedPlacements(placements);
+            _abilities.BeginStateChangeBatch();
+            _modifications.BeginStateChangeBatch();
+
+            try
+            {
+                _abilities.Rebuild(character.Abilities);
+                _modifications.Rebuild(character.Modifications);
+                _modifications.ApplyAvailabilityByAbilities(character.Abilities);
+                ApplySavedPlacements(placements);
+            }
+            finally
+            {
+                _abilities.EndStateChangeBatch();
+                _modifications.EndStateChangeBatch();
+            }
         }
 
         public void ClearScreen()

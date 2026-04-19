@@ -78,8 +78,7 @@ namespace Feature.Modifications.Presentation.Views
             while (_activeItemViews.Count > 0)
             {
                 int lastIndex = _activeItemViews.Count - 1;
-                ModificationItemView itemView = _activeItemViews[lastIndex];
-                ReleaseItemView(itemView);
+                ReleaseItemViewAt(lastIndex);
             }
         }
 
@@ -122,17 +121,21 @@ namespace Feature.Modifications.Presentation.Views
             while (_activeItemViews.Count > targetCount)
             {
                 int lastIndex = _activeItemViews.Count - 1;
-                ModificationItemView itemView = _activeItemViews[lastIndex];
-                ReleaseItemView(itemView);
+                ReleaseItemViewAt(lastIndex);
             }
         }
 
-        private void ReleaseItemView(ModificationItemView itemView)
+        private void ReleaseItemViewAt(int index)
         {
+            if (index < 0 || index >= _activeItemViews.Count)
+                return;
+
+            ModificationItemView itemView = _activeItemViews[index];
+            _activeItemViews.RemoveAt(index);
+
             if (itemView == null)
                 return;
 
-            _activeItemViews.Remove(itemView);
             itemView.Unbind();
             _componentPoolService.Release(itemView);
         }

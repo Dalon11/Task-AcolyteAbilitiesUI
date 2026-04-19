@@ -78,8 +78,7 @@ namespace Feature.Abilities.Presentation.Views
             while (_activeItemViews.Count > 0)
             {
                 int lastIndex = _activeItemViews.Count - 1;
-                AbilityItemView itemView = _activeItemViews[lastIndex];
-                ReleaseItemView(itemView);
+                ReleaseItemViewAt(lastIndex);
             }
         }
 
@@ -123,17 +122,21 @@ namespace Feature.Abilities.Presentation.Views
             while (_activeItemViews.Count > targetCount)
             {
                 int lastIndex = _activeItemViews.Count - 1;
-                AbilityItemView itemView = _activeItemViews[lastIndex];
-                ReleaseItemView(itemView);
+                ReleaseItemViewAt(lastIndex);
             }
         }
 
-        private void ReleaseItemView(AbilityItemView itemView)
+        private void ReleaseItemViewAt(int index)
         {
+            if (index < 0 || index >= _activeItemViews.Count)
+                return;
+
+            AbilityItemView itemView = _activeItemViews[index];
+            _activeItemViews.RemoveAt(index);
+
             if (itemView == null)
                 return;
 
-            _activeItemViews.Remove(itemView);
             itemView.Unbind();
             _componentPoolService.Release(itemView);
         }

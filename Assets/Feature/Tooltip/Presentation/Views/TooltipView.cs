@@ -21,6 +21,11 @@ namespace Feature.Tooltip.Presentation.Views
         private ITooltipViewModel _viewModel;
         private TooltipPositionController _positionController;
 
+        private bool IsAnyMouseButtonDown =>
+            UnityEngine.Input.GetMouseButtonDown(0) ||
+            UnityEngine.Input.GetMouseButtonDown(1) ||
+            UnityEngine.Input.GetMouseButtonDown(2);
+
         private void Awake()
         {
             float resolvedScreenPadding = Mathf.Max(0f, _screenPadding);
@@ -36,7 +41,7 @@ namespace Feature.Tooltip.Presentation.Views
             if (!_viewModel.IsVisible)
                 return;
 
-            if (IsAnyMouseButtonDown())
+            if (IsAnyMouseButtonDown)
                 _viewModel.Hide();
         }
 
@@ -100,11 +105,5 @@ namespace Feature.Tooltip.Presentation.Views
             _positionController.UpdatePosition();
         }
 
-        private bool IsAnyMouseButtonDown()
-        {
-            return UnityEngine.Input.GetMouseButtonDown(0) ||
-                   UnityEngine.Input.GetMouseButtonDown(1) ||
-                   UnityEngine.Input.GetMouseButtonDown(2);
-        }
     }
 }

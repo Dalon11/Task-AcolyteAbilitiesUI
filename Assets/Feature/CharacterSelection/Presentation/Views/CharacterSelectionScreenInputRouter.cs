@@ -28,6 +28,8 @@ namespace Feature.CharacterSelection.Presentation.Views
             _viewModel = viewModel;
         }
 
+        public bool HasPendingHover => _viewModel != null && _tooltipHoverInputAdapter.HasPendingHover;
+
         public void ClearViewModel()
         {
             CancelPendingTooltipHover();

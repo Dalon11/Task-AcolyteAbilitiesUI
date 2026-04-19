@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Feature.CharacterSelection.Core.Domain.Models;
 using Feature.CharacterSelection.Core.Enums;
 using Feature.Abilities.Presentation.Binding.Contracts;
+using Feature.Common.Presentation.State;
 using Feature.Loadout.Presentation.ViewModels;
 using UnityEngine;
 
@@ -14,20 +15,38 @@ namespace Feature.Abilities.Presentation.ViewModels
     /// </summary>
     public sealed class AbilitiesListViewModel : IAbilitiesListViewModel
     {
+        private static readonly IReadOnlyList<AbilityModificationPlacementState> EmptyPlacements =
+            Array.Empty<AbilityModificationPlacementState>();
+
         private readonly List<AbilityItemViewModel> _items;
+        private readonly Dictionary<string, AbilityItemViewModel> _itemsById;
+        private readonly DeferredStateChangeNotifier _stateChangeNotifier;
 
         public AbilitiesListViewModel()
         {
             _items = new List<AbilityItemViewModel>();
+            _itemsById = new Dictionary<string, AbilityItemViewModel>();
+            _stateChangeNotifier = new DeferredStateChangeNotifier();
         }
 
         public event Action onStateChanged;
 
         public IReadOnlyList<IAbilityItemViewModel> Items => _items;
 
+        public void BeginStateChangeBatch()
+        {
+            _stateChangeNotifier.BeginBatch();
+        }
+
+        public void EndStateChangeBatch()
+        {
+            _stateChangeNotifier.EndBatch(onStateChanged);
+        }
+
         public void Rebuild(IReadOnlyList<AbilityModel> abilities)
         {
             _items.Clear();
+            _itemsById.Clear();
 
             if (abilities != null)
             {
@@ -37,16 +56,37 @@ namespace Feature.Abilities.Presentation.ViewModels
                     if (ability == null)
                         continue;
 
-                    _items.Add(new AbilityItemViewModel(ability));
+                    AbilityItemViewModel item = new AbilityItemViewModel(ability);
+                    _items.Add(item);
+
+                    if (!_itemsById.ContainsKey(item.Id))
+                        _itemsById.Add(item.Id, item);
                 }
             }
 
-            OnStateChanged();
+            NotifyStateChanged();
         }
 
         public IReadOnlyList<AbilityModificationPlacementState> GetCurrentPlacements()
         {
-            List<AbilityModificationPlacementState> placements = new List<AbilityModificationPlacementState>();
+            int placementsCount = 0;
+            for (int i = 0; i < _items.Count; i++)
+            {
+                AbilityItemViewModel probeItem = _items[i];
+                if (!probeItem.HasAppliedModification)
+                    continue;
+
+                if (string.IsNullOrWhiteSpace(probeItem.AppliedModificationId))
+                    continue;
+
+                placementsCount++;
+            }
+
+            if (placementsCount == 0)
+                return EmptyPlacements;
+
+            List<AbilityModificationPlacementState> placements =
+                new List<AbilityModificationPlacementState>(placementsCount);
 
             for (int i = 0; i < _items.Count; i++)
             {
@@ -60,7 +100,7 @@ namespace Feature.Abilities.Presentation.ViewModels
                 placements.Add(new AbilityModificationPlacementState(item.Id, item.AppliedModificationId));
             }
 
-            return placements.AsReadOnly();
+            return placements;
         }
 
         public void ClearDragPreview()
@@ -68,7 +108,7 @@ namespace Feature.Abilities.Presentation.ViewModels
             for (int i = 0; i < _items.Count; i++)
                 _items[i].SetDropTargetState(false, Color.clear);
 
-            OnStateChanged();
+            NotifyStateChanged();
         }
 
         public void SetDragPreview(ModificationType modificationType, Color color)
@@ -81,7 +121,7 @@ namespace Feature.Abilities.Presentation.ViewModels
                 item.SetDropTargetState(isCompatible, color);
             }
 
-            OnStateChanged();
+            NotifyStateChanged();
         }
 
         public bool TryApplyModificationToAbility(
@@ -102,7 +142,7 @@ namespace Feature.Abilities.Presentation.ViewModels
                 return false;
 
             item.ApplyModification(modificationId, modificationType, modificationIcon, modificationColor);
-            OnStateChanged();
+            NotifyStateChanged();
             return true;
         }
 
@@ -124,7 +164,7 @@ namespace Feature.Abilities.Presentation.ViewModels
                 return false;
 
             item.ApplyModification(modificationId, modificationType, modificationIcon, modificationColor);
-            OnStateChanged();
+            NotifyStateChanged();
             return true;
         }
 
@@ -153,7 +193,7 @@ namespace Feature.Abilities.Presentation.ViewModels
                 modificationType,
                 icon,
                 color);
-            OnStateChanged();
+            NotifyStateChanged();
             return true;
         }
 
@@ -165,18 +205,7 @@ namespace Feature.Abilities.Presentation.ViewModels
                 return false;
             }
 
-            for (int i = 0; i < _items.Count; i++)
-            {
-                AbilityItemViewModel currentItem = _items[i];
-                if (!string.Equals(currentItem.Id, abilityId, StringComparison.Ordinal))
-                    continue;
-
-                item = currentItem;
-                return true;
-            }
-
-            item = null;
-            return false;
+            return _itemsById.TryGetValue(abilityId, out item);
         }
 
         public bool TryGetTooltipContent(string abilityId, out string header, out string description)
@@ -192,11 +221,9 @@ namespace Feature.Abilities.Presentation.ViewModels
             return item.TryGetTooltipContent(out header, out description);
         }
 
-        private void OnStateChanged()
+        private void NotifyStateChanged()
         {
-            Action handler = onStateChanged;
-            if (handler != null)
-                handler.Invoke();
+            _stateChangeNotifier.Notify(onStateChanged);
         }
     }
 }

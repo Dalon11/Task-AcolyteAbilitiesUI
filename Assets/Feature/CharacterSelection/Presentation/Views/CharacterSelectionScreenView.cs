@@ -102,6 +102,9 @@ namespace Feature.CharacterSelection.Presentation.Views
             if (_viewModel == null)
                 return;
 
+            if (!_inputRouter.HasPendingHover)
+                return;
+
             _inputRouter.ProcessPendingHover();
         }
     }

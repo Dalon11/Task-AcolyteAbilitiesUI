@@ -34,6 +34,8 @@ namespace Feature.Tooltip.Presentation.Views
             Cancel();
         }
 
+        public bool IsPending => _isHoverPending && !_isHoverTooltipShown;
+
         public void StartPending(
             HoverTargetType targetType,
             string targetId,

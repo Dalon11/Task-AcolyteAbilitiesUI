@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Feature.CharacterSelection.Core.Domain.Models;
 using Feature.CharacterSelection.Core.Enums;
+using Feature.Common.Presentation.State;
 using Feature.Modifications.Presentation.Binding.Contracts;
 
 namespace Feature.Modifications.Presentation.ViewModels
@@ -13,19 +14,36 @@ namespace Feature.Modifications.Presentation.ViewModels
     public sealed class ModificationsListViewModel : IModificationsListViewModel
     {
         private readonly List<ModificationItemViewModel> _items;
+        private readonly Dictionary<string, ModificationItemViewModel> _itemsById;
+        private readonly HashSet<ModificationType> _supportedTypesBuffer;
+        private readonly DeferredStateChangeNotifier _stateChangeNotifier;
 
         public ModificationsListViewModel()
         {
             _items = new List<ModificationItemViewModel>();
+            _itemsById = new Dictionary<string, ModificationItemViewModel>();
+            _supportedTypesBuffer = new HashSet<ModificationType>();
+            _stateChangeNotifier = new DeferredStateChangeNotifier();
         }
 
         public event Action onStateChanged;
 
         public IReadOnlyList<IModificationItemViewModel> Items => _items;
 
+        public void BeginStateChangeBatch()
+        {
+            _stateChangeNotifier.BeginBatch();
+        }
+
+        public void EndStateChangeBatch()
+        {
+            _stateChangeNotifier.EndBatch(onStateChanged);
+        }
+
         public void Rebuild(IReadOnlyList<ModificationModel> modifications)
         {
             _items.Clear();
+            _itemsById.Clear();
 
             if (modifications != null)
             {
@@ -35,18 +53,22 @@ namespace Feature.Modifications.Presentation.ViewModels
                     if (modification == null)
                         continue;
 
-                    _items.Add(new ModificationItemViewModel(modification));
+                    ModificationItemViewModel item = new ModificationItemViewModel(modification);
+                    _items.Add(item);
+
+                    if (!_itemsById.ContainsKey(item.Id))
+                        _itemsById.Add(item.Id, item);
                 }
             }
 
             _items.Sort(CompareByTypeThenName);
 
-            OnStateChanged();
+            NotifyStateChanged();
         }
 
         public void ApplyAvailabilityByAbilities(IReadOnlyList<AbilityModel> abilities)
         {
-            HashSet<ModificationType> supportedTypes = new HashSet<ModificationType>();
+            _supportedTypesBuffer.Clear();
 
             if (abilities != null)
             {
@@ -57,18 +79,18 @@ namespace Feature.Modifications.Presentation.ViewModels
                         continue;
 
                     for (int typeIndex = 0; typeIndex < ability.SupportedModificationTypes.Count; typeIndex++)
-                        supportedTypes.Add(ability.SupportedModificationTypes[typeIndex]);
+                        _supportedTypesBuffer.Add(ability.SupportedModificationTypes[typeIndex]);
                 }
             }
 
             for (int i = 0; i < _items.Count; i++)
             {
                 ModificationItemViewModel item = _items[i];
-                bool isAvailable = supportedTypes.Contains(item.ModificationType);
+                bool isAvailable = _supportedTypesBuffer.Contains(item.ModificationType);
                 item.SetInteractableState(isAvailable, !isAvailable);
             }
 
-            OnStateChanged();
+            NotifyStateChanged();
         }
 
         public bool TryLockById(string modificationId, out ModificationItemViewModel item)
@@ -80,7 +102,7 @@ namespace Feature.Modifications.Presentation.ViewModels
                 return false;
 
             item.SetInteractableState(false, true);
-            OnStateChanged();
+            NotifyStateChanged();
             return true;
         }
 
@@ -91,7 +113,7 @@ namespace Feature.Modifications.Presentation.ViewModels
                 return;
 
             item.SetInteractableState(true, false);
-            OnStateChanged();
+            NotifyStateChanged();
         }
 
         public bool TryGetItemById(string modificationId, out ModificationItemViewModel item)
@@ -102,18 +124,7 @@ namespace Feature.Modifications.Presentation.ViewModels
                 return false;
             }
 
-            for (int i = 0; i < _items.Count; i++)
-            {
-                ModificationItemViewModel currentItem = _items[i];
-                if (!string.Equals(currentItem.Id, modificationId, StringComparison.Ordinal))
-                    continue;
-
-                item = currentItem;
-                return true;
-            }
-
-            item = null;
-            return false;
+            return _itemsById.TryGetValue(modificationId, out item);
         }
 
         public bool TryGetTooltipContent(string modificationId, out string header, out string description)
@@ -129,11 +140,9 @@ namespace Feature.Modifications.Presentation.ViewModels
             return item.TryGetTooltipContent(out header, out description);
         }
 
-        private void OnStateChanged()
+        private void NotifyStateChanged()
         {
-            Action handler = onStateChanged;
-            if (handler != null)
-                handler.Invoke();
+            _stateChangeNotifier.Notify(onStateChanged);
         }
 
         private int CompareByTypeThenName(ModificationItemViewModel left, ModificationItemViewModel right)

@@ -17,6 +17,8 @@ namespace Feature.CharacterSelection.Presentation.Views
             _hoverDelayCoordinator = new TooltipHoverDelayCoordinator(hoverDelaySeconds, mouseMovementThreshold);
         }
 
+        public bool HasPendingHover => _hoverDelayCoordinator.IsPending;
+
         public void StartPending(TooltipHoverDelayCoordinator.HoverTargetType targetType, string targetId)
         {
             _hoverDelayCoordinator.StartPending(

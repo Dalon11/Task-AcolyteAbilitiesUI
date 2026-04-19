@@ -28,7 +28,7 @@ namespace Feature.Loadout.Presentation.ViewModels
                 return;
             }
 
-            _placementsByCharacterId[characterId] = new List<AbilityModificationPlacementState>(placements).AsReadOnly();
+            _placementsByCharacterId[characterId] = new List<AbilityModificationPlacementState>(placements);
         }
 
         public bool TryGet(string characterId, out IReadOnlyList<AbilityModificationPlacementState> placements)
