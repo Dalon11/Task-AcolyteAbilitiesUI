@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Feature.CharacterSelection.Core.Enums;
+using UnityEngine;
 
 namespace Feature.Modifications.Presentation.Binding.Contracts
 {
@@ -9,6 +10,8 @@ namespace Feature.Modifications.Presentation.Binding.Contracts
         public string Name { get; }
 
         public Sprite Icon { get; }
+
+        public ModificationType ModificationType { get; }
 
         public string TypeDisplayName { get; }
 

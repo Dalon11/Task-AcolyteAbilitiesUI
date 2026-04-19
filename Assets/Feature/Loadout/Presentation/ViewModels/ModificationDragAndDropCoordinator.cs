@@ -1,9 +1,10 @@
 ﻿using System;
+using Feature.Abilities.Presentation.Binding.Contracts;
 using Feature.CharacterSelection.Core.Enums;
-using Feature.Abilities.Presentation.ViewModels;
+using Feature.Loadout.Presentation.Binding.Contracts;
 using Feature.Loadout.Presentation.Contracts;
 using Feature.Loadout.Presentation.Contracts.Models;
-using Feature.Modifications.Presentation.ViewModels;
+using Feature.Modifications.Presentation.Binding.Contracts;
 using UnityEngine;
 
 namespace Feature.Loadout.Presentation.ViewModels
@@ -14,9 +15,9 @@ namespace Feature.Loadout.Presentation.ViewModels
     /// </summary>
     public sealed class ModificationDragAndDropCoordinator : IModificationDragAndDropCoordinator
     {
-        private readonly AbilitiesListViewModel _abilitiesListViewModel;
-        private readonly ModificationsListViewModel _modificationsListViewModel;
-        private readonly ModificationDragSlotViewModel _dragSlotViewModel;
+        private readonly IAbilitiesListViewModel _abilitiesListViewModel;
+        private readonly IModificationsListViewModel _modificationsListViewModel;
+        private readonly IModificationDragSlotViewModel _dragSlotViewModel;
 
         private DragSourceType _dragSourceType;
         private string _activeModificationId;
@@ -25,9 +26,9 @@ namespace Feature.Loadout.Presentation.ViewModels
         private Color _activeColor;
 
         public ModificationDragAndDropCoordinator(
-            AbilitiesListViewModel abilitiesListViewModel,
-            ModificationsListViewModel modificationsListViewModel,
-            ModificationDragSlotViewModel dragSlotViewModel)
+            IAbilitiesListViewModel abilitiesListViewModel,
+            IModificationsListViewModel modificationsListViewModel,
+            IModificationDragSlotViewModel dragSlotViewModel)
         {
             if (abilitiesListViewModel == null)
                 throw new ArgumentNullException(nameof(abilitiesListViewModel));
@@ -49,7 +50,7 @@ namespace Feature.Loadout.Presentation.ViewModels
             if (IsDragActive())
                 return false;
 
-            ModificationItemViewModel modificationItemViewModel;
+            IModificationItemViewModel modificationItemViewModel;
             if (!_modificationsListViewModel.TryLockById(modificationId, out modificationItemViewModel))
                 return false;
 
@@ -143,7 +144,7 @@ namespace Feature.Loadout.Presentation.ViewModels
             _activeColor = Color.clear;
         }
 
-        private Sprite ResolveIcon(ModificationItemViewModel modificationItemViewModel)
+        private Sprite ResolveIcon(IModificationItemViewModel modificationItemViewModel)
         {
             if (modificationItemViewModel == null)
                 return null;

@@ -93,30 +93,59 @@ namespace Feature.Modifications.Presentation.ViewModels
             NotifyStateChanged();
         }
 
-        public bool TryLockById(string modificationId, out ModificationItemViewModel item)
+        public bool TryLockById(string modificationId, out IModificationItemViewModel item)
         {
-            if (!TryGetItemById(modificationId, out item))
+            ModificationItemViewModel concreteItem;
+            if (!TryGetConcreteItemById(modificationId, out concreteItem))
+            {
+                item = null;
                 return false;
+            }
 
-            if (!item.IsInteractable)
+            if (!concreteItem.IsInteractable)
+            {
+                item = concreteItem;
                 return false;
+            }
 
-            item.SetInteractableState(false, true);
+            concreteItem.SetInteractableState(false, true);
+            item = concreteItem;
             NotifyStateChanged();
             return true;
         }
 
         public void UnlockById(string modificationId)
         {
-            ModificationItemViewModel item;
-            if (!TryGetItemById(modificationId, out item))
+            ModificationItemViewModel concreteItem;
+            if (!TryGetConcreteItemById(modificationId, out concreteItem))
                 return;
 
-            item.SetInteractableState(true, false);
+            concreteItem.SetInteractableState(true, false);
             NotifyStateChanged();
         }
 
-        public bool TryGetItemById(string modificationId, out ModificationItemViewModel item)
+        public bool TryGetItemById(string modificationId, out IModificationItemViewModel item)
+        {
+            ModificationItemViewModel concreteItem;
+            bool hasItem = TryGetConcreteItemById(modificationId, out concreteItem);
+            item = concreteItem;
+            return hasItem;
+        }
+
+        public bool TryGetTooltipContent(string modificationId, out string header, out string description)
+        {
+            ModificationItemViewModel concreteItem;
+            if (!TryGetConcreteItemById(modificationId, out concreteItem))
+            {
+                header = string.Empty;
+                description = string.Empty;
+                return false;
+            }
+
+            return concreteItem.TryGetTooltipContent(out header, out description);
+        }
+
+        private bool TryGetConcreteItemById(string modificationId, out ModificationItemViewModel item)
         {
             if (string.IsNullOrWhiteSpace(modificationId))
             {
@@ -125,19 +154,6 @@ namespace Feature.Modifications.Presentation.ViewModels
             }
 
             return _itemsById.TryGetValue(modificationId, out item);
-        }
-
-        public bool TryGetTooltipContent(string modificationId, out string header, out string description)
-        {
-            ModificationItemViewModel item;
-            if (!TryGetItemById(modificationId, out item))
-            {
-                header = string.Empty;
-                description = string.Empty;
-                return false;
-            }
-
-            return item.TryGetTooltipContent(out header, out description);
         }
 
         private void NotifyStateChanged()

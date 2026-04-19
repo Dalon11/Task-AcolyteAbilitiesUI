@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 472ea72c8c399024aa7858a8719c98be, type: 3}
   m_Name: TooltipHoverDelayConfig
   m_EditorClassIdentifier: 
-  _hoverDelaySeconds: 1
+  _hoverDelaySeconds: 0.5
   _mouseMovementThreshold: 2

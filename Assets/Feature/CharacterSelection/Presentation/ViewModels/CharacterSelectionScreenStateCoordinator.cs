@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Feature.Abilities.Presentation.ViewModels;
-using Feature.CharacterPaper.Presentation.ViewModels;
+using Feature.Abilities.Presentation.Binding.Contracts;
+using Feature.CharacterPaper.Presentation.Binding.Contracts;
 using Feature.CharacterSelection.Core.Domain.Models;
 using Feature.CharacterSelection.Presentation.Contracts;
 using Feature.Loadout.Presentation.Contracts.Models;
-using Feature.Loadout.Presentation.ViewModels;
-using Feature.Modifications.Presentation.ViewModels;
-using Feature.Party.Presentation.ViewModels;
+using Feature.Modifications.Presentation.Binding.Contracts;
+using Feature.Party.Presentation.Binding.Contracts;
 using UnityEngine;
 
 namespace Feature.CharacterSelection.Presentation.ViewModels
@@ -18,16 +17,16 @@ namespace Feature.CharacterSelection.Presentation.ViewModels
     /// </summary>
     public sealed class CharacterSelectionScreenStateCoordinator : ICharacterSelectionScreenStateCoordinator
     {
-        private readonly PartyViewModel _party;
-        private readonly CharacterPaperViewModel _characterPaper;
-        private readonly AbilitiesListViewModel _abilities;
-        private readonly ModificationsListViewModel _modifications;
+        private readonly IPartyViewModel _party;
+        private readonly ICharacterPaperViewModel _characterPaper;
+        private readonly IAbilitiesListViewModel _abilities;
+        private readonly IModificationsListViewModel _modifications;
 
         public CharacterSelectionScreenStateCoordinator(
-            PartyViewModel party,
-            CharacterPaperViewModel characterPaper,
-            AbilitiesListViewModel abilities,
-            ModificationsListViewModel modifications)
+            IPartyViewModel party,
+            ICharacterPaperViewModel characterPaper,
+            IAbilitiesListViewModel abilities,
+            IModificationsListViewModel modifications)
         {
             if (party == null)
                 throw new ArgumentNullException(nameof(party));
@@ -102,7 +101,7 @@ namespace Feature.CharacterSelection.Presentation.ViewModels
                     || string.IsNullOrWhiteSpace(placement.ModificationId))
                     continue;
 
-                ModificationItemViewModel modificationItem;
+                IModificationItemViewModel modificationItem;
                 if (!_modifications.TryGetItemById(placement.ModificationId, out modificationItem))
                     continue;
 
@@ -118,12 +117,12 @@ namespace Feature.CharacterSelection.Presentation.ViewModels
                 if (!isApplied)
                     continue;
 
-                ModificationItemViewModel lockedItem;
+                IModificationItemViewModel lockedItem;
                 _modifications.TryLockById(modificationItem.Id, out lockedItem);
             }
         }
 
-        private Sprite ResolveIcon(ModificationItemViewModel modificationItem)
+        private Sprite ResolveIcon(IModificationItemViewModel modificationItem)
         {
             if (modificationItem == null)
                 return null;

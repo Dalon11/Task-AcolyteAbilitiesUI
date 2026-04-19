@@ -37,7 +37,18 @@ namespace Feature.Tooltip.Presentation.ViewModels
 
         public void Hide()
         {
-            if (!IsVisible && string.IsNullOrEmpty(_content.Header))
+            if (!IsVisible)
+                return;
+
+            IsVisible = false;
+
+            OnStateChanged();
+        }
+
+        public void HideAndClear()
+        {
+            bool isStateChanged = IsVisible || !string.IsNullOrEmpty(_content.Header) || !string.IsNullOrEmpty(_content.Description);
+            if (!isStateChanged)
                 return;
 
             IsVisible = false;

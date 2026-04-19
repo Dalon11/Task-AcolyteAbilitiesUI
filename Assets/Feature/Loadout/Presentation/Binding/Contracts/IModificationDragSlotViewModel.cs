@@ -12,5 +12,9 @@ namespace Feature.Loadout.Presentation.Binding.Contracts
         public Sprite Icon { get; }
 
         public Color Color { get; }
+
+        public void Show(Sprite icon, Color color);
+
+        public void Hide();
     }
 }

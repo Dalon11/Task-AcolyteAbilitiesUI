@@ -1,10 +1,10 @@
 ﻿using System;
-using Feature.Abilities.Presentation.ViewModels;
-using Feature.CharacterPaper.Presentation.ViewModels;
+using Feature.Abilities.Presentation.Binding.Contracts;
+using Feature.CharacterPaper.Presentation.Binding.Contracts;
 using Feature.CharacterSelection.Core.Domain.Models;
 using Feature.CharacterSelection.Presentation.Contracts;
-using Feature.Modifications.Presentation.ViewModels;
-using Feature.Tooltip.Presentation.ViewModels;
+using Feature.Modifications.Presentation.Binding.Contracts;
+using Feature.Tooltip.Presentation.Binding.Contracts;
 
 namespace Feature.CharacterSelection.Presentation.ViewModels
 {
@@ -14,16 +14,16 @@ namespace Feature.CharacterSelection.Presentation.ViewModels
     /// </summary>
     public sealed class CharacterSelectionTooltipCoordinator : ICharacterSelectionTooltipCoordinator
     {
-        private readonly CharacterPaperViewModel _characterPaper;
-        private readonly AbilitiesListViewModel _abilities;
-        private readonly ModificationsListViewModel _modifications;
-        private readonly TooltipViewModel _tooltip;
+        private readonly ICharacterPaperViewModel _characterPaper;
+        private readonly IAbilitiesListViewModel _abilities;
+        private readonly IModificationsListViewModel _modifications;
+        private readonly ITooltipViewModel _tooltip;
 
         public CharacterSelectionTooltipCoordinator(
-            CharacterPaperViewModel characterPaper,
-            AbilitiesListViewModel abilities,
-            ModificationsListViewModel modifications,
-            TooltipViewModel tooltip)
+            ICharacterPaperViewModel characterPaper,
+            IAbilitiesListViewModel abilities,
+            IModificationsListViewModel modifications,
+            ITooltipViewModel tooltip)
         {
             if (characterPaper == null)
                 throw new ArgumentNullException(nameof(characterPaper));

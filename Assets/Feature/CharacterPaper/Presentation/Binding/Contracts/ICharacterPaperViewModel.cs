@@ -1,4 +1,5 @@
 ﻿using System;
+using Feature.CharacterSelection.Core.Domain.Models;
 using UnityEngine;
 
 namespace Feature.CharacterPaper.Presentation.Binding.Contracts
@@ -18,5 +19,11 @@ namespace Feature.CharacterPaper.Presentation.Binding.Contracts
         public int Armor { get; }
 
         public Sprite CharacterSprite { get; }
+
+        public void Update(CharacterModel character);
+
+        public void Clear();
+
+        public bool TryGetTooltipContent(out string header, out string description);
     }
 }

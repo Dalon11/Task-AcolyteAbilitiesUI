@@ -16,6 +16,7 @@ namespace Feature.Tooltip.Presentation.Views
         [SerializeField] private Canvas _rootCanvas;
         [SerializeField] private TMP_Text _headerText;
         [SerializeField] private TMP_Text _descriptionText;
+        [Space]
         [SerializeField] private Vector2 _cursorOffset = Vector2.zero;
         [SerializeField] private float _screenPadding = 10f;
 
