@@ -1,5 +1,5 @@
 ﻿# Task-AcolyteAbilitiesUI
-<img width="1750" height="978" alt="image" src="https://github.com/user-attachments/assets/47f4a5b9-137f-4c67-a370-cb1c4fabc732" />
+<img width="1749" height="981" alt="image" src="https://github.com/user-attachments/assets/7a5b4ff2-eeb9-4f44-ba82-b20b3d6f0d7f" />
 
 ## Описание
 Тестовый Unity-проект интерфейса окна управления персонажем: `Abilities` и `Modifications`.
