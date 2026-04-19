@@ -6,6 +6,7 @@ using Feature.Common.Presentation.Pooling.Contracts;
 using Feature.Loadout.Presentation.Views;
 using Feature.Modifications.Presentation.Views;
 using Feature.Party.Presentation.Views;
+using Feature.Tooltip.Presentation.Configs;
 using Feature.Tooltip.Presentation.Views;
 using UnityEngine;
 
@@ -21,21 +22,18 @@ namespace Feature.CharacterSelection.Presentation.Views
         [SerializeField] private CharacterPaperView _characterPaperView;
         [SerializeField] private AbilitiesListView _abilitiesListView;
         [SerializeField] private ModificationsListView _modificationsListView;
-        [SerializeField] private TooltipView _tooltipView;
         [SerializeField] private DraggedModificationSlotView _draggedModificationSlotView;
-        [SerializeField] private float _tooltipHoverDelaySeconds = 1f;
-        [SerializeField] private float _mouseMovementThreshold = 2f;
+        [Space]
+        [SerializeField] private TooltipView _tooltipView;
 
         private ICharacterSelectionScreenViewModel _viewModel;
         private IComponentPoolService _componentPoolService;
+        private TooltipHoverDelayConfig _tooltipHoverDelayConfig;
         private CharacterSelectionScreenInputRouter _inputRouter;
         private CharacterSelectionScreenBindingsCoordinator _bindingsCoordinator;
 
         private void Awake()
         {
-            _inputRouter = new CharacterSelectionScreenInputRouter(
-                _tooltipHoverDelaySeconds,
-                _mouseMovementThreshold);
             _bindingsCoordinator = new CharacterSelectionScreenBindingsCoordinator(
                 _partyListView,
                 _characterPaperView,
@@ -43,6 +41,15 @@ namespace Feature.CharacterSelection.Presentation.Views
                 _modificationsListView,
                 _tooltipView,
                 _draggedModificationSlotView);
+        }
+
+        public void SetTooltipHoverDelayConfig(TooltipHoverDelayConfig tooltipHoverDelayConfig)
+        {
+            if (tooltipHoverDelayConfig == null)
+                throw new ArgumentNullException(nameof(tooltipHoverDelayConfig));
+
+            _tooltipHoverDelayConfig = tooltipHoverDelayConfig;
+            _inputRouter = new CharacterSelectionScreenInputRouter(_tooltipHoverDelayConfig);
         }
 
         public void SetPoolService(IComponentPoolService componentPoolService)
@@ -60,6 +67,9 @@ namespace Feature.CharacterSelection.Presentation.Views
 
             if (_componentPoolService == null)
                 throw new InvalidOperationException("Не задан IComponentPoolService для CharacterSelectionScreenView.");
+
+            if (_inputRouter == null)
+                throw new InvalidOperationException("Не задан TooltipHoverDelayConfig для CharacterSelectionScreenView.");
 
             Unbind();
 

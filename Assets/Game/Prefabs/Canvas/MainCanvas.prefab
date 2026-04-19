@@ -357,6 +357,7 @@ MonoBehaviour:
   _screenView: {fileID: 3248399656449971747}
   _characterCatalog: {fileID: 11400000, guid: d7402fd72f4ef51a67ddeeff00112233, type: 2}
   _modificationTypeCatalog: {fileID: 11400000, guid: 9e3477dec24a4d34197ae7a3d1c316b1, type: 2}
+  _tooltipHoverDelayConfig: {fileID: 11400000, guid: 5424a071d83c6d2478ef70d724d72d09, type: 2}
 --- !u!114 &3248399656449971747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,8 +376,6 @@ MonoBehaviour:
   _modificationsListView: {fileID: 800598761376749634}
   _tooltipView: {fileID: 718610079591125468}
   _draggedModificationSlotView: {fileID: 3765585852845610295}
-  _tooltipHoverDelaySeconds: 0.7
-  _mouseMovementThreshold: 2
 --- !u!1 &3004760296321476210
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,6 +1303,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tooltip
       objectReference: {fileID: 0}
+    - target: {fileID: 9046564343800779432, guid: cda6bc72a3c997e49849a41f80a2cbe5, type: 3}
+      propertyPath: m_Padding.m_Right
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1333,6 +1336,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8931998987768092711}
     m_Modifications:
+    - target: {fileID: 567846160238676266, guid: 5d4280e868ff69f4eb6fe4df864d10bd, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -5.5197754
+      objectReference: {fileID: 0}
     - target: {fileID: 5668194523039324059, guid: 5d4280e868ff69f4eb6fe4df864d10bd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1667,6 +1674,18 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7271247103643228847, guid: c6edd481406b28f4497be55a0f33b725, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000061035156
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237323158984384073, guid: c6edd481406b28f4497be55a0f33b725, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.29516602
+      objectReference: {fileID: 0}
+    - target: {fileID: 8589714234464050514, guid: c6edd481406b28f4497be55a0f33b725, type: 3}
+      propertyPath: m_Size
+      value: 0.46284947
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1699,6 +1718,10 @@ PrefabInstance:
     - target: {fileID: 2945129862212945089, guid: 7ce74e0c1230a384aab5333f92ad5b21, type: 3}
       propertyPath: m_Name
       value: AbilityPanelCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3695259412425855791, guid: 7ce74e0c1230a384aab5333f92ad5b21, type: 3}
+      propertyPath: m_Size
+      value: 0.46396443
       objectReference: {fileID: 0}
     - target: {fileID: 3881533551134947826, guid: 7ce74e0c1230a384aab5333f92ad5b21, type: 3}
       propertyPath: m_AnchorMax.x

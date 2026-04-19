@@ -7,8 +7,8 @@ namespace Feature.CharacterSelection.Core.Configs.ScriptableObjects
 {
 
     [CreateAssetMenu(
-        fileName = "ModificationTypeCatalog",
-        menuName = "Game/Abilities/Configs/Modification Type Catalog")]
+        fileName = nameof(ModificationTypeCatalog),
+        menuName = "Game/Catalogs/CharacterSelection/" + nameof(ModificationTypeCatalog))]
     /// <summary>
     /// Хранит каталог данных Modification Type.
     /// </summary>

@@ -5,8 +5,8 @@ namespace Feature.CharacterSelection.Core.Configs.ScriptableObjects
 {
 
     [CreateAssetMenu(
-        fileName = "AbilityConfig",
-        menuName = "Game/Abilities/Configs/Ability Config")]
+        fileName = nameof(AbilityConfig),
+        menuName = "Game/Configs/CharacterSelection/" + nameof(AbilityConfig))]
     /// <summary>
     /// Описывает конфигурацию Ability.
     /// </summary>

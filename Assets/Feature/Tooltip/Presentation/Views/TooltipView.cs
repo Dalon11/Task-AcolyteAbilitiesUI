@@ -2,6 +2,7 @@
 using Feature.Tooltip.Presentation.Binding.Contracts;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Feature.Tooltip.Presentation.Views
 {
@@ -20,11 +21,14 @@ namespace Feature.Tooltip.Presentation.Views
 
         private ITooltipViewModel _viewModel;
         private TooltipPositionController _positionController;
+        private string _lastHeader;
+        private string _lastDescription;
+        private bool _wasVisible;
 
         private bool IsAnyMouseButtonDown =>
-            UnityEngine.Input.GetMouseButtonDown(0) ||
-            UnityEngine.Input.GetMouseButtonDown(1) ||
-            UnityEngine.Input.GetMouseButtonDown(2);
+            Input.GetMouseButtonDown(0) ||
+            Input.GetMouseButtonDown(1) ||
+            Input.GetMouseButtonDown(2);
 
         private void Awake()
         {
@@ -65,6 +69,9 @@ namespace Feature.Tooltip.Presentation.Views
 
             _viewModel.onStateChanged -= OnViewModelStateChanged;
             _viewModel = null;
+            _lastHeader = null;
+            _lastDescription = null;
+            _wasVisible = false;
         }
 
         public void Refresh()
@@ -76,6 +83,10 @@ namespace Feature.Tooltip.Presentation.Views
                 _panelRect.gameObject.SetActive(_viewModel.IsVisible);
 
             ITooltipContentViewModel content = _viewModel.Content;
+            bool isVisible = _viewModel.IsVisible;
+            bool isContentChanged =
+                !string.Equals(_lastHeader, content.Header, StringComparison.Ordinal) ||
+                !string.Equals(_lastDescription, content.Description, StringComparison.Ordinal);
 
             if (_headerText != null)
                 _headerText.text = content.Header;
@@ -83,8 +94,17 @@ namespace Feature.Tooltip.Presentation.Views
             if (_descriptionText != null)
                 _descriptionText.text = content.Description;
 
-            if (_panelRect != null && _viewModel.IsVisible)
+            if (_panelRect != null && isVisible)
+            {
+                if (isContentChanged || !_wasVisible)
+                    RebuildTooltipLayout();
+
                 UpdateTooltipPosition();
+            }
+
+            _lastHeader = content.Header;
+            _lastDescription = content.Description;
+            _wasVisible = isVisible;
         }
 
         private void OnDestroy()
@@ -103,6 +123,18 @@ namespace Feature.Tooltip.Presentation.Views
                 return;
 
             _positionController.UpdatePosition();
+        }
+
+        private void RebuildTooltipLayout()
+        {
+            if (_headerText != null)
+                _headerText.ForceMeshUpdate();
+
+            if (_descriptionText != null)
+                _descriptionText.ForceMeshUpdate();
+
+            if (_panelRect != null)
+                LayoutRebuilder.ForceRebuildLayoutImmediate(_panelRect);
         }
 
     }

@@ -1,4 +1,6 @@
-﻿using Feature.CharacterSelection.Presentation.Binding.Contracts;
+﻿using System;
+using Feature.CharacterSelection.Presentation.Binding.Contracts;
+using Feature.Tooltip.Presentation.Configs;
 using Feature.Tooltip.Presentation.Views;
 using UnityEngine.EventSystems;
 
@@ -15,11 +17,14 @@ namespace Feature.CharacterSelection.Presentation.Views
 
         private ICharacterSelectionScreenViewModel _viewModel;
 
-        public CharacterSelectionScreenInputRouter(float tooltipHoverDelaySeconds, float mouseMovementThreshold)
+        public CharacterSelectionScreenInputRouter(TooltipHoverDelayConfig tooltipHoverDelayConfig)
         {
+            if (tooltipHoverDelayConfig == null)
+                throw new ArgumentNullException(nameof(tooltipHoverDelayConfig));
+
             _tooltipHoverInputAdapter = new CharacterSelectionTooltipHoverInputAdapter(
-                tooltipHoverDelaySeconds,
-                mouseMovementThreshold);
+                tooltipHoverDelayConfig.HoverDelaySeconds,
+                tooltipHoverDelayConfig.MouseMovementThreshold);
             _dropTargetInputAdapter = new CharacterSelectionDropTargetInputAdapter();
         }
 

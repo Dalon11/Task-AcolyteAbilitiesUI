@@ -1,6 +1,7 @@
 ﻿using System;
 using Feature.CharacterSelection.Core.Configs.ScriptableObjects;
 using Feature.CharacterSelection.Presentation.Views;
+using Feature.Tooltip.Presentation.Configs;
 using UnityEngine;
 
 namespace Feature.CharacterSelection.Composition
@@ -15,6 +16,7 @@ namespace Feature.CharacterSelection.Composition
         [SerializeField] private CharacterSelectionScreenView _screenView;
         [SerializeField] private CharacterCatalog _characterCatalog;
         [SerializeField] private ModificationTypeCatalog _modificationTypeCatalog;
+        [SerializeField] private TooltipHoverDelayConfig _tooltipHoverDelayConfig;
 
         private CharacterSelectionScreenComposition _composition;
 
@@ -26,6 +28,7 @@ namespace Feature.CharacterSelection.Composition
                 _modificationTypeCatalog);
 
             _composition = composer.Compose();
+            screenView.SetTooltipHoverDelayConfig(_tooltipHoverDelayConfig);
             screenView.SetPoolService(_composition.ComponentPoolService);
             screenView.Bind(_composition.ScreenViewModel);
             _composition.ScreenViewModel.Initialize();
